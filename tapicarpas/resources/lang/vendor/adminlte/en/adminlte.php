@@ -15,7 +15,7 @@ return [
     'log_out'                     => 'Cerrar sesión',
     'toggle_navigation'           => 'Navegación de palanca',
     'login_message'               => 'Regístrese para iniciar su sesión',
-    'register_message'            => 'Registrar una nueva contraseña',
+    'register_message'            => 'Registrar una nueva cuenta',
     'password_reset_message'      => 'Restablecer la contraseña',
     'reset_password'              => 'Restablecer la contraseña',
     'send_password_reset_link'    => 'Enviar enlace de restablecimiento de contraseña',
