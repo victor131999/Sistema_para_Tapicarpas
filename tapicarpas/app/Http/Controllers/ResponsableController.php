@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ResponsableController extends Controller
 {
+        //Colocamos el middleware
+        public function __construct()
+        {
+            $this->middleware('auth');
+        }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +21,9 @@ class ResponsableController extends Controller
     public function index()
     {
         //
+        $datos['responsables']=Responsable::paginate(5);
+
+        return view('responsable.index',$datos);
     }
 
     /**
@@ -25,6 +34,7 @@ class ResponsableController extends Controller
     public function create()
     {
         //
+        return view('responsable.create');
     }
 
     /**
@@ -36,6 +46,23 @@ class ResponsableController extends Controller
     public function store(Request $request)
     {
         //
+        //Validación de datos
+        $campos=[
+            'Nombre'=>'required|string|max:100',
+            'Direccion'=>'required|string|max:100',
+            'Telefono'=>'required|string|max:100',
+
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido',
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+        $datosResponsable = request()->except('_token');
+
+
+        Responsable::insert($datosResponsable);
+        return redirect('responsable')->with('mensaje','Responsable agregado con exito');
     }
 
     /**
@@ -55,9 +82,11 @@ class ResponsableController extends Controller
      * @param  \App\Models\Responsable  $responsable
      * @return \Illuminate\Http\Response
      */
-    public function edit(Responsable $responsable)
+    public function edit($id)
     {
         //
+        $responsable=Responsable::findOrFail($id);
+        return view('responsable.edit',compact('responsable'));
     }
 
     /**
@@ -67,9 +96,28 @@ class ResponsableController extends Controller
      * @param  \App\Models\Responsable  $responsable
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Responsable $responsable)
+    public function update(Request $request, $id)
     {
         //
+         //Validación de datos
+         $campos=[
+            'Nombre'=>'required|string|max:100',
+            'Direccion'=>'required|string|max:100',
+            'Telefono'=>'required|string|max:100',
+
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido',
+
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
+        $datosResponsable = request()->except(['_token','_method']);
+
+        Responsable::where('id','=',$id)->update($datosResponsable);
+        $responsable=Responsable::findOrFail($id);
+        return redirect('responsable')->with('mensaje','Responsable modificado correctamente');
     }
 
     /**
@@ -78,8 +126,11 @@ class ResponsableController extends Controller
      * @param  \App\Models\Responsable  $responsable
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Responsable $responsable)
+    public function destroy($id)
     {
-        //
+        //se esta recepcionando el id del formulario del index
+        $responsable=Responsable::findOrFail($id);
+        Responsable::destroy($id);
+        return redirect('responsable')->with('mensaje','Responsable eliminado');
     }
 }
