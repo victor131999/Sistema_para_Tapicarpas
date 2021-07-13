@@ -10,7 +10,7 @@ return [
     'register'                    => 'Registrarse',
     'register_a_new_membership'   => 'Registrar una nueva contraseña',
     'i_forgot_my_password'        => 'Olvidé mi contraseña',
-    'i_already_have_a_membership' => 'Ya tengo una contraseña',
+    'i_already_have_a_membership' => 'Ya tengo una cuenta',
     'sign_in'                     => 'Ingresar',
     'log_out'                     => 'Cerrar sesión',
     'toggle_navigation'           => 'Navegación de palanca',
