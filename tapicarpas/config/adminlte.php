@@ -270,7 +270,7 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'Perfil',
-            'url'  => 'admin/settings',
+            'url'  => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
