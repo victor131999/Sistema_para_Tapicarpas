@@ -253,8 +253,15 @@ return [
         ],
         ['header' => 'Gestión'],
         [
-            'text'        => 'Gestionar responsables',
+            'text'        => 'Responsables',
             'url'         => 'responsable',
+            'icon'        => 'fas fa-address-book',
+            //'label'       => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Proveedores',
+            'url'         => 'proveedor',
             'icon'        => 'fas fa-address-book',
             //'label'       => 4,
             'label_color' => 'success',
