@@ -14,15 +14,16 @@ use App\Http\Controllers\ResponsableController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-/*Route::get('/responsable', function () {
-    return view('responsable.index');
-});*/
 
 Route::resource('responsable', ResponsableController::class);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+/*Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+})->name('dashboard');*/
+
+Route::group(['middleware' => 'auth'],function () {
+    Route::get('/', [ResponsableController::class, 'index'])-> name('home');
+});
