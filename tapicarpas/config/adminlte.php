@@ -262,7 +262,7 @@ return [
         [
             'text'        => 'Proveedores',
             'url'         => 'proveedor',
-            'icon'        => 'fas fa-address-book',
+            'icon'        => 'fas fa-people-carry',
             //'label'       => 4,
             'label_color' => 'success',
         ],
