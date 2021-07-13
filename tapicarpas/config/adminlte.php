@@ -267,16 +267,11 @@ return [
             'label_color' => 'success',
         ],
 
-        ['header' => 'account_settings'],
+        ['header' => 'Configuración de la cuenta'],
         [
             'text' => 'Perfil',
             'url'  => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
         ],
         [
             'text'    => 'multilevel',
