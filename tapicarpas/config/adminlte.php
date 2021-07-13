@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'responsable',
+    'dashboard_url' => 'inicio',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -237,25 +237,32 @@ return [
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
+
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+
         [
             'text'        => 'Inicio',
-            'url'         => 'responsable',
+            'url'         => 'inicio',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            //'label'       => 4,
             'label_color' => 'success',
         ],
+        ['header' => 'Gestión'],
+        [
+            'text'        => 'Gestionar responsables',
+            'url'         => 'responsable',
+            'icon'        => 'fas fa-address-book',
+            //'label'       => 4,
+            'label_color' => 'success',
+        ],
+
         ['header' => 'account_settings'],
         [
-            'text' => 'profile',
+            'text' => 'Perfil',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ],
@@ -302,7 +309,7 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
+       /* ['header' => 'labels'],
         [
             'text'       => 'important',
             'icon_color' => 'red',
@@ -317,7 +324,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ],*/
     ],
 
     /*
