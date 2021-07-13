@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'TapiCarpas')
 
 @section('content_header')
     <h1>{{$modo}}responsable</h1>
