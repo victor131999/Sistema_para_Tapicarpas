@@ -14,8 +14,13 @@ class CreateFacturaDetallesTable extends Migration
     public function up()
     {
         Schema::create('factura_detalles', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->float('cantidad_df');
+            $table->float('costoU_df');
+            $table->float('subtotal_df');
+            //relaciones
+            $table->unsignedBigInteger('id_fac')->nullable();
+            $table->foreign('id_fac')->references('id')->on('factura_compras')->onDelete('set null');
         });
     }
 
