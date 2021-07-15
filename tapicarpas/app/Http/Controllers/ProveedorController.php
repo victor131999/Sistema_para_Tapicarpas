@@ -51,11 +51,10 @@ class ProveedorController extends Controller
             'Nombre'=>'required|string|max:100',
             'Direccion'=>'required|string|max:100',
             'Telefono'=>'required|string|max:100',
-            'Producto'=>'required|string|max:100',
 
         ];
         $mensaje=[
-            'required'=>'El :atributo es requerido',
+            'required'=>'El :attribute es requerido',
         ];
 
         $this->validate($request, $campos, $mensaje);
@@ -105,11 +104,10 @@ class ProveedorController extends Controller
             'Nombre'=>'required|string|max:100',
             'Direccion'=>'required|string|max:100',
             'Telefono'=>'required|string|max:100',
-            'Producto'=>'required|string|max:100',
 
         ];
         $mensaje=[
-            'required'=>'El :atributo es requerido',
+            'required'=>'El :attribute es requerido',
 
         ];
 

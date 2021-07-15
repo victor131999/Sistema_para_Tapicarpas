@@ -32,7 +32,6 @@
             <th>Nombre</th>
             <th>Dirección</th>
             <th>Telefono</th>
-            <th>Producto que ofrece</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -46,7 +45,6 @@
             <td>{{$proveedor->Nombre}}</td>
             <td>{{$proveedor->Direccion}}</td>
             <td>{{$proveedor->Telefono}}</td>
-            <td>{{$proveedor->Producto}}</td>
             <td>
                 <a href="{{url('/proveedor/'.$proveedor->id.'/edit')}}" class="btn btn-outline-info">
                     Editar

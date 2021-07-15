@@ -33,9 +33,6 @@
         <label for="Telefono">Telefono</label>
         <input type="text"class="form-control" name="Telefono" value="{{isset($proveedor->Telefono)?$proveedor->Telefono:old('Telefono')}}" id="Telefono">
 
-        <label for="Producto">Producto</label>
-        <input type="text"class="form-control" name="Producto" value="{{isset($proveedor->Producto)?$proveedor->Producto:old('Producto')}}" id="Producto">
-
         <br/>
 
         <input class="btn btn-outline-success" type="submit" value="{{$modo}} datos">
