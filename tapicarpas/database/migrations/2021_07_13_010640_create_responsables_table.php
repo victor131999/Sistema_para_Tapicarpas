@@ -14,7 +14,8 @@ class CreateResponsablesTable extends Migration
     public function up()
     {
         Schema::create('responsables', function (Blueprint $table) {
-            $table->id();
+
+            $table->bigIncrements('id');
 
             $table->string('Nombre');
             $table->string('Direccion');

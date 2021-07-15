@@ -105,6 +105,7 @@ class ProveedorController extends Controller
             'Direccion'=>'required|string|max:100',
             'Telefono'=>'required|string|max:100',
 
+
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
