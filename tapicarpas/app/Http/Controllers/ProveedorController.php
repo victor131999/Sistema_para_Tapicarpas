@@ -117,7 +117,7 @@ class ProveedorController extends Controller
         $datosProveedor = request()->except(['_token','_method']);
 
         Proveedor::where('id','=',$id)->update($datosProveedor);
-        $responsable=Proveedor::findOrFail($id);
+        $proveedor=Proveedor::findOrFail($id);
         return redirect('proveedor')->with('mensaje','Proveedor modificado correctamente');
     }
 

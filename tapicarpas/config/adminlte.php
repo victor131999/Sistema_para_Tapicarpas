@@ -253,35 +253,14 @@ return [
         ],
         ['header' => 'Gestión'],
         [
-            'text'        => 'Responsables',
-            'url'         => 'responsable',
-            'icon'        => 'fas fa-address-book',
-            //'label'       => 4,
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Proveedores',
-            'url'         => 'proveedor',
-            'icon'        => 'fas fa-people-carry',
-            //'label'       => 4,
-            'label_color' => 'success',
-        ],
-
-        ['header' => 'Configuración de la cuenta'],
-        [
-            'text' => 'Perfil',
-            'url'  => 'user/profile',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Personal',
+            'icon'    => 'fas fa-address-book',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Responsables',
+                    'url'  => 'responsable',
                 ],
-                [
+               /* [
                     'text'    => 'level_one',
                     'url'     => '#',
                     'submenu' => [
@@ -304,13 +283,36 @@ return [
                             ],
                         ],
                     ],
-                ],
+                ],*/
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Proveedores',
+                    'url'  => 'proveedor',
                 ],
             ],
         ],
+
+        [
+            'text'    => 'Materia prima',
+            'icon'    => 'fas fa-address-book',
+            'submenu' => [
+                [
+                    'text' => 'Materia interna',
+                    'url'  => 'materia_prima',
+                ],
+                [
+                    'text' => 'Materia reventa',
+                    'url'  => '/',
+                ],
+            ],
+        ],
+
+        ['header' => 'Configuración de la cuenta'],
+        [
+            'text' => 'Perfil',
+            'url'  => 'user/profile',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+
        /* ['header' => 'labels'],
         [
             'text'       => 'important',

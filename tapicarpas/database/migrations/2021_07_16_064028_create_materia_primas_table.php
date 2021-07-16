@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMateriaPrimaTable extends Migration
+class CreateMateriaPrimasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateMateriaPrimaTable extends Migration
      */
     public function up()
     {
-        Schema::create('materia_prima', function (Blueprint $table) {
-            $table->bigIncrements('id_mp');
+        Schema::create('materia_primas', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('nombre_mp');
             $table->string('color_mp');
             $table->float('ancho_mp');
             $table->float('largo_mp');
-            $table->float('otros_mp');
+            $table->string('otros_mp');
+            $table->timestamps();
         //relaciones
         $table->unsignedBigInteger('id_tipo')->nullable();
-        $table->foreign('id_tipo')->references('id')->on('tipo_materia_prima')->onDelete('set null');
-
+        $table->foreign('id_tipo')->references('id')->on('tipo_materia_primas')->onDelete('set null');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateMateriaPrimaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materia_prima');
+        Schema::dropIfExists('materia_primas');
     }
 }

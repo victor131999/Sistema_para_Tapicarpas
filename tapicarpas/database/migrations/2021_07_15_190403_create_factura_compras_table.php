@@ -27,6 +27,7 @@ class CreateFacturaComprasTable extends Migration
 
             $table->foreign('id_prov')->references('id')->on('proveedors')->onDelete('set null');
             $table->foreign('id_resp')->references('id')->on('responsables')->onDelete('set null');
+            $table->timestamps();
         });
     }
 

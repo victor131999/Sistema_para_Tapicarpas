@@ -21,6 +21,7 @@ class CreateFacturaDetallesTable extends Migration
             //relaciones
             $table->unsignedBigInteger('id_fac')->nullable();
             $table->foreign('id_fac')->references('id')->on('factura_compras')->onDelete('set null');
+            $table->timestamps();
         });
     }
 

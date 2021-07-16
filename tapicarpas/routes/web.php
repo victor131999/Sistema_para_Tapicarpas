@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResponsableController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\MateriaPrimaController;
 
 
 /*
@@ -27,6 +28,8 @@ Route::resource('responsable', ResponsableController::class)->middleware('auth')
 Route::resource('inicio', InicioController::class)->middleware('auth');
 
 Route::resource('proveedor', ProveedorController::class)->middleware('auth');
+
+Route::resource('materia_prima', MateriaPrimaController::class)->middleware('auth');
 
 Route::group(['middleware' => 'auth'],function () {
     Route::get('/', [InicioController::class, 'index'])-> name('home');
