@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class TipoMateriaPrimasController extends Controller
 {
+    protected $fillable = ['id'];
+    //realacion de uno a muchos(inversa)
+    public function materia_prima(){
+        return $this->hasMany('App\Models\materia_prima');
+    }
     /**
      * Display a listing of the resource.
      *

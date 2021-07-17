@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 
 class MateriaPrimaController extends Controller
 {
-
+    protected $fillable = ['id_tipo'];
+    //realacion de uno a muchos
+    public function tipos(){
+        return $this->belongsTo('App\Models\tipo_materia_primas','id_tipo');
+    }
     //Colocamos el middleware
     public function __construct()
     {
@@ -23,8 +27,7 @@ class MateriaPrimaController extends Controller
     {
         //
         $datos['materia_primas']=materia_prima::paginate(5);
-        $datostipo['tipo_materia_primas']=tipo_materia_primas::all();
-        return view('materia_prima.index',$datos,$datostipo);
+        return view('materia_prima.index',$datos,);
     }
 
     /**
@@ -47,8 +50,7 @@ class MateriaPrimaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-                //
+
         //Validación de datos
         $campos=[
             'nombre_mp'=>'required|string|max:100',
@@ -94,7 +96,8 @@ class MateriaPrimaController extends Controller
     {
         //
         $materia_prima =materia_prima::findOrFail($id);
-        return view('materia_prima.edit',compact('materia_prima'));
+        $tipo_materia_primas =tipo_materia_primas::findOrFail($id);
+        return view('materia_prima.edit',compact('materia_prima','tipo_materia_primas'));
     }
 
     /**

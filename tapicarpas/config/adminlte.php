@@ -252,6 +252,7 @@ return [
             'label_color' => 'success',
         ],
         ['header' => 'Gestión'],
+
         [
             'text'    => 'Personal',
             'icon'    => 'fas fa-address-book',
@@ -301,9 +302,15 @@ return [
                 ],
                 [
                     'text' => 'Materia reventa',
-                    'url'  => '/',
+                    'url'  => 'material_reventa',
                 ],
             ],
+        ],
+
+        [
+            'text' => 'Factura de compra',
+            'url'  => 'facturacompra',
+            'icon' => 'fas fa-fw fa-user',
         ],
 
         ['header' => 'Configuración de la cuenta'],

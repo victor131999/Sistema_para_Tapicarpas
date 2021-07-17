@@ -5,6 +5,8 @@ use App\Http\Controllers\ResponsableController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\MateriaPrimaController;
+use App\Http\Controllers\MaterialReventaController;
+use App\Http\Controllers\FacturaCompraController;
 
 
 /*
@@ -30,6 +32,10 @@ Route::resource('inicio', InicioController::class)->middleware('auth');
 Route::resource('proveedor', ProveedorController::class)->middleware('auth');
 
 Route::resource('materia_prima', MateriaPrimaController::class)->middleware('auth');
+
+Route::resource('material_reventa', MaterialReventaController::class)->middleware('auth');
+
+Route::resource('facturacompra', FacturaCompraController::class)->middleware('auth');
 
 Route::group(['middleware' => 'auth'],function () {
     Route::get('/', [InicioController::class, 'index'])-> name('home');

@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class tipo_materia_primas extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['id'];
         //realacion de uno a muchos(inversa)
-        public function tipos(){
-            return $this->belongsTo('App\Models\materia_prima');
+        public function materia_prima(){
+            return $this->hasMany('App\Models\materia_prima');
         }
 }
