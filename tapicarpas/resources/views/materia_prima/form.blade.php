@@ -37,11 +37,24 @@
         <input type="text" class="form-control" name="largo_mp" value="{{isset($materia_prima->largo_mp)?$materia_prima->largo_mp:old('largo_mp')}}" id="largo_mp">
 
 
-        <label for="otros_mp">Otro</label>
-        <input type="text"class="form-control" name="otros_mp" value="{{isset($materia_prima->otros_mp)?$materia_prima->otros_mp:old('otros_mp')}}" id="otros_mp">
-
         <label for="id_tipo">Tipo</label>
-        <input type="text"class="form-control" name="id_tipo" value="{{isset($materia_prima->id_tipo)?$materia_prima->id_tipo:old('id_tipo')}}" id="id_tipo">
+        <select  class="form-control" type="text" name="id_tipo" value="{{isset($materia_prima->id_tipo)?$materia_prima->id_tipo:old('id_tipo')}}" id="id_tipo">
+            @foreach ($tipo_materia_primas as $tipo_materia_primass)
+                    <option value="{{$tipo_materia_primass->id}} ">
+                        {{$tipo_materia_primass->id}} - {{$tipo_materia_primass->nombre_tipo}}
+                    </option>
+            @endforeach
+
+       </select>
+       <select  class="form-control" type="text" name="tipo_mp" value="{{isset($materia_prima->tipo_mp)?$materia_prima->tipo_mp:old('tipo_mp')}}" id="tipo_mp">
+        @foreach ($tipo_materia_primas as $tipo_materia_primass)
+                <option value="{{$tipo_materia_primass->nombre_tipo}} ">
+                    {{$tipo_materia_primass->nombre_tipo}}
+                </option>
+        @endforeach
+
+   </select>
+
 
         <br/>
 

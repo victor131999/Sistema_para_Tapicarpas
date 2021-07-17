@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\materia_prima;
+use App\Models\tipo_materia_primas;
 use Illuminate\Http\Request;
 
 class MateriaPrimaController extends Controller
@@ -22,8 +23,8 @@ class MateriaPrimaController extends Controller
     {
         //
         $datos['materia_primas']=materia_prima::paginate(5);
-
-        return view('materia_prima.index',$datos);
+        $datostipo['tipo_materia_primas']=tipo_materia_primas::all();
+        return view('materia_prima.index',$datos,$datostipo);
     }
 
     /**
@@ -34,7 +35,8 @@ class MateriaPrimaController extends Controller
     public function create()
     {
         //
-        return view('materia_prima.create');
+        $datostipo['tipo_materia_primas']=tipo_materia_primas::all();
+        return view('materia_prima.create',$datostipo);
     }
 
     /**
@@ -53,7 +55,6 @@ class MateriaPrimaController extends Controller
             'color_mp'=>'required|string|max:100',
             'ancho_mp'=>'numeric|min:0|nullable',
             'largo_mp'=>'numeric|min:0|nullable',
-            'otros_mp'=>'required|string|max:20',
             'id_tipo'=>'numeric|min:0|nullable',
 
         ];
@@ -111,7 +112,6 @@ class MateriaPrimaController extends Controller
             'color_mp'=>'required|string|max:100',
             'ancho_mp'=>'numeric|min:0|nullable',
             'largo_mp'=>'numeric|min:0|nullable',
-            'otros_mp'=>'required|string|max:20',
             'id_tipo'=>'numeric|min:0|nullable',
 
         ];

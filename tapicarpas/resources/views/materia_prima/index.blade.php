@@ -33,7 +33,6 @@
             <th>Color</th>
             <th>Ancho</th>
             <th>Largo</th>
-            <th>Otro</th>
             <th>tipo</th>
             <th>Acciones</th>
         </tr>
@@ -48,8 +47,7 @@
             <td>{{$materia_prima->color_mp}}</td>
             <td>{{$materia_prima->ancho_mp}}</td>
             <td>{{$materia_prima->largo_mp}}</td>
-            <td>{{$materia_prima->otros_mp}}</td>
-            <td>{{$materia_prima->id_tipo}}</td>
+            <td>{{$materia_prima->id_tipo}} - {{$materia_prima->tipo_mp}} </td>
             <td>
                 <a href="{{url('/materia_prima/'.$materia_prima->id.'/edit')}}" class="btn btn-outline-info">
                     Editar
