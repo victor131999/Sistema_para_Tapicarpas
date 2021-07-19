@@ -75,38 +75,20 @@ class MateriaPrimaController extends Controller
         return redirect('materia_prima')->with('mensaje','La materia prima fue agregada con exito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\materia_prima  $materia_prima
-     * @return \Illuminate\Http\Response
-     */
     public function show(materia_prima $materia_prima)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\materia_prima  $materia_prima
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
+        $datostipo['tipo_materia_primas']=tipo_materia_primas::all();
         $materia_prima =materia_prima::findOrFail($id);
-        $tipo_materia_primas =tipo_materia_primas::findOrFail($id);
-        return view('materia_prima.edit',compact('materia_prima','tipo_materia_primas'));
+        $tipo_materia_primas =tipo_materia_primas::findOrFail( $materia_prima->tipos->id);
+    
+        return view('materia_prima.edit',$datostipo,compact('materia_prima','tipo_materia_primas'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\materia_prima  $materia_prima
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //Validación de datos

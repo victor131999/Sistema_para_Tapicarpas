@@ -6,7 +6,7 @@ use App\Models\facturaCompra;
 use App\Models\Proveedor;
 use App\Models\Responsable;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\View;
 class FacturaCompraController extends Controller
 {
     //Colocamos el middleware
@@ -71,7 +71,7 @@ class FacturaCompraController extends Controller
         $datosdacturaCompra = request()->except('_token');
 
 
-        facturacompra::insert($datosdacturaCompra);
+        facturaCompra::insert($datosdacturaCompra);
         return redirect('facturacompra')->with('mensaje','La Factura fue agregada con exito');
 
     }
@@ -96,10 +96,18 @@ class FacturaCompraController extends Controller
     public function edit($id)
     {
                 //
+        $datosproveedor['proveedor']=Proveedor::all();
+        $datosresponsable['responsable']=Responsable::all();
         $facturacompra =facturaCompra::findOrFail($id);
-        $responsable =Responsable::findOrFail($id);
-        $proveedor =Proveedor::findOrFail($id);
-        return view('facturacompra.edit',compact('facturacompra','responsable','proveedor'));
+        $responsable =Responsable::findOrFail($facturacompra->responsable->id);
+        $proveedor =Proveedor::findOrFail($facturacompra->proveedor->id);
+        return View::make('facturacompra.edit')->with('facturacompra', $facturacompra)->
+        with('responsable', $responsable)->
+        with('proveedor', $proveedor)->
+        with($datosproveedor)->
+        with($datosresponsable)
+        ;
+        //return view('facturacompra.edit',compact('facturacompra','responsable','proveedor'),);
     }
 
     /**
@@ -134,8 +142,8 @@ class FacturaCompraController extends Controller
 
         $datosfacturacompra = request()->except(['_token','_method']);
 
-        FacturaCompra::where('id','=',$id)->update($datosfacturacompra);
-        $facturacompra=FacturaCompra::findOrFail($id);
+        facturaCompra::where('id','=',$id)->update($datosfacturacompra);
+        $facturacompra=facturaCompra::findOrFail($id);
         return redirect('facturacompra')->with('mensaje','Materia prima modificada correctamente');
     }
 
@@ -149,7 +157,7 @@ class FacturaCompraController extends Controller
     {
         //se esta recepcionando el id del formulario del index
         $facturacompra=facturacompra::findOrFail($id);
-        facturacompra::destroy($id);
+        facturaCompra::destroy($id);
         return redirect('facturacompra')->with('mensaje','Materia prima eliminada');
     }
 }

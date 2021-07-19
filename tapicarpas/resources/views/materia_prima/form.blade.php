@@ -46,14 +46,6 @@
             @endforeach
 
        </select>
-       <select  class="form-control" type="text" name="tipo_mp" value="{{isset($materia_prima->tipo_mp)?$materia_prima->tipo_mp:old('tipo_mp')}}" id="tipo_mp">
-        @foreach ($tipo_materia_primas as $tipo_materia_primass)
-                <option value="{{$tipo_materia_primass->nombre_tipo}} ">
-                    {{$tipo_materia_primass->nombre_tipo}}
-                </option>
-        @endforeach
-
-   </select>
 
 
         <br/>

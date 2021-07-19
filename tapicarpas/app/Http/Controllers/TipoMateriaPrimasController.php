@@ -12,79 +12,33 @@ class TipoMateriaPrimasController extends Controller
     public function materia_prima(){
         return $this->hasMany('App\Models\materia_prima');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $tipo_materia_prima = tipo_materia_primas::all();
+        return view('tipo.index', compact('tipo_materia_prima'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('tipo.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        return view('tipo.index');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\tipo_materia_primas  $tipo_materia_primas
-     * @return \Illuminate\Http\Response
-     */
     public function show(tipo_materia_primas $tipo_materia_primas)
     {
-        //
+        return view('tipo.show');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\tipo_materia_primas  $tipo_materia_primas
-     * @return \Illuminate\Http\Response
-     */
     public function edit(tipo_materia_primas $tipo_materia_primas)
     {
-        //
+        return view('tipo.edit');
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\tipo_materia_primas  $tipo_materia_primas
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, tipo_materia_primas $tipo_materia_primas)
     {
-        //
+        return view('tipo.edit');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\tipo_materia_primas  $tipo_materia_primas
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(tipo_materia_primas $tipo_materia_primas)
     {
-        //
+        return view('tipo.index');
     }
 }
