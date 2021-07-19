@@ -33,7 +33,7 @@
             <th>Color</th>
             <th>Ancho</th>
             <th>Largo</th>
-            <th>tipo</th>
+            <th>Otro tipo</th>
             <th>Acciones</th>
         </tr>
     </thead>

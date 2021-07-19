@@ -49,6 +49,7 @@
             @endforeach
 
        </select>
+       <label for="id_prov">Responsable</label>
        <select  class="form-control" type="text" name="id_resp" value="{{isset($facturacompra->id_resp)?$facturacompra->id_resp:old('id_resp')}}" id="id_resp">
         @foreach ($responsable as $responsables)
                 <option value="{{$responsables->id}} ">
