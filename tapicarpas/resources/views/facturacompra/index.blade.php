@@ -34,8 +34,8 @@
             <th>Servicios con iva</th>
             <th>Total de factura</th>
             <th>Descripción</th>
-            <th>Id proveedor</th>
-            <th>Id responsable</th>
+            <th>Proveedor</th>
+            <th>Responsable</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -50,8 +50,8 @@
             <td>{{$facturacompra->servicios_conIva_fac}}</td>
             <td>{{$facturacompra->total_fac}}</td>
             <td>{{$facturacompra->descripcion_fac}} </td>
-            <td>{{$facturacompra->id_prov}}</td>
-            <td>{{$facturacompra->id_resp}} </td>
+            <td>{{$facturacompra->proveedor->Nombre}}</td>
+            <td>{{$facturacompra->responsable->Nombre}} </td>
             <td>
                 <a href="{{url('/facturacompra/'.$facturacompra->id.'/edit')}}" class="btn btn-outline-info">
                     Editar

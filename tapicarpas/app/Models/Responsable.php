@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Responsable extends Model
 {
     use HasFactory;
+    public function facturaC(){
+        return $this->hasMany('App\Models\facturaCompra');
+    }
 }
