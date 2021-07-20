@@ -13,7 +13,7 @@ class CreateFacturaDetallesTable extends Migration
      */
     public function up()
     {
-        Schema::create('factura_detalles', function (Blueprint $table) {
+        Schema::create('factura_detalle_compra_materias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->float('cantidad_df');
             $table->float('costoU_df');

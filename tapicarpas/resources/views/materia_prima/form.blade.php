@@ -30,15 +30,8 @@
         <input type="text" class="form-control" name="color_mp" value="{{isset($materia_prima->color_mp)?$materia_prima->color_mp:old('color_mp')}}" id="color_mp">
 
 
-        <label for="ancho_mp">Ancho</label>
-        <input type="text"class="form-control" name="ancho_mp" value="{{isset($materia_prima->ancho_mp)?$materia_prima->ancho_mp:old('ancho_mp')}}" id="ancho_mp">
-
-        <label for="largo_mp">Largo</label>
-        <input type="text" class="form-control" name="largo_mp" value="{{isset($materia_prima->largo_mp)?$materia_prima->largo_mp:old('largo_mp')}}" id="largo_mp">
-
-
         <label for="id_tipo">Tipo</label>
-        <select  class="form-control" type="text" name="id_tipo" value="{{isset($materia_prima->id_tipo)?$materia_prima->id_tipo:old('id_tipo')}}" id="id_tipo">
+        <select onclick="Habilitar()" class="form-control" type="text" name="id_tipo" value="{{isset($materia_prima->id_tipo)?$materia_prima->id_tipo:old('id_tipo')}}" id="id_tipo">
             @foreach ($tipo_materia_primas as $tipo_materia_primass)
                     <option value="{{$tipo_materia_primass->id}} ">
                         {{$tipo_materia_primass->id}} - {{$tipo_materia_primass->nombre_tipo}}
@@ -47,6 +40,31 @@
 
        </select>
 
+       <label for="color_mp">otro</label>
+        <input type="text" class="form-control" name="otro_mp" value="{{isset($materia_prima->otro_mp)?$materia_prima->otro_mp:old('otro_mp')}}" id="otro_mp">
+
+
+   </select>
+        <script type="text/javascript">
+        function Habilitar(){
+            var seleccion=document.getElementById("id_tipo");
+            var ancho=document.getElementById("ancho_mp");
+            var largo=document.getElementById("largo_mp")
+            if(seleccion.value != 1){
+                ancho.disabled=true;
+                largo.disabled=true;
+            }else{
+                ancho.disabled=false;
+                largo.disabled=false;
+            }
+        }
+        </script>
+
+       <label for="ancho_mp">Ancho</label>
+       <input  onkeyup="Habilitar()" type="text"class="form-control" name="ancho_mp" value="{{isset($materia_prima->ancho_mp)?$materia_prima->ancho_mp:old('ancho_mp')}}" id="ancho_mp">
+
+       <label for="largo_mp">Largo</label>
+       <input onkeyup="Habilitar()" type="text" class="form-control" name="largo_mp" value="{{isset($materia_prima->largo_mp)?$materia_prima->largo_mp:old('largo_mp')}}" id="largo_mp">
 
         <br/>
 

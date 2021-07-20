@@ -24,7 +24,6 @@
 <a href="{{url('materia_prima/create')}}" class="btn btn-outline-success">Registrar nueva materia prima</a>
 <br/>
 <br/>
-
 <table class="table table-light">
 
     <thead class="thead-light">

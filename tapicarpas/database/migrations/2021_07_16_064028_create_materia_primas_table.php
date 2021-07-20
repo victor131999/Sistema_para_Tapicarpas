@@ -17,8 +17,9 @@ class CreateMateriaPrimasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre_mp');
             $table->string('color_mp');
-            $table->float('ancho_mp');
-            $table->float('largo_mp');
+            $table->float('ancho_mp')->default(0);
+            $table->float('largo_mp')->default(0);
+            $table->float('otro_mp');
             $table->timestamps();
         //relaciones
         $table->unsignedBigInteger('id_tipo')->nullable();

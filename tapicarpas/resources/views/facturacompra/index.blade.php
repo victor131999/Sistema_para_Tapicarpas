@@ -29,13 +29,13 @@
     <thead class="thead-light">
         <tr>
             <th>#</th>
+            <th>Proveedor</th>
+            <th>Responsable</th>
             <th>Vines y servicios con iva</th>
             <th>Bienes con iva</th>
             <th>Servicios con iva</th>
-            <th>Total de factura</th>
             <th>Descripción</th>
-            <th>Proveedor</th>
-            <th>Responsable</th>
+            <th>Total de factura</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -45,13 +45,13 @@
         @foreach ($facturacompras as $facturacompra)
         <tr>
             <td>{{$facturacompra->id}}</td>
+            <td>{{$facturacompra->proveedor->Nombre}}</td>
+            <td>{{$facturacompra->responsable->Nombre}} </td>
             <td>{{$facturacompra->bienes_servicios_sinIva_fac}}</td>
             <td>{{$facturacompra->bienes_conIva_fac}}</td>
             <td>{{$facturacompra->servicios_conIva_fac}}</td>
-            <td>{{$facturacompra->total_fac}}</td>
             <td>{{$facturacompra->descripcion_fac}} </td>
-            <td>{{$facturacompra->proveedor->Nombre}}</td>
-            <td>{{$facturacompra->responsable->Nombre}} </td>
+            <td>{{$facturacompra->total_fac}}</td>
             <td>
                 <a href="{{url('/facturacompra/'.$facturacompra->id.'/edit')}}" class="btn btn-outline-info">
                     Editar

@@ -55,6 +55,7 @@ class MateriaPrimaController extends Controller
         $campos=[
             'nombre_mp'=>'required|string|max:100',
             'color_mp'=>'required|string|max:100',
+            'otro_mp'=>'required|string|max:100',
             'ancho_mp'=>'numeric|min:0|nullable',
             'largo_mp'=>'numeric|min:0|nullable',
             'id_tipo'=>'numeric|min:0|nullable',
@@ -85,7 +86,7 @@ class MateriaPrimaController extends Controller
         $datostipo['tipo_materia_primas']=tipo_materia_primas::all();
         $materia_prima =materia_prima::findOrFail($id);
         $tipo_materia_primas =tipo_materia_primas::findOrFail( $materia_prima->tipos->id);
-    
+
         return view('materia_prima.edit',$datostipo,compact('materia_prima','tipo_materia_primas'));
     }
 
@@ -95,6 +96,7 @@ class MateriaPrimaController extends Controller
         $campos=[
             'nombre_mp'=>'required|string|max:100',
             'color_mp'=>'required|string|max:100',
+            'otro_mp'=>'required|string|max:100',
             'ancho_mp'=>'numeric|min:0|nullable',
             'largo_mp'=>'numeric|min:0|nullable',
             'id_tipo'=>'numeric|min:0|nullable',
