@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFacturaDetallesTable extends Migration
+class CreateFacturaDetalleCompraMateriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -21,6 +21,8 @@ class CreateFacturaDetallesTable extends Migration
             //relaciones
             $table->unsignedBigInteger('id_fac')->nullable();
             $table->foreign('id_fac')->references('id')->on('factura_compras')->onDelete('set null');
+            $table->unsignedBigInteger('id_mp')->nullable();
+            $table->foreign('id_mp')->references('id')->on('materia_primas')->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ class CreateFacturaDetallesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('factura_detalles');
+        Schema::dropIfExists('factura_detalle_compra_materias');
     }
 }

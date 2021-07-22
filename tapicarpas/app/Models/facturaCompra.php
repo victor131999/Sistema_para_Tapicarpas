@@ -15,4 +15,7 @@ class facturaCompra extends Model
     public function proveedor(){
         return $this->belongsTo('App\Models\Proveedor','id_prov');
     }
+    public function detail(){
+        return $this->hasMany('App\Models\factura_detalle_compra_materia');
+    }
 }

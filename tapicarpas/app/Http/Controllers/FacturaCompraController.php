@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\facturaCompra;
 use App\Models\Proveedor;
 use App\Models\Responsable;
+use App\Models\materia_prima;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 class FacturaCompraController extends Controller
@@ -36,7 +38,13 @@ class FacturaCompraController extends Controller
         //
         $datosproveedor['proveedor']=Proveedor::all();
         $datosresponsable['responsable']=Responsable::all();
-        return view('facturacompra.create',$datosproveedor,$datosresponsable);
+        $materia_prima['materia_prima']=materia_prima::all();
+
+        return View::make('facturacompra.create')->
+        with($datosproveedor)->
+        with($datosresponsable)->
+        with($materia_prima);
+
     }
 
     /**

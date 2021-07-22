@@ -13,5 +13,9 @@ class materia_prima extends Model
     public function tipos(){
         return $this->belongsTo('App\Models\tipo_materia_primas','id_tipo');
     }
+
+    public function facturaC(){
+        return $this->hasMany('App\Models\facturaCompra');
+    }
 }
 
