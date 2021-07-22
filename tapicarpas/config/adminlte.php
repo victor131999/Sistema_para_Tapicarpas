@@ -297,6 +297,10 @@ return [
             'icon'    => 'fas fa-address-book',
             'submenu' => [
                 [
+                    'text' => 'Tipo de materia',
+                    'url'  => 'tipo_materia_primas',
+                ],
+                [
                     'text' => 'Materia interna',
                     'url'  => 'materia_prima',
                 ],
