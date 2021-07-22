@@ -6,9 +6,10 @@ use App\Models\facturaCompra;
 use App\Models\Proveedor;
 use App\Models\Responsable;
 use App\Models\materia_prima;
-
+use App\Models\material_reventa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+
 class FacturaCompraController extends Controller
 {
     //Colocamos el middleware
@@ -39,11 +40,13 @@ class FacturaCompraController extends Controller
         $datosproveedor['proveedor']=Proveedor::all();
         $datosresponsable['responsable']=Responsable::all();
         $materia_prima['materia_prima']=materia_prima::all();
+        $material_reventa['material_reventa']=material_reventa::all();
 
         return View::make('facturacompra.create')->
         with($datosproveedor)->
         with($datosresponsable)->
-        with($materia_prima);
+        with($materia_prima)->
+        with($material_reventa);
 
     }
 

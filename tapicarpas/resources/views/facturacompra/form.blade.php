@@ -71,7 +71,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Cantidad</th>
-                    <th>costoU_df</th>
+                    <th>costo por unidad</th>
                     <th>Sub Total</th>
                     <th>Opciones</th>
                 </tr>
@@ -140,44 +140,49 @@
 
     <!-MODAL PARA EL INGRESOO DE MATERIA PRIMA PARA REVENTA COMO DETALLE-!>
     <div class="modal fade" id="modalPrimaReventa" tabindex="-1" role="dialog" aria-labelledby="modalPrimaReventaLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalPrimaNormalLabel">Materia prima Reventa</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            <div class="row card-body">
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="">Nombre</label>
-                        <select name="materias" id="materias" class="form-control" onchange="colocar_costoU_df()">
-                            <option value="">Seleccione</option>
-                            <option >hola</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="form-group">
-                        <label for="">Cantidad</label>
-                        <input type="number" id="cantidad" class="form-control">
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="form-group">
-                        <label for="">costoU_df</label>
-                        <input id="costoU_df" type="text" class="form-control" readonly>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <button onclick="agregar_insumo()" type="button"
-                        class="btn btn-success float-right">Agregar</button>
-                </div>
+              <h5 class="modal-title" id="modalPrimaReventaLabel">Materia prima reventa</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+          <div class="row card-body">
+              <div class="col-6">
+                  <div class="form-group">
+                      <label for="">Nombre</label>
+                      <select name="materias_reventa" id="materias_reventa" class="form-control" onchange="colocar_costoU_df()">
+                          @foreach ($material_reventa as $material_reventas)
+                              <option value="{{$material_reventas->id}} ">
+                                  {{$material_reventas->nombre_mrev}}
+                              </option>
+                          @endforeach
+                      </select>
+                  </div>
+              </div>
+              <div class="col-3">
+                  <div class="form-group">
+                      <label for="">Cantidad</label>
+                      <input type="number" id="cantidad_df" class="form-control">
+                  </div>
+              </div>
+              <div class="col-3">
+                  <div class="form-group">
+                      <label for="">Costo unitario</label>
+                      <input type="number" id="costoU_df" class="form-control">
+                  </div>
+              </div>
+
+
+              <div class="col-12">
+                  <button onclick="agregar_insumoR()" type="button"
+                      class="btn btn-success float-right">Agregar</button>
+              </div>
+          </div>
+          </div>
         </div>
       </div>
-    </div>
 
     <script>
         function colocar_costoU_df() {
@@ -186,6 +191,7 @@
         }
 
         function agregar_insumo() {
+            var TR= document.createElement("tr");
             let insumo_id = $("#materias option:selected").val();
             let insumo_text = $("#materias option:selected").text();
             let cantidad = $("#cantidad_df").val();
@@ -205,7 +211,7 @@
                             <td>${parseInt(cantidad) * parseInt(costoU_df)}</td>
                             <td>${insumo_id}</td>
                             <td>
-                                <button type="button" class="btn btn-danger" onclick="eliminar_insumo(${insumo_id}, ${parseInt(cantidad) * parseInt(costoU_df)})">X</button>
+                                <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${parseInt(cantidad) * parseInt(costoU_df)})">X</button>
                             </td>
                         </tr>
                     `);
@@ -214,11 +220,52 @@
             } else {
                 alert("Se debe ingresar una cantidad o costoU_df valido");
             }
+            document.getElementById("tblmaterias").appendChild(TR)
         }
 
-
         function eliminar_insumo(id, subtotal) {
-            document.getElementById('tblmaterias').deleteRow("#tr-" + id);
+            var TR= id.parentNode.parentNode;
+            document.getElementById("tblmaterias").removeChild(TR);
+            let costoU_df_total = $("#costoU_df_total").val() || 0;
+            $("#costoU_df_total").val(parseInt(costoU_df_total) - subtotal);
+        }
+
+        function agregar_insumoR() {
+            var TR= document.createElement("tr");
+            let insumo_id = $("#materias_reventa option:selected").val();
+            let insumo_text = $("#materias_reventa option:selected").text();
+            let cantidad = $("#cantidad_df").val();
+            let costoU_df = $("#costoU_df").val();
+
+            if (cantidad > 0 && costoU_df > 0) {
+
+                $("#tblmaterias").append(`
+                        <tr id="tr-${insumo_id}">
+                            <td>
+                                <input type="hidden" name="insumo_id[]" value="${insumo_id}" />
+                                <input type="hidden" name="cantidades[]" value="${cantidad}" />
+                                ${insumo_text}
+                            </td>
+                            <td>${cantidad}</td>
+                            <td>${costoU_df}</td>
+                            <td>${parseInt(cantidad) * parseInt(costoU_df)}</td>
+                            <td>${insumo_id}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${parseInt(cantidad) * parseInt(costoU_df)})">X</button>
+                            </td>
+                        </tr>
+                    `);
+                let costoU_df_total = $("#costoU_df_total").val() || 0;
+                $("#costoU_df_total").val(parseInt(costoU_df_total) + parseInt(cantidad) * parseInt(costoU_df));
+            } else {
+                alert("Se debe ingresar una cantidad o costoU_df valido");
+            }
+            document.getElementById("tblmaterias").appendChild(TR)
+        }
+
+        function eliminar_insumoR(id, subtotal) {
+            var TR= id.parentNode.parentNode;
+            document.getElementById("tblmaterias").removeChild(TR);
             let costoU_df_total = $("#costoU_df_total").val() || 0;
             $("#costoU_df_total").val(parseInt(costoU_df_total) - subtotal);
         }
