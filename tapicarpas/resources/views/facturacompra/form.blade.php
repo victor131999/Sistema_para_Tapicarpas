@@ -164,13 +164,13 @@
               <div class="col-3">
                   <div class="form-group">
                       <label for="">Cantidad</label>
-                      <input type="number" id="cantidad_df" class="form-control">
+                      <input type="number" id="cantidad_dff" class="form-control">
                   </div>
               </div>
               <div class="col-3">
                   <div class="form-group">
                       <label for="">Costo unitario</label>
-                      <input type="number" id="costoU_df" class="form-control">
+                      <input type="number" id="costoU_dff" class="form-control">
                   </div>
               </div>
 
@@ -209,7 +209,6 @@
                             <td>${cantidad}</td>
                             <td>${costoU_df}</td>
                             <td>${parseInt(cantidad) * parseInt(costoU_df)}</td>
-                            <td>${insumo_id}</td>
                             <td>
                                 <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${parseInt(cantidad) * parseInt(costoU_df)})">X</button>
                             </td>
@@ -234,29 +233,28 @@
             var TR= document.createElement("tr");
             let insumo_id = $("#materias_reventa option:selected").val();
             let insumo_text = $("#materias_reventa option:selected").text();
-            let cantidad = $("#cantidad_df").val();
-            let costoU_df = $("#costoU_df").val();
+            let cantidadd = $("#cantidad_dff").val();
+            let costoU_dff = $("#costoU_dff").val();
 
-            if (cantidad > 0 && costoU_df > 0) {
+            if (cantidadd > 0 && costoU_dff > 0) {
 
                 $("#tblmaterias").append(`
                         <tr id="tr-${insumo_id}">
                             <td>
                                 <input type="hidden" name="insumo_id[]" value="${insumo_id}" />
-                                <input type="hidden" name="cantidades[]" value="${cantidad}" />
+                                <input type="hidden" name="cantidades[]" value="${cantidadd}" />
                                 ${insumo_text}
                             </td>
-                            <td>${cantidad}</td>
-                            <td>${costoU_df}</td>
-                            <td>${parseInt(cantidad) * parseInt(costoU_df)}</td>
-                            <td>${insumo_id}</td>
+                            <td>${cantidadd}</td>
+                            <td>${costoU_dff}</td>
+                            <td>${parseInt(cantidadd) * parseInt(costoU_dff)}</td>
                             <td>
-                                <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${parseInt(cantidad) * parseInt(costoU_df)})">X</button>
+                                <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${parseInt(cantidadd) * parseInt(costoU_dff)})">X</button>
                             </td>
                         </tr>
                     `);
                 let costoU_df_total = $("#costoU_df_total").val() || 0;
-                $("#costoU_df_total").val(parseInt(costoU_df_total) + parseInt(cantidad) * parseInt(costoU_df));
+                $("#costoU_df_total").val(parseInt(costoU_df_total) + parseInt(cantidadd) * parseInt(costoU_dff));
             } else {
                 alert("Se debe ingresar una cantidad o costoU_df valido");
             }
