@@ -49,15 +49,15 @@
             <div class="row">
                 <div class="col-4">
                 <label for="bienes_servicios_sinIva_fac">Bienes o servicios sin iva</label>
-                <input type="number" class="form-control" name="bienes_servicios_sinIva_fac" value="{{isset($facturacompra->bienes_servicios_sinIva_fac)?$facturacompra->bienes_servicios_sinIva_fac:old('bienes_servicios_sinIva_fac')}}" id="bienes_servicios_sinIva_fac">
+                <input type="number" class="form-control" name="bienes_servicios_sinIva_fac" id="bienes_servicios_sinIva_fac" value="{{isset($facturacompra->bienes_servicios_sinIva_fac)?$facturacompra->bienes_servicios_sinIva_fac:old('bienes_servicios_sinIva_fac')}}" id="bienes_servicios_sinIva_fac">
                 </div>
                 <div class="col-4">
                 <label for="bienes_conIva_fac">Bienes o servicios con iva</label>
-                <input type="number" class="form-control" name="bienes_conIva_fac" value="{{isset($facturacompra->bienes_conIva_fac)?$facturacompra->bienes_conIva_fac:old('bienes_conIva_fac')}}" id="bienes_conIva_fac">
+                <input type="number" class="form-control" name="bienes_conIva_fac" id="bienes_conIva_fac" value="{{isset($facturacompra->bienes_conIva_fac)?$facturacompra->bienes_conIva_fac:old('bienes_conIva_fac')}}" id="bienes_conIva_fac">
                 </div>
                 <div class="col-4">
                 <label for="servicios_conIva_fac">Servicios con iva</label>
-                <input type="number"class="form-control" name="servicios_conIva_fac" value="{{isset($facturacompra->servicios_conIva_fac)?$facturacompra->servicios_conIva_fac:old('servicios_conIva_fac')}}" id="servicios_conIva_fac">
+                <input type="number"class="form-control" name="servicios_conIva_fac" id="servicios_conIva_fac" value="{{isset($facturacompra->servicios_conIva_fac)?$facturacompra->servicios_conIva_fac:old('servicios_conIva_fac')}}" id="servicios_conIva_fac">
                 </div>
             </div>
         </div>
@@ -79,9 +79,12 @@
             </tbody>
         </table>
         <br/>
-        <label for="total_fac">Total de factura</label>
-        <input id  = "total_fac" type="number" class="form-control" name="total_fac" value="{{isset($facturacompra->total_fac)?$facturacompra->total_fac:old('total_fac')}}" id="total_fac" disabled> 
-        <br><br>
+        <label for="total_fac">Subtotal de factura</label>
+        <input id  = "total_fac" type="text" class="form-control" name="total_fac" value="{{isset($facturacompra->total_fac)?$facturacompra->total_fac:old('total_fac')}}" id="total_fac" readonly> 
+        <br>
+        <label for="total">Total de factura</label>
+        <input id  = "total" type="text" class="form-control" name="total" value="{{isset($facturacompra->total_fac)?$facturacompra->total_fac:old('total_fac')}}" id="total" readonly> 
+        <br>
         <input class="btn btn-outline-success" type="submit" value="{{$modo}} datos">
         <a href="{{url('facturacompra/')}}">Regresar</a>
     </div>
@@ -178,14 +181,13 @@
             let costoU_df = $("#materias option:selected").attr("costoU_df");
             $("#costoU_df").val(costoU_df);
         }
-
         function agregar_insumo() {
             var TR= document.createElement("tr");
             let insumo_id = $("#materias option:selected").val();
             let insumo_text = $("#materias option:selected").text();
             let cantidad = $("#cantidad_df").val();
             let costoU_df = $("#costoU_df").val();
-
+            let fascturaSub = parseInt($("#bienes_servicios_sinIva_fac").val()) +parseInt( $("#bienes_conIva_fac").val())+parseInt( $("#servicios_conIva_fac").val());
             if (cantidad > 0 && costoU_df > 0) {
 
                 $("#tblmaterias").append(`
@@ -195,9 +197,9 @@
                                 <input type="hidden" name="cantidades[]" value="${cantidad}" />
                                 <input type="hidden" name="costos[]" value="${costoU_df}" />
                                 <input type="hidden" name="subtotales[]" value="${parseInt(cantidad) * parseInt(costoU_df)}" />
-
-                                ${insumo_text}
+                                ${insumo_text} - ${fascturaSub}
                             </td>
+                            
                             <td>${cantidad}</td>
                             <td>${costoU_df}</td>
                             <td>${parseInt(cantidad) * parseInt(costoU_df)}</td>
@@ -208,6 +210,8 @@
                     `);
                 let costoU_df_total = $("#total_fac").val() || 0;
                 $("#total_fac").val(parseInt(costoU_df_total) + parseInt(cantidad) * parseInt(costoU_df));
+                $("#total").val(parseInt( $("#total_fac").val()) + parseInt(fascturaSub) );
+
             } else {
                 alert("Se debe ingresar una cantidad o costoU_df valido");
             }
@@ -247,6 +251,7 @@
                     `);
                 let costoU_df_total = $("#total_fac").val() || 0;
                 $("#total_fac").val(parseInt(costoU_df_total) + parseInt(cantidadd) * parseInt(costoU_dff));
+        
             } else {
                 alert("Se debe ingresar una cantidad o costoU_df valido");
             }
