@@ -7,9 +7,11 @@ use App\Models\Proveedor;
 use App\Models\Responsable;
 use App\Models\materia_prima;
 use App\Models\material_reventa;
+use App\Models\factura_detalle_compra_materia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
-
+use DB;
+use Log;
 class FacturaCompraController extends Controller
 {
     //Colocamos el middleware
@@ -49,44 +51,42 @@ class FacturaCompraController extends Controller
         with($material_reventa);
 
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        $input  = $request->all();
+        //dd($input);
+        try{
+            DB::beginTransaction();
+            $factura = facturaCompra::create([
+                "bienes_servicios_sinIva_fac" =>$input["bienes_servicios_sinIva_fac" ],
+                "bienes_conIva_fac" =>$input["bienes_conIva_fac"],
+                "servicios_conIva_fac"=>$input["servicios_conIva_fac"],
+                "total_fac"=>$input["total_fac"],
+                "descripcion_fac"=>$input["descripcion_fac"],
+                "id_prov"=>$input["id_prov"],
+                "id_resp"=>$input["id_resp"]
+            ]);
+        foreach($input["insumo_id"] as $key =>$value ){
+            factura_detalle_compra_materia::create([
+                'id_mp'=> $value,
+                'id_fac'=> $factura->id,
+                'cantidad_df'=>$input["cantidades"][$key],
+                'costoU_df'=>$input["costos"][$key],
+                'subtotal_df'=>$input["subtotales"][$key]
 
-        //Validación de datos
-        $campos=[
-            'bienes_servicios_sinIva_fac'=>'numeric|min:0|nullable',
-            'bienes_conIva_fac'=>'numeric|min:0|nullable',
-            'servicios_conIva_fac'=>'numeric|min:0|nullable',
-            'total_fac'=>'numeric|min:0|nullable',
-            'descripcion_fac'=>'required|string|max:100',
-            'id_prov'=>'required|string|max:100',
-            'id_resp'=>'required|string|max:100',
+            ]);
+        }
+        DB::commit();
 
-
-        ];
-        $mensaje=[
-            'required'=>'El :attribute es requerido',
-        ];
-        $mensaje=[
-            'numeric'=>'El :attribute tiene que ser un número',
-        ];
-
-        $this->validate($request, $campos, $mensaje);
-        $datosdacturaCompra = request()->except('_token');
-
-
-        facturaCompra::insert($datosdacturaCompra);
-        return redirect('facturacompra')->with('mensaje','La Factura fue agregada con exito');
+        return redirect("facturacompra")->with('status','1');
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect("facturacompra")->with('status',$e->getMessage());
+        }
+    }
+    public function calcular_subtotal($costo ,$cantidad){
 
     }
-
     /**
      * Display the specified resource.
      *

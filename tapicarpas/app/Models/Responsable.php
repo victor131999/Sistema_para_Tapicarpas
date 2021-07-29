@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Responsable extends Model
 {
     use HasFactory;
+    public function findByName($q) {
+        return $this->model->where('name', 'like', "%$q%")
+                           ->get();
+    }
     public function facturaC(){
         return $this->hasMany('App\Models\facturaCompra');
     }

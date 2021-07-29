@@ -21,77 +21,70 @@
 
             </div>
         @endif
-
-        <label for="id_prov">Proveedor</label>
-        <select  class="form-control" type="text" name="id_prov" value="{{isset($facturacompra->id_prov)?$facturacompra->id_prov:old('id_prov')}}" id="id_prov">
-            @foreach ($proveedor as $proveedors)
-                    <option value="{{$proveedors->id}} ">
-                        {{$proveedors->id}} - {{$proveedors->Nombre}}
-                    </option>
-            @endforeach
-
-       </select>
-
-       <label for="id_prov">Responsable</label>
-       <select  class="form-control" type="text" name="id_resp" value="{{isset($facturacompra->id_resp)?$facturacompra->id_resp:old('id_resp')}}" id="id_resp">
-            @foreach ($responsable as $responsables)
-                    <option value="{{$responsables->id}} ">
-                        {{$responsables->nombre_tipo}} - {{$responsables->Nombre}}
-                    </option>
-            @endforeach
-
-        </select>
-
-        <label for="bienes_servicios_sinIva_fac">Bienes o servicios sin iva</label>
-        <input type="text" class="form-control" name="bienes_servicios_sinIva_fac" value="{{isset($facturacompra->bienes_servicios_sinIva_fac)?$facturacompra->bienes_servicios_sinIva_fac:old('bienes_servicios_sinIva_fac')}}" id="bienes_servicios_sinIva_fac">
-
-
-        <label for="bienes_conIva_fac">Bienes o servicios con iva</label>
-        <input type="text" class="form-control" name="bienes_conIva_fac" value="{{isset($facturacompra->bienes_conIva_fac)?$facturacompra->bienes_conIva_fac:old('bienes_conIva_fac')}}" id="bienes_conIva_fac">
-
-
-        <label for="servicios_conIva_fac">Servicios con iva</label>
-        <input type="text"class="form-control" name="servicios_conIva_fac" value="{{isset($facturacompra->servicios_conIva_fac)?$facturacompra->servicios_conIva_fac:old('servicios_conIva_fac')}}" id="servicios_conIva_fac">
-
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <label for="id_prov">Proveedor</label>
+                    <select  class="form-control" type="text" name="id_prov" value="{{isset($facturacompra->id_prov)?$facturacompra->id_prov:old('id_prov')}}" id="id_prov">
+                        @foreach ($proveedor as $proveedors)
+                                <option value="{{$proveedors->id}} ">
+                                    {{$proveedors->id}} - {{$proveedors->Nombre}}
+                                </option>
+                        @endforeach
+                </select>
+                </div>
+                <div class="col-6">
+                    <label for="id_prov">Responsable</label>
+                <select  class="form-control" type="text" name="id_resp" value="{{isset($facturacompra->id_resp)?$facturacompra->id_resp:old('id_resp')}}" id="id_resp">
+                        @foreach ($responsable as $responsables)
+                                <option value="{{$responsables->id}} ">
+                                    {{$responsables->nombre_tipo}} - {{$responsables->Nombre}}
+                                </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                <label for="bienes_servicios_sinIva_fac">Bienes o servicios sin iva</label>
+                <input type="number" class="form-control" name="bienes_servicios_sinIva_fac" value="{{isset($facturacompra->bienes_servicios_sinIva_fac)?$facturacompra->bienes_servicios_sinIva_fac:old('bienes_servicios_sinIva_fac')}}" id="bienes_servicios_sinIva_fac">
+                </div>
+                <div class="col-4">
+                <label for="bienes_conIva_fac">Bienes o servicios con iva</label>
+                <input type="number" class="form-control" name="bienes_conIva_fac" value="{{isset($facturacompra->bienes_conIva_fac)?$facturacompra->bienes_conIva_fac:old('bienes_conIva_fac')}}" id="bienes_conIva_fac">
+                </div>
+                <div class="col-4">
+                <label for="servicios_conIva_fac">Servicios con iva</label>
+                <input type="number"class="form-control" name="servicios_conIva_fac" value="{{isset($facturacompra->servicios_conIva_fac)?$facturacompra->servicios_conIva_fac:old('servicios_conIva_fac')}}" id="servicios_conIva_fac">
+                </div>
+            </div>
+        </div>
         <label for="descripcion_fac">Descripción</label>
         <input type="text" class="form-control" name="descripcion_fac" value="{{isset($facturacompra->descripcion_fac)?$facturacompra->descripcion_fac:old('descripcion_fac')}}" id="descripcion_fac">
-
         <br>
         <!-LLAMADA AL MODAL PARA MATERIA PRIMA NORMAL-!>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal" data-whatever="@mdo">Agregar materia prima normal </button>
         <td>
-
         <!-LLAMADA AL MODAL PARA MATERIA PRIMA REVENTA-!>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaReventa" data-whatever="@mdo">Agregar materia prima reventa </button>
         <br>
         <br>
-
         <table class="table">
             <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>costo por unidad</th>
-                    <th>Sub Total</th>
-                    <th>Opciones</th>
-                </tr>
+                <tr><th>Nombre</th><th>Cantidad</th><th>costo por unidad</th><th>Sub Total</th><th>Opciones</th></tr>
             </thead>
             <tbody id="tblmaterias">
-
             </tbody>
         </table>
-
-
-        <label for="total_fac">Total de factura</label>
-        <input type="text" class="form-control" name="total_fac" value="{{isset($facturacompra->total_fac)?$facturacompra->total_fac:old('total_fac')}}" id="total_fac">
-
         <br/>
-
+        <label for="total_fac">Total de factura</label>
+        <input id  = "total_fac" type="number" class="form-control" name="total_fac" value="{{isset($facturacompra->total_fac)?$facturacompra->total_fac:old('total_fac')}}" id="total_fac" disabled> 
+        <br><br>
         <input class="btn btn-outline-success" type="submit" value="{{$modo}} datos">
         <a href="{{url('facturacompra/')}}">Regresar</a>
-
     </div>
-
     <!-MODAL PARA EL INGRESOO DE MATERIA PRIMA PARA PRODUCCION COMO DETALLE-!>
     <div class="modal fade" id="modalPrimaNormal" tabindex="-1" role="dialog" aria-labelledby="modalPrimaNormalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -127,8 +120,6 @@
                     <input type="number" id="costoU_df" class="form-control">
                 </div>
             </div>
-
-
             <div class="col-12">
                 <button onclick="agregar_insumo()" type="button"
                     class="btn btn-success float-right">Agregar</button>
@@ -137,7 +128,6 @@
         </div>
       </div>
     </div>
-
     <!-MODAL PARA EL INGRESOO DE MATERIA PRIMA PARA REVENTA COMO DETALLE-!>
     <div class="modal fade" id="modalPrimaReventa" tabindex="-1" role="dialog" aria-labelledby="modalPrimaReventaLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -173,8 +163,6 @@
                       <input type="number" id="costoU_dff" class="form-control">
                   </div>
               </div>
-
-
               <div class="col-12">
                   <button onclick="agregar_insumoR()" type="button"
                       class="btn btn-success float-right">Agregar</button>
@@ -184,6 +172,7 @@
         </div>
       </div>
 
+    
     <script>
         function colocar_costoU_df() {
             let costoU_df = $("#materias option:selected").attr("costoU_df");
@@ -204,6 +193,9 @@
                             <td>
                                 <input type="hidden" name="insumo_id[]" value="${insumo_id}" />
                                 <input type="hidden" name="cantidades[]" value="${cantidad}" />
+                                <input type="hidden" name="costos[]" value="${costoU_df}" />
+                                <input type="hidden" name="subtotales[]" value="${parseInt(cantidad) * parseInt(costoU_df)}" />
+
                                 ${insumo_text}
                             </td>
                             <td>${cantidad}</td>
@@ -214,8 +206,8 @@
                             </td>
                         </tr>
                     `);
-                let costoU_df_total = $("#costoU_df_total").val() || 0;
-                $("#costoU_df_total").val(parseInt(costoU_df_total) + parseInt(cantidad) * parseInt(costoU_df));
+                let costoU_df_total = $("#total_fac").val() || 0;
+                $("#total_fac").val(parseInt(costoU_df_total) + parseInt(cantidad) * parseInt(costoU_df));
             } else {
                 alert("Se debe ingresar una cantidad o costoU_df valido");
             }
@@ -225,8 +217,8 @@
         function eliminar_insumo(id, subtotal) {
             var TR= id.parentNode.parentNode;
             document.getElementById("tblmaterias").removeChild(TR);
-            let costoU_df_total = $("#costoU_df_total").val() || 0;
-            $("#costoU_df_total").val(parseInt(costoU_df_total) - subtotal);
+            let costoU_df_total = $("#total_fac").val() || 0;
+            $("#total_fac").val(parseInt(costoU_df_total) - subtotal);
         }
 
         function agregar_insumoR() {
@@ -253,8 +245,8 @@
                             </td>
                         </tr>
                     `);
-                let costoU_df_total = $("#costoU_df_total").val() || 0;
-                $("#costoU_df_total").val(parseInt(costoU_df_total) + parseInt(cantidadd) * parseInt(costoU_dff));
+                let costoU_df_total = $("#total_fac").val() || 0;
+                $("#total_fac").val(parseInt(costoU_df_total) + parseInt(cantidadd) * parseInt(costoU_dff));
             } else {
                 alert("Se debe ingresar una cantidad o costoU_df valido");
             }
@@ -264,8 +256,8 @@
         function eliminar_insumoR(id, subtotal) {
             var TR= id.parentNode.parentNode;
             document.getElementById("tblmaterias").removeChild(TR);
-            let costoU_df_total = $("#costoU_df_total").val() || 0;
-            $("#costoU_df_total").val(parseInt(costoU_df_total) - subtotal);
+            let costoU_df_total = $("#total_fac").val() || 0;
+            $("#total_fac").val(parseInt(costoU_df_total) - subtotal);
         }
 
     </script>

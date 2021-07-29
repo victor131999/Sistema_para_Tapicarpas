@@ -18,7 +18,17 @@
     </button>
 </div>
 @endif
-
+@if(session('status'))
+            @if(session('status')=='1')
+                <div class = "alert alert-success">
+                    Se guardo
+                </div>
+            @else
+                <div class = "alert alert-success">
+                    {{session('status')}}
+                </div>
+            @endif
+        @endif
 
 
 <a href="{{url('facturacompra/create')}}" class="btn btn-outline-success">Registrar nueva factura de compra</a>
