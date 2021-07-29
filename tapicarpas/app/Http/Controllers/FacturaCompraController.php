@@ -90,23 +90,22 @@ class FacturaCompraController extends Controller
         $subtotal = $costo * $cantidad;
         return $subtotal;
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\facturaCompra  $facturaCompra
-     * @return \Illuminate\Http\Response
-     */
-    public function show(facturaCompra $facturaCompra)
+    public function show($id)
     {
-        //
-    }
+        $detalles = [];
+        if ($id) {
+            
+            $detalles = factura_detalle_compra_materia::select("materia_primas.nombre_mp as mp", "factura_detalle_compra_materias.*" )
+            ->join("materia_primas","materia_primas.id", "=","factura_detalle_compra_materias.id_mp")
+            ->where("factura_detalle_compra_materias.id_fac",$id)
+            ->get();
+        }
+        $facturas  = facturaCompra::select("factura_compras.*", "responsables.Nombre as responsables","proveedors.Nombre as po")
+        ->join("responsables","responsables.id","=","factura_compras.id_resp")->join("proveedors","proveedors.id","=","factura_compras.id_prov")
+        ->where("factura_compras.id",$id)->get();
+        return view('facturacompra.show', compact("facturas", "detalles"));
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\facturaCompra  $facturaCompra
-     * @return \Illuminate\Http\Response
-     */
+    }
     public function edit($id)
     {
                 //
@@ -160,18 +159,11 @@ class FacturaCompraController extends Controller
         $facturacompra=facturaCompra::findOrFail($id);
         return redirect('facturacompra')->with('mensaje','Materia prima modificada correctamente');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\facturaCompra  $facturaCompra
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //se esta recepcionando el id del formulario del index
+        DB::table('factura_detalle_compra_materias')->where("id_fac",$id)->delete();
         $facturacompra=facturacompra::findOrFail($id);
         facturaCompra::destroy($id);
-        return redirect('facturacompra')->with('mensaje','Materia prima eliminada');
+        return redirect('facturacompra')->with('mensaje','Factura y registros eliminados');
     }
 }
