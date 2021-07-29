@@ -21,7 +21,7 @@
 @if(session('status'))
             @if(session('status')=='1')
                 <div class = "alert alert-success">
-                    Se guardo
+                    La factura fue guardada con exito
                 </div>
             @else
                 <div class = "alert alert-success">
@@ -41,9 +41,6 @@
             <th>#</th>
             <th>Proveedor</th>
             <th>Responsable</th>
-            <th>Vines y servicios con iva</th>
-            <th>Bienes con iva</th>
-            <th>Servicios con iva</th>
             <th>Descripción</th>
             <th>Total de factura</th>
             <th>Acciones</th>
@@ -57,18 +54,13 @@
             <td>{{$facturacompra->id}}</td>
             <td>{{$facturacompra->proveedor->Nombre}}</td>
             <td>{{$facturacompra->responsable->Nombre}} </td>
-            <td>{{$facturacompra->bienes_servicios_sinIva_fac}}</td>
-            <td>{{$facturacompra->bienes_conIva_fac}}</td>
-            <td>{{$facturacompra->servicios_conIva_fac}}</td>
             <td>{{$facturacompra->descripcion_fac}} </td>
             <td>{{$facturacompra->total_fac}}</td>
             <td>
-                <a href="{{url('/facturacompra/'.$facturacompra->id.'/edit')}}" class="btn btn-outline-info">
-                    Editar
-                </a>
-
+                <a href="{{url('/facturacompra/'.$facturacompra->id)}}" class="btn btn-outline-info">Ver</a>
                 |
-
+                <a href="{{url('/facturacompra/'.$facturacompra->id.'/edit')}}" class="btn btn-outline-info">Editar</a>
+                |
                 <form action="{{url('/facturacompra/'.$facturacompra->id)}}" class="d-inline" method="post">
                 @csrf
                 {{method_field('DELETE')}}
