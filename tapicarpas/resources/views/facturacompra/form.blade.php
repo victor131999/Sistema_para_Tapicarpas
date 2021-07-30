@@ -76,6 +76,35 @@
                 <tr><th>Nombre</th><th>Cantidad</th><th>costo por unidad</th><th>Sub Total</th><th>Opciones</th></tr>
             </thead>
             <tbody id="tblmaterias">
+            @if(count($detalles)>0)
+                <div class ="row">
+                    <div class="col">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan = "4" class = "text-center">Detalles</th>
+                                </tr>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Sub total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($detalles as $valor)
+                                <tr>
+                                    <td>{{$valor->mp}}</td>
+                                    <td>{{$valor->cantidad_df}}</td>
+                                    <td>{{$valor->costoU_df}}</td>
+                                    <td>{{$valor->subtotal_df}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                @endif
             </tbody>
         </table>
         <br/>
@@ -197,7 +226,7 @@
                                 <input type="hidden" name="cantidades[]" value="${cantidad}" />
                                 <input type="hidden" name="costos[]" value="${costoU_df}" />
                                 <input type="hidden" name="subtotales[]" value="${parseInt(cantidad) * parseInt(costoU_df)}" />
-                                ${insumo_text} - ${fascturaSub}
+                                ${insumo_text}
                             </td>
                             
                             <td>${cantidad}</td>

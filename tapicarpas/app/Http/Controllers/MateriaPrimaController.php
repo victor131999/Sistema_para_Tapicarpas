@@ -41,13 +41,6 @@ class MateriaPrimaController extends Controller
         $datostipo['tipo_materia_primas']=tipo_materia_primas::all();
         return view('materia_prima.create',$datostipo);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
@@ -119,13 +112,6 @@ class MateriaPrimaController extends Controller
         $materia_prima=materia_prima::findOrFail($id);
         return redirect('materia_prima')->with('mensaje','Materia prima modificada correctamente');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\materia_prima  $materia_prima
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
                 //se esta recepcionando el id del formulario del index

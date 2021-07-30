@@ -14,37 +14,24 @@ use DB;
 use Log;
 class FacturaCompraController extends Controller
 {
-    //Colocamos el middleware
     public function __construct()
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
         $datos['facturacompras']=facturaCompra::paginate(5);
         return view('facturacompra.index',$datos,);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $detalles = [];
         $datosproveedor['proveedor']=Proveedor::all();
         $datosresponsable['responsable']=Responsable::all();
         $materia_prima['materia_prima']=materia_prima::all();
         $material_reventa['material_reventa']=material_reventa::all();
 
-        return View::make('facturacompra.create')->
+        return View::make('facturacompra.create',compact("detalles") )->
         with($datosproveedor)->
         with($datosresponsable)->
         with($materia_prima)->
@@ -90,6 +77,7 @@ class FacturaCompraController extends Controller
         $subtotal = $costo * $cantidad;
         return $subtotal;
     }
+
     public function show($id)
     {
         $detalles = [];
@@ -108,28 +96,27 @@ class FacturaCompraController extends Controller
     }
     public function edit($id)
     {
-                //
+        $facturacompra =facturaCompra::findOrFail($id);
+        
+        $detalles = [];
+        if ($id) {
+            
+            $detalles = factura_detalle_compra_materia::select("materia_primas.nombre_mp as mp", "factura_detalle_compra_materias.*" )
+            ->join("materia_primas","materia_primas.id", "=","factura_detalle_compra_materias.id_mp")
+            ->where("factura_detalle_compra_materias.id_fac",$id)
+            ->get();
+        }
         $datosproveedor['proveedor']=Proveedor::all();
         $datosresponsable['responsable']=Responsable::all();
-        $facturacompra =facturaCompra::findOrFail($id);
-        $responsable =Responsable::findOrFail($facturacompra->responsable->id);
-        $proveedor =Proveedor::findOrFail($facturacompra->proveedor->id);
-        return View::make('facturacompra.edit')->with('facturacompra', $facturacompra)->
-        with('responsable', $responsable)->
-        with('proveedor', $proveedor)->
-        with($datosproveedor)->
-        with($datosresponsable)
-        ;
-        //return view('facturacompra.edit',compact('facturacompra','responsable','proveedor'),);
-    }
+        $materia_prima['materia_prima']=materia_prima::all();
+        $material_reventa['material_reventa']=material_reventa::all();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\facturaCompra  $facturaCompra
-     * @return \Illuminate\Http\Response
-     */
+        return View::make('facturacompra.edit', compact("facturacompra","detalles"))->
+        with($datosproveedor)->
+        with($datosresponsable)->
+        with($materia_prima)->
+        with($material_reventa);
+    }
     public function update(Request $request, $id)
     {
         //Validación de datos
@@ -154,7 +141,6 @@ class FacturaCompraController extends Controller
         $this->validate($request, $campos, $mensaje);
 
         $datosfacturacompra = request()->except(['_token','_method']);
-
         facturaCompra::where('id','=',$id)->update($datosfacturacompra);
         $facturacompra=facturaCompra::findOrFail($id);
         return redirect('facturacompra')->with('mensaje','Materia prima modificada correctamente');
