@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class facturaCompra extends Model
 {
     use HasFactory;
-    protected $fillable = ['bienes_servicios_sinIva_fac','bienes_conIva_fac','servicios_conIva_fac','total_fac','descripcion_fac','id_resp','id_prov'];
+    protected $fillable = ['id','bienes_servicios_sinIva_fac','bienes_conIva_fac','servicios_conIva_fac','total_fac','descripcion_fac','id_resp','id_prov'];
     public function responsable(){
         return $this->belongsTo('App\Models\Responsable','id_resp');
     }
