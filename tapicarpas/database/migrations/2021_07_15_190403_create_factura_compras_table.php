@@ -20,6 +20,7 @@ class CreateFacturaComprasTable extends Migration
             $table->float('bienes_conIva_fac');
             $table->float('servicios_conIva_fac');
             $table->float('total_fac');
+            $table->float('subtotal_fac');
             $table->string('descripcion_fac');
             $table->unsignedBigInteger('id_prov')->nullable();
             $table->unsignedBigInteger('id_resp')->nullable();

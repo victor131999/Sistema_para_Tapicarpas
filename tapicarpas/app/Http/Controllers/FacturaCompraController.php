@@ -48,6 +48,7 @@ class FacturaCompraController extends Controller
                 "bienes_servicios_sinIva_fac" =>$input["bienes_servicios_sinIva_fac" ],
                 "bienes_conIva_fac" =>$input["bienes_conIva_fac"],
                 "servicios_conIva_fac"=>$input["servicios_conIva_fac"],
+                "subtotal_fac" => $input["total_fac"],
                 "total_fac"=>$this->calcular_total($input["total_fac"],$input["bienes_servicios_sinIva_fac" ],$input["bienes_conIva_fac"],$input["servicios_conIva_fac"]),
                 "descripcion_fac"=>$input["descripcion_fac"],
                 "id_prov"=>$input["id_prov"],
@@ -126,23 +127,27 @@ class FacturaCompraController extends Controller
         
         try{
             DB::beginTransaction();
-            $factura = facturaCompra::where('id','=', $input["idFact" ])->update([
+            $factura = facturaCompra::where('id','=', $facturarec->id)->update([
                 "bienes_servicios_sinIva_fac" =>$input["bienes_servicios_sinIva_fac" ],
                 "bienes_conIva_fac" =>$input["bienes_conIva_fac"],
                 "servicios_conIva_fac"=>$input["servicios_conIva_fac"],
+                "subtotal_fac" => $input["total_fac"],
                 "total_fac"=>$this->calcular_total($input["total_fac"],$input["bienes_servicios_sinIva_fac" ],$input["bienes_conIva_fac"],$input["servicios_conIva_fac"]),
                 "descripcion_fac"=>$input["descripcion_fac"],
                 "id_prov"=>$input["id_prov"],
                 "id_resp"=>$input["id_resp"]
             ]);
-            
-            $array = explode ( ',', $input['identificador'] );
-            foreach ( $array as $palabra ) {
-                if (intval($palabra)==0 || null) {
-                    return;
-                }else{
-                    //dd(intval($palabra));
-                    DB::table('factura_detalle_compra_materias')->where("id",intval($palabra))->delete();
+            if ($input['identificador'] ==null) {
+                return;
+            }else{
+                $array = explode ( ',', $input['identificador'] );
+                foreach ( $array as $palabra ) {
+                    if (intval($palabra)==0 || null) {
+                        return;
+                    }else{
+                        //dd(intval($palabra));
+                        DB::table('factura_detalle_compra_materias')->where("id",intval($palabra))->delete();
+                    }
                 }
             }
             foreach($input["insumo_id"] as $key =>$value){

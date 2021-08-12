@@ -24,7 +24,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                <input type="hidden" class="form-control" name="idFact" id="idFact" value="{{isset($facturacompra->id)?$facturacompra->id:old('id')}}" id="id">
+                <input type="hidden" class="form-control" name="idFact" id="idFact" value="{{isset($facturacompra->id)?$facturacompra->id:old('id')}}" id="idFact">
 
                     <label for="id_prov">Proveedor</label>
                     <select  class="form-control" type="text" name="id_prov" value="{{isset($facturacompra->id_prov)?$facturacompra->id_prov:old('id_prov')}}" id="id_prov">
@@ -73,7 +73,7 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaReventa" data-whatever="@mdo">Agregar materia prima reventa </button>
         <br>
         <br>
-        <input type="hidden" id = 'identificador' name="identificador"  />
+        <input type="" id = 'identificador' name="identificador"  />
         <table class="table">
             <thead>
                 <tr><th>Nombre</th><th>Cantidad</th><th>costo por unidad</th><th>Sub Total</th><th>Opciones</th></tr>
@@ -109,7 +109,7 @@
         <p></p>
         <br/>
         <label for="total_fac">Subtotal de factura</label>
-        <input id  = "total_fac" type="text" class="form-control" name="total_fac" value="{{isset($facturacompra->total_fac)?$facturacompra->total_fac:old('total_fac')}}" readonly> 
+        <input id  = "total_fac" type="text" class="form-control" name="total_fac" value="{{isset($facturacompra->subtotal_fac)?$facturacompra->subtotal_fac:old('subtotal_fac')}}" readonly> 
         <br>
         <label for="total">Total de factura</label>
         <input id  = "total" type="text" class="form-control" name="total" value="{{isset($facturacompra->total_fac)?$facturacompra->total_fac:old('total_fac')}}" id="total" readonly> 
@@ -206,6 +206,17 @@
 
     
     <script>
+        /* event listener */
+        document.getElementsByName("bienes_servicios_sinIva_fac")[0].addEventListener('change', doThing);
+
+        /* function */
+        function doThing(){
+            let fascturaSub = parseInt($("#bienes_servicios_sinIva_fac").val()) +parseInt( $("#bienes_conIva_fac").val())+parseInt( $("#servicios_conIva_fac").val());
+            let costoU_df_total = $("#total_fac").val() || 0;
+           
+                $("#total").val(parseInt(costoU_df_total)+parseInt(fascturaSub));
+           // return this.value;
+        }
         let identificar = []
         function colocar_costoU_df() {
             let costoU_df = $("#materias option:selected").attr("costoU_df");
@@ -255,12 +266,15 @@
                 document.getElementById("tblmaterias").removeChild(TR);
                 let costoU_df_total = $("#total_fac").val() || 0;
                 $("#total_fac").val(parseInt(costoU_df_total) - subtotal);
-                    
+                let fascturaSub = $("#total").val() || 0;
+                $("#total").val(parseInt(fascturaSub) - subtotal );
             } else {
                 var TR= id.parentNode.parentNode;
                 document.getElementById("tblmaterias").removeChild(TR);
                 let costoU_df_total = $("#total_fac").val() || 0;
                 $("#total_fac").val(parseInt(costoU_df_total) - subtotal);
+                let fascturaSub = $("#total").val() || 0;
+                $("#total").val(parseInt(fascturaSub) - subtotal );
                 identificar.push(iden);
                 $("#identificador").val(identificar);
                // $("#identificador[]").val(arrayN);
