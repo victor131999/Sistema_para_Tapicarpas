@@ -48,6 +48,7 @@ class FacturaCompraController extends Controller
                 "bienes_servicios_sinIva_fac" =>$input["bienes_servicios_sinIva_fac" ],
                 "bienes_conIva_fac" =>$input["bienes_conIva_fac"],
                 "servicios_conIva_fac"=>$input["servicios_conIva_fac"],
+                "subtotal_fac" => $input["total_fac"],
                 "total_fac"=>$this->calcular_total($input["total_fac"],$input["bienes_servicios_sinIva_fac" ],$input["bienes_conIva_fac"],$input["servicios_conIva_fac"]),
                 "descripcion_fac"=>$input["descripcion_fac"],
                 "id_prov"=>$input["id_prov"],
@@ -99,6 +100,7 @@ class FacturaCompraController extends Controller
         $facturacompra =facturaCompra::findOrFail($id);
         
         $detalles = [];
+        //dd($detalles);
         if ($id) {
             
             $detalles = factura_detalle_compra_materia::select("materia_primas.nombre_mp as mp", "factura_detalle_compra_materias.*" )
@@ -120,30 +122,49 @@ class FacturaCompraController extends Controller
     public function update(Request $request, $id)
     {
         //Validación de datos
-        $campos=[
-            'bienes_servicios_sinIva_fac'=>'numeric|min:0|nullable',
-            'bienes_conIva_fac'=>'numeric|min:0|nullable',
-            'servicios_conIva_fac'=>'numeric|min:0|nullable',
-            'total_fac'=>'numeric|min:0|nullable',
-            'descripcion_fac'=>'required|string|max:100',
-            'id_prov'=>'required|string|max:100',
-            'id_resp'=>'required|string|max:100',
-
-
-        ];
-        $mensaje=[
-            'required'=>'El :attribute es requerido',
-        ];
-        $mensaje=[
-            'numeric'=>'El :attribute tiene que ser un número',
-        ];
-
-        $this->validate($request, $campos, $mensaje);
-
-        $datosfacturacompra = request()->except(['_token','_method']);
-        facturaCompra::where('id','=',$id)->update($datosfacturacompra);
-        $facturacompra=facturaCompra::findOrFail($id);
-        return redirect('facturacompra')->with('mensaje','Materia prima modificada correctamente');
+        $input  = $request->all();
+        $facturarec = facturaCompra::findOrFail($id);
+        
+        try{
+            DB::beginTransaction();
+            $factura = facturaCompra::where('id','=', $facturarec->id)->update([
+                "bienes_servicios_sinIva_fac" =>$input["bienes_servicios_sinIva_fac" ],
+                "bienes_conIva_fac" =>$input["bienes_conIva_fac"],
+                "servicios_conIva_fac"=>$input["servicios_conIva_fac"],
+                "subtotal_fac" => $input["total_fac"],
+                "total_fac"=>$this->calcular_total($input["total_fac"],$input["bienes_servicios_sinIva_fac" ],$input["bienes_conIva_fac"],$input["servicios_conIva_fac"]),
+                "descripcion_fac"=>$input["descripcion_fac"],
+                "id_prov"=>$input["id_prov"],
+                "id_resp"=>$input["id_resp"]
+            ]);
+            if ($input['identificador'] ==null) {
+                return;
+            }else{
+                $array = explode ( ',', $input['identificador'] );
+                foreach ( $array as $palabra ) {
+                    if (intval($palabra)==0 || null) {
+                        return;
+                    }else{
+                        //dd(intval($palabra));
+                        DB::table('factura_detalle_compra_materias')->where("id",intval($palabra))->delete();
+                    }
+                }
+            }
+            foreach($input["insumo_id"] as $key =>$value){
+               DB::table('factura_detalle_compra_materias')
+                    ->updateOrInsert(
+                        ['id_mp' => $value, 'id_fac' => $facturarec->id],
+                        ['cantidad_df' => $input["cantidades"][$key], 'costoU_df'=>$input["costos"][$key], 'subtotal_df'=> $this->calcular_subtotal($input["costos"][$key],$input["cantidades"][$key])]
+                );
+            }
+        DB::commit();
+       
+        return redirect("facturacompra")->with('status','1');
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect("facturacompra")->with('status',$e->getMessage());
+        }
+        //return redirect('facturacompra')->with('mensaje','Materia prima modificada correctamente');
     }
     public function destroy($id)
     {
