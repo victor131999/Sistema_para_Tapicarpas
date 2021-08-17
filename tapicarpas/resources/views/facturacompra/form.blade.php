@@ -70,10 +70,9 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal" data-whatever="@mdo">Agregar materia prima normal </button>
         <td>
         <!-LLAMADA AL MODAL PARA MATERIA PRIMA REVENTA-!>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaReventa" data-whatever="@mdo">Agregar materia prima reventa </button>
+            <br>
         <br>
-        <br>
-        <input type="" id = 'identificador' name="identificador"  />
+        <input type="hidden" id = 'identificador' name="identificador"  />
         <table class="table">
             <thead>
                 <tr><th>Nombre</th><th>Cantidad</th><th>costo por unidad</th><th>Sub Total</th><th>Opciones</th></tr>
