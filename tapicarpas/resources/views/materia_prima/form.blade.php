@@ -30,7 +30,7 @@
         <input type="text" class="form-control" name="color_mp" value="{{isset($materia_prima->color_mp)?$materia_prima->color_mp:old('color_mp')}}" id="color_mp">
 
 
-        <label for="id_tipo">Tipo</label>
+        <label for="id_tipo">Unidad de medida</label>
         <select onclick="Habilitar()" class="form-control" type="text" name="id_tipo" value="{{isset($materia_prima->id_tipo)?$materia_prima->id_tipo:old('id_tipo')}}" id="id_tipo">
             @foreach ($tipo_materia_primas as $tipo_materia_primass)
                     <option value="{{$tipo_materia_primass->id}} ">
@@ -40,7 +40,7 @@
 
        </select>
 
-       <label for="color_mp">otro</label>
+       <label for="color_mp">Cantidad</label>
         <input type="text" class="form-control" name="otro_mp" value="{{isset($materia_prima->otro_mp)?$materia_prima->otro_mp:old('otro_mp')}}" id="otro_mp">
 
 

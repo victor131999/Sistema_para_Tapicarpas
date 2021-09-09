@@ -4,7 +4,7 @@
 @section('title', 'Tipos de materia prima')
 
 @section('content_header')
-    <h1>Tipos de materia prima</h1>
+    <h1>Unidades de materia prima</h1>
 @stop
 
 @section('content')
@@ -21,7 +21,7 @@
 
 
 
-<a href="{{url('tipo_materia_primas/create')}}" class="btn btn-outline-success">Registrar nuevo tipo de materia</a>
+<a href="{{url('tipo_materia_primas/create')}}" class="btn btn-outline-success">Registrar nueva unidad de materia</a>
 <br/>
 <br/>
 <table class="table table-light">

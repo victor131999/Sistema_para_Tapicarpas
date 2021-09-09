@@ -297,7 +297,7 @@ return [
             'icon'    => 'fas fa-address-book',
             'submenu' => [
                 [
-                    'text' => 'Tipo de materia',
+                    'text' => 'Unidad de materia',
                     'url'  => 'tipo_materia_primas',
                 ],
                 [
