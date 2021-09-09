@@ -317,6 +317,12 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
 
+        [
+            'text' => 'Herramientas',
+            'url'  => 'herramienta',
+            'icon' => 'fas fa-tools',
+        ],
+
         ['header' => 'Configuración de la cuenta'],
         [
             'text' => 'Perfil',
