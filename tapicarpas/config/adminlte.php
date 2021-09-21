@@ -304,10 +304,7 @@ return [
                     'text' => 'Materia interna',
                     'url'  => 'materia_prima',
                 ],
-                [
-                    'text' => 'Materia reventa',
-                    'url'  => 'material_reventa',
-                ],
+    
             ],
         ],
 
