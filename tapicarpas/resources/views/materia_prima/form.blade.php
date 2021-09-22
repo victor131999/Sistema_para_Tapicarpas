@@ -33,7 +33,7 @@
         <label for="id_tipo">Unidad de medida</label>
         <select onclick="Habilitar()" class="form-control" type="text" name="id_tipo" value="{{isset($materia_prima->id_tipo)?$materia_prima->id_tipo:old('id_tipo')}}" id="id_tipo">
             @foreach ($tipo_materia_primas as $tipo_materia_primass)
-                    <option value="{{$tipo_materia_primass->id}} ">
+                    <option value="{{$tipo_materia_primass->id}}">
                         {{$tipo_materia_primass->id}} - {{$tipo_materia_primass->nombre_tipo}}
                     </option>
             @endforeach
