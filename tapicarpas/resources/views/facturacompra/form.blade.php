@@ -130,6 +130,7 @@
                 <div class="form-group">
                     <label for="">Nombre</label>
                     <select name="materias" id="materias" class="form-control" onchange="colocar_precio()">
+                        <option value="">Seleccione</option>
                         @foreach ($materia_prima as $materia_primas)
                             <option precio="{{ $materia_primas->costo_unidad_mp }}" value="{{$materia_primas->id}} ">
                                 {{$materia_primas->nombre_mp}}
