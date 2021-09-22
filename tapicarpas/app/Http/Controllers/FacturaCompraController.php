@@ -6,7 +6,6 @@ use App\Models\facturaCompra;
 use App\Models\Proveedor;
 use App\Models\Responsable;
 use App\Models\materia_prima;
-use App\Models\material_reventa;
 use App\Models\factura_detalle_compra_materia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -29,13 +28,11 @@ class FacturaCompraController extends Controller
         $datosproveedor['proveedor']=Proveedor::all();
         $datosresponsable['responsable']=Responsable::all();
         $materia_prima['materia_prima']=materia_prima::all();
-        $material_reventa['material_reventa']=material_reventa::all();
 
         return View::make('facturacompra.create',compact("detalles") )->
         with($datosproveedor)->
         with($datosresponsable)->
-        with($materia_prima)->
-        with($material_reventa);
+        with($materia_prima);
 
     }
     public function store(Request $request)
@@ -111,14 +108,12 @@ class FacturaCompraController extends Controller
         $datosproveedor['proveedor']=Proveedor::all();
         $datosresponsable['responsable']=Responsable::all();
         $materia_prima['materia_prima']=materia_prima::all();
-        $material_reventa['material_reventa']=material_reventa::all();
 
         return View::make('facturacompra.edit', compact("facturacompra","detalles"))->
         with($datosproveedor)->
         with($datosresponsable)->
-        with($materia_prima)->
-        with($material_reventa);
-    }
+        with($materia_prima);
+        }
     public function update(Request $request, $id)
     {
         //Validación de datos
