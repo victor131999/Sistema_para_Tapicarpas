@@ -1,10 +1,10 @@
 
 @extends('adminlte::page')
 
-@section('title', 'herramientas')
+@section('title', 'Mano de obra')
 
 @section('content_header')
-    <h1>Herramientas</h1>
+    <h1>Personal de mano de obra</h1>
 @stop
 
 @section('content')
@@ -21,7 +21,7 @@
 
 
 
-<a href="{{url('herramienta/create')}}" class="btn btn-outline-success">Registrar nuevo herramienta</a>
+<a href="{{url('mano_de_obra/create')}}" class="btn btn-outline-success">Registrar nueva persona</a>
 <br/>
 <br/>
 <table class="table table-light">
@@ -30,30 +30,28 @@
         <tr>
             <th>#</th>
             <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Unidades</th>
+            <th>Contacto</th>
+            <th>Precio por hora</th>
             <th>Acciones</th>
         </tr>
     </thead>
 
     <tbody>
 
-        @foreach ($herramientas as $herramienta)
+        @foreach ($mano_de_obras as $mano_de_obra)
         <tr>
-            <td>{{$herramienta->id}}</td>
-            <td>{{$herramienta->Nombre}}</td>
-            <td>{{$herramienta->Descripcion}}</td>
-            <td>{{$herramienta->costo}}</td>
-            <td>{{$herramienta->unidades}}</td>
+            <td>{{$mano_de_obra->id}}</td>
+            <td>{{$mano_de_obra->nombre}}</td>
+            <td>{{$mano_de_obra->contacto}}</td>
+            <td>{{$mano_de_obra->precio_hora}}</td>
             <td>
-                <a href="{{url('/herramienta/'.$herramienta->id.'/edit')}}" class="btn btn-outline-info">
+                <a href="{{url('/mano_de_obra/'.$mano_de_obra->id.'/edit')}}" class="btn btn-outline-info">
                     Editar
                 </a>
 
                 |
 
-                <form action="{{url('/herramienta/'.$herramienta->id)}}" class="d-inline" method="post">
+                <form action="{{url('/mano_de_obra/'.$mano_de_obra->id)}}" class="d-inline" method="post">
                 @csrf
                 {{method_field('DELETE')}}
                     <input class="btn btn-outline-dark" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
@@ -66,7 +64,7 @@
     </tbody>
 
 </table>
-{!!$herramientas->links()!!}
+{!!$mano_de_obras->links()!!}
 @stop
 
 @section('css')

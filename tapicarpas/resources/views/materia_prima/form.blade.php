@@ -40,8 +40,11 @@
 
        </select>
 
-       <label for="color_mp">Cantidad</label>
-        <input type="text" class="form-control" name="otro_mp" value="{{isset($materia_prima->otro_mp)?$materia_prima->otro_mp:old('otro_mp')}}" id="otro_mp">
+       <label for="">Cantidad</label>
+       <input type="number" class="form-control" name="cantidad_mp" value="{{isset($materia_prima->cantidad_mp)?$materia_prima->cantidad_mp:old('cantidad_mp')}}" id="cantidad_mp">
+
+       <label for="">Precio por unidad</label>
+       <input type="text" class="form-control" name="costo_unidad_mp" value="{{isset($materia_prima->costo_unidad_mp)?$materia_prima->costo_unidad_mp:old('costo_unidad_mp')}}" id="costo_unidad_mp">
 
 
    </select>

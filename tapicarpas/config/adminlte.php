@@ -289,6 +289,10 @@ return [
                     'text' => 'Proveedores',
                     'url'  => 'proveedor',
                 ],
+                [
+                    'text' => 'Personal de mano de obra',
+                    'url'  => 'mano_de_obra',
+                ],
             ],
         ],
 
@@ -304,7 +308,7 @@ return [
                     'text' => 'Materia interna',
                     'url'  => 'materia_prima',
                 ],
-    
+
             ],
         ],
 

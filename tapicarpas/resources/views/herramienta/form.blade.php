@@ -29,6 +29,12 @@
         <label for="Descripcion">Descripción</label>
         <input type="text" class="form-control" name="Descripcion" value="{{isset($herramienta->Descripcion)?$herramienta->Descripcion:old('Descripcion')}}" id="Descripcion">
 
+        <label for="">Costo de la herramienta</label>
+        <input type="text" class="form-control" name="costo" value="{{isset($herramienta->costo)?$herramienta->costo:old('costo')}}" id="costo">
+
+        <label for="">Unidades existentes</label>
+        <input type="number" class="form-control" name="unidades" value="{{isset($herramienta->unidades)?$herramienta->unidades:old('unidades')}}" id="unidades">
+
         <br/>
 
         <input class="btn btn-outline-success" type="submit" value="{{$modo}} datos">
