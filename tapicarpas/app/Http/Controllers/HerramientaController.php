@@ -50,9 +50,15 @@ class HerramientaController extends Controller
                 $campos=[
                     'Nombre'=>'required|string|max:100',
                     'Descripcion'=>'required|string|max:100',
+                    'costo'=>'numeric|min:0|nullable',
+                    'unidades'=>'numeric|min:0|nullable',
                 ];
                 $mensaje=[
                     'required'=>'El :attribute es requerido',
+                ];
+
+                $mensaje=[
+                    'numeric'=>'El :attribute tiene que ser un número',
                 ];
 
                 $this->validate($request, $campos, $mensaje);
@@ -101,10 +107,15 @@ class HerramientaController extends Controller
          $campos=[
             'Nombre'=>'required|string|max:100',
             'Descripcion'=>'required|string|max:100',
+            'costo'=>'numeric|min:0|nullable',
+            'unidades'=>'numeric|min:0|nullable',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
+        ];
 
+        $mensaje=[
+            'numeric'=>'El :attribute tiene que ser un número',
         ];
 
         $this->validate($request, $campos, $mensaje);

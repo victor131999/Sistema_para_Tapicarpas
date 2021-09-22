@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHerramientasTable extends Migration
+class CreateManoDeObrasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateHerramientasTable extends Migration
      */
     public function up()
     {
-        Schema::create('herramientas', function (Blueprint $table) {
+        Schema::create('mano_de_obras', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre');
-            $table->string('Descripcion');
-            $table->float('costo');
-            $table->float('unidades');
+            $table->string('nombre');
+            $table->string('contacto');
+            $table->float('precio_hora');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateHerramientasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('herramientas');
+        Schema::dropIfExists('mano_de_obras');
     }
 }

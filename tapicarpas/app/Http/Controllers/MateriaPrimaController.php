@@ -48,10 +48,11 @@ class MateriaPrimaController extends Controller
         $campos=[
             'nombre_mp'=>'required|string|max:100',
             'color_mp'=>'required|string|max:100',
-            'otro_mp'=>'required|string|max:100',
+            'cantidad_mp'=>'numeric|min:0|nullable',
             'ancho_mp'=>'numeric|min:0|nullable',
             'largo_mp'=>'numeric|min:0|nullable',
             'id_tipo'=>'numeric|min:0|nullable',
+            'costo_unidad_mp'=>'numeric|min:0|nullable',
 
         ];
         $mensaje=[
@@ -89,10 +90,11 @@ class MateriaPrimaController extends Controller
         $campos=[
             'nombre_mp'=>'required|string|max:100',
             'color_mp'=>'required|string|max:100',
-            'otro_mp'=>'required|string|max:100',
+            'cantidad_mp'=>'numeric|min:0|nullable',
             'ancho_mp'=>'numeric|min:0|nullable',
             'largo_mp'=>'numeric|min:0|nullable',
             'id_tipo'=>'numeric|min:0|nullable',
+            'costo_unidad_mp'=>'numeric|min:0|nullable',
 
         ];
         $mensaje=[
@@ -114,9 +116,9 @@ class MateriaPrimaController extends Controller
     }
     public function destroy($id)
     {
-                //se esta recepcionando el id del formulario del index
-                $materia_prima=materia_prima::findOrFail($id);
-                materia_prima::destroy($id);
-                return redirect('materia_prima')->with('mensaje','Materia prima eliminada');
+        //se esta recepcionando el id del formulario del index
+        $materia_prima=materia_prima::findOrFail($id);
+        materia_prima::destroy($id);
+        return redirect('materia_prima')->with('mensaje','Materia prima eliminada');
     }
 }
