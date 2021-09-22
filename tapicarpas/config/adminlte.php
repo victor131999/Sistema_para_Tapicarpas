@@ -290,7 +290,7 @@ return [
                     'url'  => 'proveedor',
                 ],
                 [
-                    'text' => 'Personal de mano de obra',
+                    'text' => 'Mano de obra',
                     'url'  => 'mano_de_obra',
                 ],
             ],
@@ -301,22 +301,23 @@ return [
             'icon'    => 'fas fa-address-book',
             'submenu' => [
                 [
-                    'text' => 'Unidad de materia',
+                    'text' => 'Unidades de medida',
                     'url'  => 'tipo_materia_primas',
                 ],
                 [
-                    'text' => 'Materia interna',
+                    'text' => 'Materia',
                     'url'  => 'materia_prima',
+                ],
+                [
+                    'text' => 'Factura de compra',
+                    'url'  => 'facturacompra',
+                    'icon' => 'fas fa-fw fa-user',
                 ],
 
             ],
         ],
 
-        [
-            'text' => 'Factura de compra',
-            'url'  => 'facturacompra',
-            'icon' => 'fas fa-fw fa-user',
-        ],
+
 
         [
             'text' => 'Herramientas',

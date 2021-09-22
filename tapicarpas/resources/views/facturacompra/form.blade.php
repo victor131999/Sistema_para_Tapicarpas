@@ -51,15 +51,15 @@
             <div class="row">
                 <div class="col-4">
                 <label for="bienes_servicios_sinIva_fac">Bienes o servicios sin iva</label>
-                <input type="number" class="form-control" name="bienes_servicios_sinIva_fac" id="bienes_servicios_sinIva_fac" value="{{isset($facturacompra->bienes_servicios_sinIva_fac)?$facturacompra->bienes_servicios_sinIva_fac:old('bienes_servicios_sinIva_fac')}}" id="bienes_servicios_sinIva_fac">
+                <input type="number" step="any" class="form-control" name="bienes_servicios_sinIva_fac" id="bienes_servicios_sinIva_fac" value="{{isset($facturacompra->bienes_servicios_sinIva_fac)?$facturacompra->bienes_servicios_sinIva_fac:old('bienes_servicios_sinIva_fac')}}" id="bienes_servicios_sinIva_fac">
                 </div>
                 <div class="col-4">
                 <label for="bienes_conIva_fac">Bienes con iva</label>
-                <input type="number" class="form-control" name="bienes_conIva_fac" id="bienes_conIva_fac" value="{{isset($facturacompra->bienes_conIva_fac)?$facturacompra->bienes_conIva_fac:old('bienes_conIva_fac')}}" id="bienes_conIva_fac">
+                <input type="number" step="any" class="form-control" name="bienes_conIva_fac" id="bienes_conIva_fac" value="{{isset($facturacompra->bienes_conIva_fac)?$facturacompra->bienes_conIva_fac:old('bienes_conIva_fac')}}" id="bienes_conIva_fac">
                 </div>
                 <div class="col-4">
                 <label for="servicios_conIva_fac">Servicios con iva</label>
-                <input type="number"class="form-control" name="servicios_conIva_fac" id="servicios_conIva_fac" value="{{isset($facturacompra->servicios_conIva_fac)?$facturacompra->servicios_conIva_fac:old('servicios_conIva_fac')}}" id="servicios_conIva_fac">
+                <input type="number" step="any" class="form-control" name="servicios_conIva_fac" id="servicios_conIva_fac" value="{{isset($facturacompra->servicios_conIva_fac)?$facturacompra->servicios_conIva_fac:old('servicios_conIva_fac')}}" id="servicios_conIva_fac">
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
         <input type="text" class="form-control" name="descripcion_fac" value="{{isset($facturacompra->descripcion_fac)?$facturacompra->descripcion_fac:old('descripcion_fac')}}" id="descripcion_fac">
         <br>
         <!-LLAMADA AL MODAL PARA MATERIA PRIMA NORMAL-!>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal" data-whatever="@mdo">Agregar materia prima normal </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal" data-whatever="@mdo">Agregar materia prima</button>
         <td>
             <br>
         <br>
