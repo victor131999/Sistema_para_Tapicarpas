@@ -44,7 +44,7 @@
        <input type="number" class="form-control" name="cantidad_mp" value="{{isset($materia_prima->cantidad_mp)?$materia_prima->cantidad_mp:old('cantidad_mp')}}" id="cantidad_mp">
 
        <label for="">Precio por unidad</label>
-       <input type="text" class="form-control" name="costo_unidad_mp" value="{{isset($materia_prima->costo_unidad_mp)?$materia_prima->costo_unidad_mp:old('costo_unidad_mp')}}" id="costo_unidad_mp">
+       <input type="number" step="any" class="form-control" name="costo_unidad_mp" value="{{isset($materia_prima->costo_unidad_mp)?$materia_prima->costo_unidad_mp:old('costo_unidad_mp')}}" id="costo_unidad_mp">
 
 
    </select>
@@ -64,10 +64,10 @@
         </script>
 
        <label for="ancho_mp">Ancho</label>
-       <input  onkeyup="Habilitar()" type="text"class="form-control" name="ancho_mp" value="{{isset($materia_prima->ancho_mp)?$materia_prima->ancho_mp:old('ancho_mp')}}" id="ancho_mp">
+       <input  onkeyup="Habilitar()" type="number" step="any" class="form-control" name="ancho_mp" value="{{isset($materia_prima->ancho_mp)?$materia_prima->ancho_mp:old('ancho_mp')}}" id="ancho_mp">
 
        <label for="largo_mp">Largo</label>
-       <input onkeyup="Habilitar()" type="text" class="form-control" name="largo_mp" value="{{isset($materia_prima->largo_mp)?$materia_prima->largo_mp:old('largo_mp')}}" id="largo_mp">
+       <input onkeyup="Habilitar()" type="number" step="any" class="form-control" name="largo_mp" value="{{isset($materia_prima->largo_mp)?$materia_prima->largo_mp:old('largo_mp')}}" id="largo_mp">
 
         <br/>
 

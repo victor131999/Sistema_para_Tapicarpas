@@ -31,7 +31,7 @@
 
 
         <label for="">Precio por hora</label>
-        <input type="number" class="form-control" name="precio_hora" value="{{isset($mano_de_obra->precio_hora)?$mano_de_obra->precio_hora:old('precio_hora')}}" id="precio_hora">
+        <input type="number" step="any" class="form-control" name="precio_hora" value="{{isset($mano_de_obra->precio_hora)?$mano_de_obra->precio_hora:old('precio_hora')}}" id="precio_hora">
 
 
         <br/>
