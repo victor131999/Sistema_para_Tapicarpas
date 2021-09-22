@@ -129,9 +129,9 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="">Nombre</label>
-                    <select name="materias" id="materias" class="form-control" onchange="colocar_costoU_df()">
+                    <select name="materias" id="materias" class="form-control" onchange="colocar_precio()">
                         @foreach ($materia_prima as $materia_primas)
-                            <option value="{{$materia_primas->id}} ">
+                            <option precio="{{ $materia_primas->costo_unidad_mp }}" value="{{$materia_primas->id}} ">
                                 {{$materia_primas->nombre_mp}}
                             </option>
                         @endforeach
@@ -147,7 +147,7 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="">Costo unitario</label>
-                    <input type="number" id="costoU_df" class="form-control">
+                    <input type="number" id="costoU_df" class="form-control" readonly>
                 </div>
             </div>
             <div class="col-12">
@@ -171,10 +171,6 @@
            // return this.value;
         }
         let identificar = []
-        function colocar_costoU_df() {
-            let costoU_df = $("#materias option:selected").attr("costoU_df");
-            $("#costoU_df").val(costoU_df);
-        }
         function agregar_insumo() {
             var TR= document.createElement("tr");
             let insumo_id = $("#materias option:selected").val();
@@ -232,6 +228,12 @@
                 $("#identificador").val(identificar);
                // $("#identificador[]").val(arrayN);
             }
+        }
+
+        function colocar_precio() {
+        let precio = $("#materias option:selected").attr("precio");
+        console.log(precio);
+        $("#costoU_df").val(precio);
         }
 
     </script>
