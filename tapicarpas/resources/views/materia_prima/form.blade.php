@@ -40,7 +40,7 @@
 
        </select>
 
-       <label for="">Cantidad</label>
+       <label for="">Stock</label>
        <input type="number" class="form-control" name="cantidad_mp" value="{{isset($materia_prima->cantidad_mp)?$materia_prima->cantidad_mp:old('cantidad_mp')}}" id="cantidad_mp">
 
        <label for="">Precio por unidad</label>
