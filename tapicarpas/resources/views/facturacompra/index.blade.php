@@ -59,8 +59,8 @@
             <td>
                 <a href="{{url('/facturacompra/'.$facturacompra->id)}}" class="btn btn-outline-info">Ver</a>
                 |
-                <a href="{{url('/facturacompra/'.$facturacompra->id.'/edit')}}" class="btn btn-outline-info">Editar</a>
-                |
+                <!--<a href="{{url('/facturacompra/'.$facturacompra->id.'/edit')}}" class="btn btn-outline-info">Editar</a>-->
+
                 <form action="{{url('/facturacompra/'.$facturacompra->id)}}" class="d-inline" method="post">
                 @csrf
                 {{method_field('DELETE')}}

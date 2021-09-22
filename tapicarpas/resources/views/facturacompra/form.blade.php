@@ -165,10 +165,10 @@
 
         /* function */
         function doThing(){
-            let fascturaSub = parseInt($("#bienes_servicios_sinIva_fac").val()) +parseInt( $("#bienes_conIva_fac").val())+parseInt( $("#servicios_conIva_fac").val());
+            let fascturaSub = parseFloat($("#bienes_servicios_sinIva_fac").val()) +parseFloat( $("#bienes_conIva_fac").val())+parseFloat( $("#servicios_conIva_fac").val());
             let costoU_df_total = $("#total_fac").val() || 0;
 
-                $("#total").val(parseInt(costoU_df_total)+parseInt(fascturaSub));
+                $("#total").val(parseFloat(costoU_df_total)+parseFloat(fascturaSub));
            // return this.value;
         }
         let identificar = []
@@ -178,7 +178,7 @@
             let insumo_text = $("#materias option:selected").text();
             let cantidad = $("#cantidad_df").val();
             let costoU_df = $("#costoU_df").val();
-            let fascturaSub = parseInt($("#bienes_servicios_sinIva_fac").val()) +parseInt( $("#bienes_conIva_fac").val())+parseInt( $("#servicios_conIva_fac").val());
+            let fascturaSub = parseFloat($("#bienes_servicios_sinIva_fac").val()) +parseFloat( $("#bienes_conIva_fac").val())+parseFloat( $("#servicios_conIva_fac").val());
             if (cantidad > 0 && costoU_df > 0) {
 
                 $("#tblmaterias").append(`
@@ -187,21 +187,21 @@
                                 <input type="hidden" name="insumo_id[]" value="${insumo_id}" />
                                 <input type="hidden" name="cantidades[]" value="${cantidad}" />
                                 <input type="hidden" name="costos[]" value="${costoU_df}" />
-                                <input type="hidden" name="subtotales[]" value="${parseInt(cantidad) * parseInt(costoU_df)}" />
+                                <input type="hidden" name="subtotales[]" value="${parseFloat(cantidad) * parseFloat(costoU_df)}" />
                                 ${insumo_text}
                             </td>
 
                             <td>${cantidad}</td>
                             <td>${costoU_df}</td>
-                            <td>${parseInt(cantidad) * parseInt(costoU_df)}</td>
+                            <td>${parseFloat(cantidad) * parseFloat(costoU_df)}</td>
                             <td>
-                                <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${parseInt(cantidad) * parseInt(costoU_df)},0)">X</button>
+                                <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${parseFloat(cantidad) * parseFloat(costoU_df)},0)">X</button>
                             </td>
                         </tr>
                     `);
                 let costoU_df_total = $("#total_fac").val() || 0;
-                $("#total_fac").val(parseInt(costoU_df_total) + parseInt(cantidad) * parseInt(costoU_df));
-                $("#total").val(parseInt( $("#total_fac").val()) + parseInt(fascturaSub) );
+                $("#total_fac").val(parseFloat(costoU_df_total) + parseFloat(cantidad) * parseFloat(costoU_df));
+                $("#total").val(parseFloat( $("#total_fac").val()) + parseFloat(fascturaSub) );
 
             } else {
                 alert("Se debe ingresar una cantidad o costoU_df valido");
@@ -215,16 +215,16 @@
                 var TR= id.parentNode.parentNode;
                 document.getElementById("tblmaterias").removeChild(TR);
                 let costoU_df_total = $("#total_fac").val() || 0;
-                $("#total_fac").val(parseInt(costoU_df_total) - subtotal);
+                $("#total_fac").val(parseFloat(costoU_df_total) - subtotal);
                 let fascturaSub = $("#total").val() || 0;
-                $("#total").val(parseInt(fascturaSub) - subtotal );
+                $("#total").val(parseFloat(fascturaSub) - subtotal );
             } else {
                 var TR= id.parentNode.parentNode;
                 document.getElementById("tblmaterias").removeChild(TR);
                 let costoU_df_total = $("#total_fac").val() || 0;
-                $("#total_fac").val(parseInt(costoU_df_total) - subtotal);
+                $("#total_fac").val(parseFloat(costoU_df_total) - subtotal);
                 let fascturaSub = $("#total").val() || 0;
-                $("#total").val(parseInt(fascturaSub) - subtotal );
+                $("#total").val(parseFloat(fascturaSub) - subtotal );
                 identificar.push(iden);
                 $("#identificador").val(identificar);
                // $("#identificador[]").val(arrayN);
