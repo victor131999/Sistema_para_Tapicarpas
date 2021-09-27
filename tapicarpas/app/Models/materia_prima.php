@@ -17,5 +17,10 @@ class materia_prima extends Model
     public function facturaC(){
         return $this->hasMany('App\Models\facturaCompra');
     }
+
+
+    public function hpProductoFabricar(){
+        return $this->hasMany('App\Models\hp_producto_fabricar');
+    }
 }
 

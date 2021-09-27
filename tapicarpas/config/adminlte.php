@@ -317,13 +317,30 @@ return [
             ],
         ],
 
-
-
         [
             'text' => 'Herramientas',
             'url'  => 'herramienta',
             'icon' => 'fas fa-tools',
         ],
+
+        [
+            'text'    => 'Producción',
+            'icon'    => 'fab fa-product-hunt',
+            'submenu' => [
+                [
+                    'text' => 'Categoría',
+                    'url'  => 'categoria',
+                ],
+                [
+                    'text' => 'Producto a fabricar',
+                    'url'  => 'producto_a_fabricar',
+                ],
+            ],
+        ],
+
+
+
+
 
         ['header' => 'Configuración de la cuenta'],
         [

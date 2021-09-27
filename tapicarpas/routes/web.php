@@ -9,6 +9,8 @@ use App\Http\Controllers\FacturaCompraController;
 use App\Http\Controllers\TipoMateriaPrimasController;
 use App\Http\Controllers\HerramientaController;
 use App\Http\Controllers\ManoDeObraController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ProductoAFabricarController;
 
 
 /*
@@ -43,6 +45,10 @@ Route::resource('tipo_materia_primas', TipoMateriaPrimasController::class)->midd
 Route::resource('herramienta', HerramientaController::class)->middleware('auth');
 
 Route::resource('mano_de_obra', ManoDeObraController::class)->middleware('auth');
+
+Route::resource('categoria', CategoriaController::class)->middleware('auth');
+
+Route::resource('producto_a_fabricar', ProductoAFabricarController::class)->middleware('auth');
 
 Route::group(['middleware' => 'auth'],function () {
     Route::get('/', [InicioController::class, 'index'])-> name('home');

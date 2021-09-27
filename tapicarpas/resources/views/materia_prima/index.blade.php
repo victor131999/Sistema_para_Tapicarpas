@@ -1,7 +1,7 @@
 
 @extends('adminlte::page')
 
-@section('title', 'materia_primas')
+@section('title', 'Materia prima')
 
 @section('content_header')
     <h1>Materia prima</h1>
