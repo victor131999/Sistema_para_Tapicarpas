@@ -18,7 +18,17 @@
     </button>
 </div>
 @endif
-
+@if(session('status'))
+            @if(session('status')=='1')
+                <div class = "alert alert-success">
+                    La factura fue guardada con exito
+                </div>
+            @else
+                <div class = "alert alert-success">
+                    {{session('status')}}
+                </div>
+            @endif
+        @endif
 
 
 <a href="{{url('producto_a_fabricar/create')}}" class="btn btn-outline-success">Registrar nuevo producto a fabricar</a>
@@ -31,14 +41,13 @@
         <tr>
             <th>#</th>
             <th>Nombre</th>
-            <th>Fecha de inicio</th>
-            <th>Fecha de fin</th>
             <th>Color</th>
             <th>Medida</th>
-            <th>Material</th>
             <th>Categoría</th>
-            <th>Responsable</th>
+            <th>Fecha de inicio</th>
+            <th>Fecha de fin</th>
             <th>Acciones</th>
+            
         </tr>
     </thead>
 
@@ -48,25 +57,22 @@
         <tr>
             <td>{{$producto_a_fabricar->id}}</td>
             <td>{{$producto_a_fabricar->nombre}}</td>
-            <td>{{$producto_a_fabricar->fecha_inicio}}</td>
-            <td>{{$producto_a_fabricar->fecha_fin}}</td>
+            
             <td>{{$producto_a_fabricar->color}}</td>
             <td>{{$producto_a_fabricar->medida}}</td>
-            <td>{{$producto_a_fabricar->material}}</td>
-            <td>{{$producto_a_fabricar->categorias->id}} - {{$producto_a_fabricar->categorias->nombre}} </td>
-            <td>{{$producto_a_fabricar->responsables->id}} - {{$producto_a_fabricar->responsables->Nombre}} </td>
+            <td>{{$producto_a_fabricar->categorias->nombre ?? '' }}  </td>
+            <td>{{$producto_a_fabricar->fecha_inicio}}</td>
+            <td>{{$producto_a_fabricar->fecha_fin}}</td>
             <td>
-                <a href="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id.'/edit')}}" class="btn btn-outline-info">
-                    Editar
-                </a>
-
-                |
-
-                <form action="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id)}}" class="d-inline" method="post">
-                @csrf
-                {{method_field('DELETE')}}
-                    <input class="btn btn-outline-dark" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
-                </form>
+            <a href="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id)}}" class="btn btn-outline-info">Ver</a>
+            |
+            <a href="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id.'/edit')}}" class="btn btn-outline-info">Editar </a>
+            |
+            <form action="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id)}}" class="d-inline" method="post">
+            @csrf
+            {{method_field('DELETE')}}
+                <input class="btn btn-outline-dark" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
+            </form>
 
             </th>
         </tr>

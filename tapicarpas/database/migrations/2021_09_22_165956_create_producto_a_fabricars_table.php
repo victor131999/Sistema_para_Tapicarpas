@@ -24,11 +24,11 @@ class CreateProductoAFabricarsTable extends Migration
             $table->timestamps();
 
             //relaciones
-            $table->unsignedBigInteger('id_categoria')->nullable();
-            $table->unsignedBigInteger('id_responsable')->nullable();
+            $table->unsignedBigInteger('id_categoria');
+            $table->unsignedBigInteger('id_responsable');
 
-            $table->foreign('id_categoria')->references('id')->on('categorias')->onDelete('set null');
-            $table->foreign('id_responsable')->references('id')->on('responsables')->onDelete('set null');
+            $table->foreign('id_categoria')->references('id')->on('categorias')->onDelete('cascade');
+            $table->foreign('id_responsable')->references('id')->on('responsables')->onDelete('cascade');
         });
     }
 
