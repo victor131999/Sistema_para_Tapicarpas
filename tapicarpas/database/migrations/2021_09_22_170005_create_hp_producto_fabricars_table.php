@@ -14,16 +14,16 @@ class CreateHpProductoFabricarsTable extends Migration
     public function up()
     {
         Schema::create('hp_producto_fabricars', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->float('cantidad');
             $table->timestamps();
 
             //relaciones
-            $table->unsignedBigInteger('id_materia_prima')->nullable();
-            $table->unsignedBigInteger('id_producto_a_fabricar')->nullable();
+            $table->unsignedBigInteger('materia_prima_id')->nullable();
+            $table->unsignedBigInteger('producto_a_fabricar_id')->nullable();
 
-            $table->foreign('id_materia_prima')->references('id')->on('materia_primas')->onDelete('set null');
-            $table->foreign('id_producto_a_fabricar')->references('id')->on('producto_a_fabricars')->onDelete('set null');
+            $table->foreign('materia_prima_id')->references('id')->on('materia_primas')->onDelete('set null');
+            $table->foreign('producto_a_fabricar_id')->references('id')->on('producto_a_fabricars')->onDelete('set null');
         });
     }
 

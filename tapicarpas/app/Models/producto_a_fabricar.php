@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class producto_a_fabricar extends Model
 {
     use HasFactory;
-    protected $fillable = ['id','nombre','fecha_inicio','fecha_fin','color','medida','material','id_categotia','id_responsable'];
+    protected $fillable = ['id','nombre','fecha_inicio','fecha_fin','color','medida','material','id_categoria','id_responsable'];
     public function hpProductoFabricar(){
-        return $this->hasMany('App\Models\hp_producto_fabricar');
+        return $this->belongsToMany('App\Models\materia_prima','hp_producto_fabricars')->withPivot('cantidad');;
     }
 
     public function categorias(){

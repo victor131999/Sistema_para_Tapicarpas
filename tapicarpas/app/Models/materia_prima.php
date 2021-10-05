@@ -19,8 +19,9 @@ class materia_prima extends Model
     }
 
 
-    public function hpProductoFabricar(){
-        return $this->hasMany('App\Models\hp_producto_fabricar');
+    public function hpFabricarProducto(){
+        return $this->belongsToMany('App\Models\producto_a_fabricar');
     }
+    
 }
 
