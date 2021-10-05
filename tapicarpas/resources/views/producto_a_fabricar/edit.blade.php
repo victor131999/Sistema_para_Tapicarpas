@@ -66,9 +66,32 @@
         <br>
         <table class="table">
             <thead>
-                <tr><th>Nombre</th><th>Cantidad</th><th>Opciones</th></tr>
+                <tr><th>Nombre</th><th>Cantidad</th><th>Costo Unitario</th><th>Opciones</th></tr>
             </thead>
-            <tbody id="tblmaterias"></tbody>
+            @if(count($valor)>0)
+            <tbody id="tblmaterias">
+                                @foreach($valor as $detalles )
+                                <tr id="tr-${insumo_id}">
+                                    <td>
+                                        <input type="hidden" name="insumo_id[]" id="education1" value="${insumo_id}" />
+                                        <input type="hidden" name="cantidades[]"  value="${cantidad}" />
+                                        <input type="hidden" name="stocks[]" value="${restando}" />
+                                        <input type="hidden" name="costosUnitarios[]" value="${costoUnitario}" />
+                                        {{$detalles->nombre_mp}}
+                                    </td>
+                                    <td>{{$detalles->pivot->cantidad}}</td>
+                            
+                                    <td>{{$detalles->costo_unidad_mp}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${insumo_id})">X</button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+            @endif
+            @if(count($valor)<= 0)
+                <tbody id="tblmaterias"></tbody>
+            @endif
         </table>
         <p></p><br/> <br/>
         <input class="btn btn-outline-success" type="submit" value="Editar datos">

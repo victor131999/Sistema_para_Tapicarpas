@@ -41,11 +41,6 @@ class ProductoAFabricarController extends Controller
         return view('producto_a_fabricar.index',$datos);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $materia_prima['materia_prima']=materia_prima::all();
@@ -56,17 +51,10 @@ class ProductoAFabricarController extends Controller
         with($datosResponsable)->
         with($materia_prima);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //Validación de datos
-        /*$campos=[
+        $campos=[
             'nombre'=>'required|string|max:100',
             'fecha_inicio'=>'required|string|max:100',
             'fecha_fin'=>'required|string|max:100',
@@ -83,12 +71,8 @@ class ProductoAFabricarController extends Controller
         $mensaje=[
             'numeric'=>'El :attribute tiene que ser un número',
         ];
-
-        $this->validate($request, $campos, $mensaje);*/
-        //$dataStudents = request()->except('_token');
-        //dd($request->all());
+        $this->validate($request, $campos, $mensaje);
         $input  = $request->all();
-        //dd($request->all());
         try{
             DB::beginTransaction();
             $productoAFabricar = producto_a_fabricar::create([
@@ -115,10 +99,7 @@ class ProductoAFabricarController extends Controller
         }catch(\Exception $e){
             DB::rollBack();
             return redirect("producto_a_fabricar")->with('status',$e->getMessage());
-        }/*
-        producto_a_fabricar::insert($datosProducto_a_Fafricar);
-        return redirect('producto_a_fabricar')->with('mensaje','El producto a fabricar fue agregada con exito');
-*/
+        }
     }
     public function calcular_total(producto_a_fabricar $data){
         $suma = 0;
@@ -138,19 +119,14 @@ class ProductoAFabricarController extends Controller
     {
 
         $producto_a_fabricar =producto_a_fabricar::findOrFail($id);
+        if ($producto_a_fabricar) {
+            $valor['valor'] = $producto_a_fabricar->hpProductoFabricar;
+        }
         $materia_prima['materia_prima']=materia_prima::all();
         $datosCategoria['categoria']=categoria::all();
         $datosResponsable['responsable']=Responsable::all();
-        return View::make('producto_a_fabricar.edit',compact('producto_a_fabricar'))->with($datosCategoria)->with($datosResponsable)->with($materia_prima);
+        return View::make('producto_a_fabricar.edit',compact('producto_a_fabricar'))->with($valor)->with($datosCategoria)->with($datosResponsable)->with($materia_prima);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\producto_a_fabricar  $producto_a_fabricar
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //Validación de datos
@@ -180,16 +156,8 @@ class ProductoAFabricarController extends Controller
         $producto_a_fabricar=producto_a_fabricar::findOrFail($id);
         return redirect('producto_a_fabricar')->with('mensaje','Producto a fabricar modificado correctamente');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\producto_a_fabricar  $producto_a_fabricar
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //se esta recepcionando el id del formulario del index
         $producto_a_fabricar=producto_a_fabricar::findOrFail($id);
         producto_a_fabricar::destroy($id);
         return redirect('producto_a_fabricar')->with('mensaje','Producto a fabricar eliminado');

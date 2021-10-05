@@ -48,11 +48,11 @@
             <td>{{$materia_prima->id}}</td>
             <td>{{$materia_prima->nombre_mp}}</td>
             <td>{{$materia_prima->color_mp}}</td>
-            <td>{{$materia_prima->ancho_mp}}</td>
-            <td>{{$materia_prima->largo_mp}}</td>
+            <td>{{$materia_prima->ancho_mp == 0 ?'':$materia_prima->ancho_mp}}</td>
+            <td>{{$materia_prima->largo_mp == 0 ?'':$materia_prima->largo_mp}}</td>
             <td>{{$materia_prima->cantidad_mp}}</td>
             <td>{{$materia_prima->costo_unidad_mp}}</td>
-            <td>{{$materia_prima->tipos->id}} - {{$materia_prima->tipos->nombre_tipo}} </td>
+            <td>{{$materia_prima->tipos->nombre_tipo}} </td>
             <td>
                 <a href="{{url('/materia_prima/'.$materia_prima->id.'/edit')}}" class="btn btn-outline-info">
                     Editar
