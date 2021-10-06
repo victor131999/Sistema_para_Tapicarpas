@@ -335,6 +335,10 @@ return [
                     'text' => 'Producto a fabricar',
                     'url'  => 'producto_a_fabricar',
                 ],
+                [
+                    'text' => 'Producto finalizado',
+                    'url'  => 'producto_finalizado',
+                ],
             ],
         ],
 
