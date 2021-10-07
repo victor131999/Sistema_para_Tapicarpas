@@ -72,9 +72,9 @@
                     </div>
                     <div class="col-md-1 col-lg-4">
                         <div class="form-group">
-                        <label for="id_categoria">Categorías</label>
-                                <select class="form-control" type="text" name="id_categoria" value="{{isset($categoria->id_categoria)?$categoria->id_categoria:old('id_categoria')}}" id="id_categoria">
-                                    @foreach ($categoria as $categorias)
+                        <label for="id_s_categoria">Subcategorías</label>
+                                <select class="form-control" type="text" name="id_s_categoria" value="{{isset($subcategoria->id)?$subcategoria->id:old('id_s_categoria')}}" id="id_s_categoria">
+                                    @foreach ($subcategoria as $categorias)
                                             <option value="{{$categorias->id}}">
                                                 {{$categorias->id}} - {{$categorias->nombre}}
                                             </option>
@@ -99,10 +99,18 @@
 
                         </div>
                     </div>
+                    
                     <div class="col-md-1 col-lg-1">
                         <div class="form-group">
                         <label for="medida">Medida</label>
                         <input type="text" class="form-control" name="medida" placeholder="3 x 5" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida">
+
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-lg-1">
+                        <div class="form-group">
+                        <label for="medida">Estado</label>
+                        <input type="text" class="form-control" name="estado" placeholder="" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="estado">
 
                         </div>
                     </div>
@@ -125,8 +133,7 @@
             <br>
             <div class="card-header">
             <h4 class="card-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                    <i class="glyphicon glyphicon-search text-gold"></i>
+                <a >
                     <b>Detalles</b></br>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal" data-whatever="@mdo">Agregar materiales</button>
                 </a>

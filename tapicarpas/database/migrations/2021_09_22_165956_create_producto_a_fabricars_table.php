@@ -21,13 +21,14 @@ class CreateProductoAFabricarsTable extends Migration
             $table->string('color');
             $table->string('medida');
             $table->string('material');
+            $table->string('estado');
             $table->timestamps();
 
             //relaciones
-            $table->unsignedBigInteger('id_categoria');
+            $table->unsignedBigInteger('id_s_categoria');
             $table->unsignedBigInteger('id_responsable');
 
-            $table->foreign('id_categoria')->references('id')->on('categorias')->onDelete('cascade');
+            $table->foreign('id_s_categoria')->references('id')->on('subcategoria_productos')->onDelete('cascade');
             $table->foreign('id_responsable')->references('id')->on('responsables')->onDelete('cascade');
         });
     }

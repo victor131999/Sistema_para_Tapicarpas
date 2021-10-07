@@ -43,7 +43,7 @@
             <th>Nombre</th>
             <th>Color</th>
             <th>Medida</th>
-            <th>Categoría</th>
+            <th>Subcategoría</th>
             <th>Fecha de inicio</th>
             <th>Fecha de fin</th>
             <th>Acciones</th>
@@ -60,7 +60,7 @@
             
             <td>{{$producto_a_fabricar->color}}</td>
             <td>{{$producto_a_fabricar->medida}}</td>
-            <td>{{$producto_a_fabricar->categorias->nombre ?? '' }}  </td>
+            <td>{{$producto_a_fabricar->sub_categorias->nombre ?? '' }}  </td>
             <td>{{$producto_a_fabricar->fecha_inicio}}</td>
             <td>{{$producto_a_fabricar->fecha_fin}}</td>
             <td>

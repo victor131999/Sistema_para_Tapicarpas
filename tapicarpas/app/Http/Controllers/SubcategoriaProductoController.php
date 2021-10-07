@@ -1,85 +1,77 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\categoria;
 use App\Models\subcategoria_producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class SubcategoriaProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        //
+        $datos['subcategorias']=subcategoria_producto::paginate(5);
+        return view('subcategoria.index',$datos);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $datosCategoria['categoria']=categoria::all();
+        return View::make('subcategoria.create' )->
+        with($datosCategoria);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $campos=[
+            'nombre'=>'required|string|max:100',
+            'id_categoria'=>'numeric|min:0|nullable'
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido',
+        ];
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\subcategoria_producto  $subcategoria_producto
-     * @return \Illuminate\Http\Response
-     */
-    public function show(subcategoria_producto $subcategoria_producto)
-    {
-        //
+        $mensaje=[
+            'numeric'=>'El :attribute tiene que ser un número',
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $datosSubcategoria = request()->except('_token');
+        subcategoria_producto::insert($datosSubcategoria);
+        return redirect('subcategoria')->with('mensaje','Subcategoría agregada con exito');
+    
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\subcategoria_producto  $subcategoria_producto
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(subcategoria_producto $subcategoria_producto)
+    public function edit($id)
     {
-        //
+        $subcategoria =subcategoria_producto::findOrFail($id);
+        return view('subcategoria.edit',compact('subcategoria'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\subcategoria_producto  $subcategoria_producto
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, subcategoria_producto $subcategoria_producto)
+    public function update(Request $request, $id)
     {
-        //
+        $campos=[
+            'nombre'=>'required|string|max:100',
+            'id_categoria'=>'numeric|min:0|nullable'
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido',
+        ];
+
+        $mensaje=[
+            'numeric'=>'El :attribute tiene que ser un número',
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $datosSubcategoria = request()->except('_token');
+        subcategoria_producto::where('id','=',$id)->update($datosSubcategoria);
+        $subcategoria=subcategoria_producto::findOrFail($id);
+        return redirect('subcategoria')->with('mensaje','Subcategoria modificada correctamente');
+ 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\subcategoria_producto  $subcategoria_producto
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(subcategoria_producto $subcategoria_producto)
+    public function destroy($id)
     {
-        //
+        $subcategoria=subcategoria_producto::findOrFail($id);
+        subcategoria_producto::destroy($id);
+        return redirect('subcategoria')->with('mensaje','Subcategoria eliminada');
+   
     }
 }

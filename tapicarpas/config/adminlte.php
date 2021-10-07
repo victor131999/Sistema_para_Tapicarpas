@@ -328,19 +328,19 @@ return [
             'icon'    => 'fab fa-product-hunt',
             'submenu' => [
                 [
-                    'text' => 'Categoría',
+                    'text' => 'Categorías',
                     'url'  => 'categoria',
                 ],
                 [
-                    'text' => 'Producto a fabricar',
+                    'text' => 'Sub Categorías',
+                    'url'  => 'subcategoria',
+                ],
+                [
+                    'text' => 'Orden de producción',
                     'url'  => 'producto_a_fabricar',
                 ],
             ],
         ],
-
-
-
-
 
         ['header' => 'Configuración de la cuenta'],
         [

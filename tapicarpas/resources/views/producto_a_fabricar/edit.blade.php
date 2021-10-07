@@ -1,6 +1,4 @@
-<form action="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id)}}" method="post" enctype="multipart/form-data">
-@csrf
-{{method_field('PATCH')}}
+
 @extends('adminlte::page')
 
 @section('title', 'TapiCarpas')
@@ -11,7 +9,9 @@
 @stop
 
 @section('content')
-
+<form action="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id)}}" method="post" enctype="multipart/form-data">
+@csrf
+{{method_field('PATCH')}}
     <div class="form-gourp">
 
         @if(count($errors)>0)
@@ -24,7 +24,6 @@
 
             </div>
         @endif
-
         <label for="nombre">Nombre</label>
         <input type="text" class="form-control" name="nombre" value="{{isset($producto_a_fabricar->nombre)?$producto_a_fabricar->nombre:old('nombre')}}" id="nombre">
 
@@ -71,19 +70,18 @@
             @if(count($valor)>0)
             <tbody id="tblmaterias">
                                 @foreach($valor as $detalles )
-                                <tr id="tr-${insumo_id}">
+                                <tr id="tr-{{$detalles->id}}">
                                     <td>
-                                        <input type="hidden" name="insumo_id[]" id="education1" value="${insumo_id}" />
-                                        <input type="hidden" name="cantidades[]"  value="${cantidad}" />
-                                        <input type="hidden" name="stocks[]" value="${restando}" />
-                                        <input type="hidden" name="costosUnitarios[]" value="${costoUnitario}" />
+                                        <input type="hidden" name="insumo_id[]" id="education1" value="{{$detalles->id}}" />
+                                        <input type="hidden" name="cantidades[]"  value="{{$detalles->pivot->cantidad}}" />
+                                        <input type="hidden" name="costosUnitarios[]" value="{{$detalles->costo_unidad_mp}}" />
                                         {{$detalles->nombre_mp}}
                                     </td>
                                     <td>{{$detalles->pivot->cantidad}}</td>
                             
                                     <td>{{$detalles->costo_unidad_mp}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${insumo_id})">X</button>
+                                        <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this,{{$detalles->id}})">X</button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -146,8 +144,19 @@
       </div>
     </div>
     <script>
-        let identificarRepetidos = []
+
+
+        let identificarRepetidos = [];
+
         function agregar_insumo() {
+            $("input[name='insumo_id[]']").each(function(indice, elemento) {
+                if (identificarRepetidos.includes(parseInt($(elemento).val())) === false) {
+                    identificarRepetidos.push(parseInt($(elemento).val()));
+                }else{
+                    return;
+                }
+            //console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+            });
             var TR= document.createElement("tr");
             let insumo_id = $("#materias option:selected").val();
             let insumo_text = $("#materias option:selected").text();
@@ -163,12 +172,10 @@
                                     <td>
                                         <input type="hidden" name="insumo_id[]" id="education1" value="${insumo_id}" />
                                         <input type="hidden" name="cantidades[]"  value="${cantidad}" />
-                                        <input type="hidden" name="stocks[]" value="${restando}" />
                                         <input type="hidden" name="costosUnitarios[]" value="${costoUnitario}" />
                                         ${insumo_text}
                                     </td>
                                     <td>${cantidad}</td>
-                                    <td>${restando}</td>
                                     <td>${costoUnitario}</td>
                                     <td>
                                         <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${insumo_id})">X</button>
@@ -183,9 +190,18 @@
                         return;
                     }
                     document.getElementById("tblmaterias").appendChild(TR)
+                    console.log(identificarRepetidos)
         }
 
         function eliminar_insumo(id, elemento) {
+            $("input[name='insumo_id[]']").each(function(indice, elemento) {
+                if (identificarRepetidos.includes(parseInt($(elemento).val())) === false) {
+                    identificarRepetidos.push(parseInt($(elemento).val()));
+                }else{
+                    return;
+                }
+            //console.log('El elemento con el índice '+indice+' contiene '+$(elemento).val());
+            });
                 var TR= id.parentNode.parentNode;
                 document.getElementById("tblmaterias").removeChild(TR);
                 console.log(elemento)

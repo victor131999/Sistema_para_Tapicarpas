@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class categoria extends Model
 {
     use HasFactory;
-    public function produtoAFabricar(){
-        return $this->hasMany('App\Models\producto_a_fabricar');
+
+    public function sub_categorias(){
+        return $this->hasMany('App\Models\subcategoria_producto');
     }
+    
+    
 }
