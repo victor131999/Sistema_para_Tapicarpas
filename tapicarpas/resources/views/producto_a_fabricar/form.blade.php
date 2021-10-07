@@ -3,7 +3,9 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-    <h1>{{$modo}}Producto a fabricar</h1>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
 @stop
 
@@ -21,49 +23,126 @@
 
             </div>
         @endif
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        <label for="nombre">Nombre</label>
-        <input type="text" class="form-control" name="nombre" value="{{isset($categoria->nombre)?$categoria->nombre:old('nombre')}}" id="nombre">
 
-        <label for="id_categoria">Categorías</label>
-        <select class="form-control" type="text" name="id_categoria" value="{{isset($categoria->id_categoria)?$categoria->id_categoria:old('id_categoria')}}" id="id_categoria">
-            @foreach ($categoria as $categorias)
-                    <option value="{{$categorias->id}}">
-                        {{$categorias->id}} - {{$categorias->nombre}}
-                    </option>
-            @endforeach
+<div class="container">
+<div id="accordion">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center">
+                <h3>Registrar Orden de producción</h3>
+            </div>
+        </div>
+    </div>
 
-       </select>
+    <div class="card card-default">
+        <div class="card-header">
+            <h4 class="card-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                    <i class="glyphicon glyphicon-search text-gold"></i>
+                    <b>Información</b>
+                </a>
+            </h4>
+        </div>
+        <div id="collapse1" class="collapse show">
+            <div class="card-body">
+            <div class="row">
+                        <div class="col-md-3 col-lg-12">
+                            <div class="form-group">
+                                <label class="control-label">Nombre del Producto</label>
+                                <input type="text" class="form-control" name="nombre" value="{{isset($categoria->nombre)?$categoria->nombre:old('nombre')}}" id="nombre">
+                            </div>
+                        </div>
+                    </div>
+                <div class="row">
+                
+                    <div class="col-md-3 col-lg-4">
+                        <div class="form-group">
+                        <label for="id_responsable">Responsable</label>
+                            <select class="form-control" type="text" name="id_responsable" value="{{isset($categoria->id_responsable)?$categoria->id_responsable:old('id_responsable')}}" id="id_responsable">
+                                @foreach ($responsable as $responsables)
+                                        <option value="{{$responsables->id}}">
+                                            {{$responsables->id}} - {{$responsables->Nombre}}
+                                        </option>
+                                @endforeach
 
-       <label for="id_responsable">Responsable</label>
-       <select class="form-control" type="text" name="id_responsable" value="{{isset($categoria->id_responsable)?$categoria->id_responsable:old('id_responsable')}}" id="id_responsable">
-           @foreach ($responsable as $responsables)
-                   <option value="{{$responsables->id}}">
-                       {{$responsables->id}} - {{$responsables->Nombre}}
-                   </option>
-           @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-lg-4">
+                        <div class="form-group">
+                        <label for="id_s_categoria">Subcategorías</label>
+                                <select class="form-control" type="text" name="id_s_categoria" value="{{isset($subcategoria->id)?$subcategoria->id:old('id_s_categoria')}}" id="id_s_categoria">
+                                    @foreach ($subcategoria as $categorias)
+                                            <option value="{{$categorias->id}}">
+                                                {{$categorias->id}} - {{$categorias->nombre}}
+                                            </option>
+                                    @endforeach
 
-      </select>
-        <label for="fecha_inicio">Fecha de inicio</label>
-        <input type="text" class="form-control" name="fecha_inicio" value="{{isset($categoria->fecha_inicio)?$categoria->fecha_inicio:old('fecha_inicio')}}" id="fecha_inicio">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-lg-3">
+                        <div class="form-group">
+                        <label for="material">Material</label>
+                        <input type="text" class="form-control" name="material" value="{{isset($categoria->material)?$categoria->material:old('material')}}" id="material">
+                        </div>
+                    </div>
+                </div>
 
-        <label for="fecha_fin">Fecha de Finalización</label>
-        <input type="text" class="form-control" name="fecha_fin" value="{{isset($categoria->fecha_fin)?$categoria->fecha_fin:old('fecha_fin')}}" id="fecha_fin">
+                <div class="row">
+                    <div class="col-md-4 col-lg-4">
+                        <div class="form-group">
+                        <label for="color">Color</label>
+                        <input type="text" class="form-control" name="color" value="{{isset($categoria->color)?$categoria->color:old('color')}}" id="color">
 
-        <label for="color">Color</label>
-        <input type="text" class="form-control" name="color" value="{{isset($categoria->color)?$categoria->color:old('color')}}" id="color">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-1 col-lg-1">
+                        <div class="form-group">
+                        <label for="medida">Medida</label>
+                        <input type="text" class="form-control" name="medida" placeholder="3 x 5" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida">
 
-        <label for="medida">Medida</label>
-        <input type="text" class="form-control" name="medida" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida">
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-lg-1">
+                        <div class="form-group">
+                        <label for="medida">Estado</label>
+                        <input type="text" class="form-control" name="estado" placeholder="" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="estado">
 
-        <label for="material">Material</label>
-        <input type="text" class="form-control" name="material" value="{{isset($categoria->material)?$categoria->material:old('material')}}" id="material">
-        <br>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal" data-whatever="@mdo">Agregar materia prima</button>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-lg-3">
+                        <div class="form-group">
+                        <label for="fecha_inicio">Fecha de inicio</label>
+                        <input type="date" class="form-control" name="fecha_inicio" value="{{isset($categoria->fecha_inicio)?$categoria->fecha_inicio:old('fecha_inicio')}}" id="fecha_inicio">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-lg-3">
+                        <div class="form-group">
+                        <label for="fecha_fin">Fecha de Finalización</label>
+                        <input type="date" class="form-control" name="fecha_fin" value="{{isset($categoria->fecha_fin)?$categoria->fecha_fin:old('fecha_fin')}}" id="fecha_fin">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card-header">
+            <h4 class="card-title">
+                <a >
+                    <b>Detalles</b></br>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal" data-whatever="@mdo">Agregar materiales</button>
+                </a>
+            </h4>
+        </div>
         <br>
         <table class="table">
             <thead>
-                <tr><th>Nombre</th><th>Cantidad</th><th>Opciones</th></tr>
+                <tr><th>Nombre</th><th>Cantidad</th> <th>Costo Unitario</th><th>Opciones</th></tr>
             </thead>
             <tbody id="tblmaterias"></tbody>
         </table>
@@ -71,6 +150,11 @@
         <input class="btn btn-outline-success" type="submit" value="{{$modo}} datos">
         <a href="{{url('producto_a_fabricar/')}}">Regresar</a>
 
+        </div>
+    </div>
+    </div>
+        </div>
+        
     </div>
     <!-MODAL PARA EL INGRESOO DE MATERIA PRIMA PARA PRODUCCION COMO DETALLE-!>
     <div class="modal fade" id="modalPrimaNormal" tabindex="-1" role="dialog" aria-labelledby="modalPrimaNormalLabel" aria-hidden="true">
@@ -142,8 +226,7 @@
                                         ${insumo_text}
                                     </td>
                                     <td>${cantidad}</td>
-                                    <td>${restando}</td>
-                                    <td>${costoUnitario}</td>
+                                    <td>${costoUnitario} $</td>
                                     <td>
                                         <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${insumo_id})">X</button>
                                     </td>
