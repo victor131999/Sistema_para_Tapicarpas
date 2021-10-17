@@ -107,7 +107,7 @@ class ProductoAFabricarController extends Controller
             $valor['valor'] = $producto_a_fabricar->hpProductoFabricar;
         }
         $materia_prima['materia_prima']=materia_prima::all();
-        $datosSubcategoria['subcategoria']=categoria::all();
+        $datosSubcategoria['subcategoria']=subcategoria_producto::all();
         $datosResponsable['responsable']=Responsable::all();
         return View::make('producto_a_fabricar.edit',compact('producto_a_fabricar'))->with($valor)->with($datosSubcategoria)->with($datosResponsable)->with($materia_prima);
     }

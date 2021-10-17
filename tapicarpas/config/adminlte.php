@@ -339,6 +339,10 @@ return [
                     'text' => 'Orden de producción',
                     'url'  => 'producto_a_fabricar',
                 ],
+                [
+                    'text' => 'Producto finalizado',
+                    'url'  => 'producto_finalizado',
+                ],
             ],
         ],
 

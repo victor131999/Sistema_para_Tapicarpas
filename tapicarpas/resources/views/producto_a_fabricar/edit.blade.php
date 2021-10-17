@@ -27,11 +27,11 @@
         <label for="nombre">Nombre</label>
         <input type="text" class="form-control" name="nombre" value="{{isset($producto_a_fabricar->nombre)?$producto_a_fabricar->nombre:old('nombre')}}" id="nombre">
 
-        <label for="id_categoria">Categorías</label>
-        <select class="form-control" type="text" name="id_categoria"  id="id_categoria">
-            @foreach ($categoria as $categorias)
-                    <option value="{{$categorias->id}}" {{ ($producto_a_fabricar->id_categoria ? $producto_a_fabricar->id_categoria: old('id_categoria')) == $categorias->id ? 'selected' : '' }}>
-                         {{$categorias->nombre}}
+        <label for="id_subcategoria">Categorías</label>
+        <select class="form-control" type="text" name="id_subcategoria"  id="id_subcategoria">
+            @foreach ($subcategoria as $subcategorias)
+                    <option value="{{$subcategorias->id}}" {{ ($producto_a_fabricar->id_subcategoria ? $producto_a_fabricar->id_subcategoria: old('id_subcategoria')) == $subcategorias->id ? 'selected' : '' }}>
+                         {{$subcategorias->nombre}}
                     </option>
             @endforeach
 
@@ -78,7 +78,7 @@
                                         {{$detalles->nombre_mp}}
                                     </td>
                                     <td>{{$detalles->pivot->cantidad}}</td>
-                            
+
                                     <td>{{$detalles->costo_unidad_mp}}</td>
                                     <td>
                                         <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this,{{$detalles->id}})">X</button>
@@ -110,7 +110,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="">Nombre</label>
-                    
+
                     <select name="materias" id="materias" class="form-control" onchange="colocar_stock()">
                         <option value="">Seleccione</option>
                         @foreach ($materia_prima as $materia_primas)
@@ -163,7 +163,7 @@
             let cantidad = $("#cantidad_df").val();
             let stock = $("#cantidad").val();
             let costoUnitario = parseFloat($("#costoUnitario").val());
-            let restando  =  (parseFloat(stock)) - parseFloat(cantidad) ; 
+            let restando  =  (parseFloat(stock)) - parseFloat(cantidad) ;
             if (identificarRepetidos.includes(parseInt(insumo_id)) === false) {
                     identificarRepetidos.push(parseInt(insumo_id));
                     if (cantidad > 0 && stock > 0) {
