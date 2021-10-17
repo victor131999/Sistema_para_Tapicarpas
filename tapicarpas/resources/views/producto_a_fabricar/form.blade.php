@@ -29,9 +29,24 @@
         <div class="container">
             <div id="accordion">
                 <div class="row">
+
                     <div class="col-lg-12">
                         <div class="text-center">
                             <h3>Registrar Orden de producción</h3>
+
+
+                    <div class="col-md-3 col-lg-4">
+                        <div class="form-group">
+                        <label for="id_responsable">Responsable</label>
+                            <select class="form-control" type="text" name="id_responsable" value="{{isset($categoria->id_responsable)?$categoria->id_responsable:old('id_responsable')}}" id="id_responsable">
+                                @foreach ($responsable as $responsables)
+                                        <option value="{{$responsables->id}}">
+                                            {{$responsables->id}} - {{$responsables->Nombre}}
+                                        </option>
+                                @endforeach
+
+                            </select>
+
                         </div>
                     </div>
                 </div>
@@ -80,6 +95,7 @@
                                                         </option>
                                                 @endforeach
 
+
                                         </select>
                                     </div>
                                 </div>
@@ -96,6 +112,22 @@
                                     <div class="form-group">
                                     <label for="color">Color</label>
                                     <input type="text" class="form-control" name="color" value="{{isset($categoria->color)?$categoria->color:old('color')}}" id="color">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 col-lg-1">
+                        <div class="form-group">
+                        <label for="medida">Medida</label>
+                        <input type="text" class="form-control" name="medida" placeholder="3 x 5" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida">
+
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-lg-1">
+                        <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <input type="text" class="form-control" name="estado" placeholder="Inicio" value="{{isset($categoria->medida)?$categoria->medida:old('estado')}}" id="estado">
+
 
                                     </div>
                                 </div>
@@ -163,7 +195,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
     <!-MODAL PARA EL INGRESOO DE MATERIA PRIMA PARA PRODUCCION COMO DETALLE-!>
     <div class="modal fade" id="modalPrimaNormal" tabindex="-1" role="dialog" aria-labelledby="modalPrimaNormalLabel" aria-hidden="true">
@@ -179,7 +211,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="">Nombre</label>
-                    
+
                     <select name="materias" id="materias" class="form-control" onchange="colocar_stock()">
                         <option value="">Seleccione</option>
                         @foreach ($materia_prima as $materia_primas)
@@ -221,7 +253,7 @@
             let cantidad = $("#cantidad_df").val();
             let stock = $("#cantidad").val();
             let costoUnitario = parseFloat($("#costoUnitario").val());
-            let restando  =  (parseFloat(stock)) - parseFloat(cantidad) ; 
+            let restando  =  (parseFloat(stock)) - parseFloat(cantidad) ;
             if (identificarRepetidos.includes(parseInt(insumo_id)) === false) {
                     identificarRepetidos.push(parseInt(insumo_id));
                     if (cantidad > 0 && stock > 0) {

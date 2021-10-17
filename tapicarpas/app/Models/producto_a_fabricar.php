@@ -21,4 +21,8 @@ class producto_a_fabricar extends Model
     public function responsables(){
         return $this->belongsTo('App\Models\Responsable','id_responsable');
     }
+
+    public function producto_finalizado(){
+        return $this->hasOne('App\Models\producto_finalizado');
+    }
 }

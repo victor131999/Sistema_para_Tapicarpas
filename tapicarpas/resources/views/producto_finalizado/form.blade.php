@@ -23,6 +23,31 @@
             </div>
         @endif
 
+        <div class="row card-body">
+            <div class="col-md-3 col-lg-4">
+                <div class="form-group">
+                <label for="id_orden">Orden</label>
+                    <select class="form-control" type="text" name="id_orden" value="{{isset($producto_finalizado->id_orden)?$producto_finalizado->id_orden:old('id_orden')}}" id="id_orden">
+                        @foreach ($producto_a_fabricar as $producto_a_fabricars)
+                                <option costo_mano_obra="{{ $producto_a_fabricars->medida }}" value="{{$producto_a_fabricars->id}}">
+                                    {{$producto_a_fabricars->id}} - {{$producto_a_fabricars->nombre}}
+                                </option>
+                        @endforeach
+
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="">Precio de materia prima </label>
+                    <input type="number" id="costo_mano_obra" class="form-control" readonly>
+                </div>
+            </div>
+
+        </div>
+
     <div class="container">
         <div class="row">
             <div class="col-3">
