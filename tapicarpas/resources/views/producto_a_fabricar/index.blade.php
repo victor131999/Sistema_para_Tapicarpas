@@ -4,7 +4,7 @@
 @section('title', 'producto_a_fabricars')
 
 @section('content_header')
-    <h1>Producto a fabricar</h1>
+    <h1>Orden de producción</h1>
 @stop
 
 @section('content')
@@ -47,7 +47,7 @@
             <th>Fecha de inicio</th>
             <th>Fecha de fin</th>
             <th>Acciones</th>
-            
+
         </tr>
     </thead>
 
@@ -57,7 +57,7 @@
         <tr>
             <td>{{$producto_a_fabricar->id}}</td>
             <td>{{$producto_a_fabricar->nombre}}</td>
-            
+
             <td>{{$producto_a_fabricar->color}}</td>
             <td>{{$producto_a_fabricar->medida}}</td>
             <td>{{$producto_a_fabricar->sub_categorias->nombre ?? '' }}  </td>
@@ -73,7 +73,8 @@
             {{method_field('DELETE')}}
                 <input class="btn btn-outline-dark" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
             </form>
-
+            |
+            <a class="btn btn-outline-danger" href="{{ url('/producto_finalizado/create') }}">Finalizar orden</a>
             </th>
         </tr>
         @endforeach

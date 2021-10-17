@@ -64,7 +64,7 @@
             <td>{{$producto_finalizado->c_imprevistos}}</td>
             <td>{{$producto_finalizado->c_total}}</td>
             <td>
-           <!-- <a href="{{url('/producto_finalizado/'.$producto_finalizado->id)}}" class="btn btn-outline-info">Ver</a> -->
+            <a href="{{url('/producto_finalizado/'.$producto_finalizado->id)}}" class="btn btn-outline-info">Ver</a>
             |
             <a href="{{url('/producto_finalizado/'.$producto_finalizado->id.'/edit')}}" class="btn btn-outline-info">Editar </a>
             |

@@ -32,15 +32,15 @@ body {
                     <div class="row pb-1 p-5">
                         <div class="col-md-6">
                             <p class="font-weight-bold mb-4">Información</p>
-                            <p class="mb-1">Responsable : {{$datos->responsables->Nombre}}</p>
-                            <p class="mb-1">Fecha de entrega : {{$datos->fecha_fin}}</p>
-                            <p class="mb-1">Medida:  {{$datos->medida}}</p>
+                            <p class="mb-1">Producto : {{$datos->id_orden}}</p>
+                            <p class="mb-1">Imprevistos : {{$datos->c_imprevistos}}</p>
+                            <p class="mb-1">Costo total :  {{$datos->c_total}}</p>
                                 <div class="row">
                                     <div class="col">
-                                   Material: {{$datos->material}}
+                                   sub total: {{$datos->c_total}}
                                     </div>
                                     <div class="col">
-                                   Color:  {{$datos->color}}
+                                   Utilidad:  {{$datos->c_utilidad}}
                                     </div>
                                 </div>
                         </div>
@@ -62,9 +62,9 @@ body {
                                 @foreach ($datos->mano_obra_has_producto_f as $menu )
                                 <tr>
                                         <td>{{$menu->id}}</td>
-                                        <td>{{$menu->nombre_mp}}</td>
-                                        <td>{{$menu->pivot->cantidad}}</td>
-                                        <td>{{$menu->costo_unidad_mp}}</td>
+                                        <td>{{$menu->c_agua}}</td>
+                                        <td>{{$menu->c_luz}}</td>
+                                        <td>{{$menu->total}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

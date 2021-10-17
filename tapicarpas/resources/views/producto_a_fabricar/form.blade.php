@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 <div class="row">
-                
+
                     <div class="col-md-3 col-lg-4">
                         <div class="form-group">
                         <label for="id_responsable">Responsable</label>
@@ -99,7 +99,7 @@
 
                         </div>
                     </div>
-                    
+
                     <div class="col-md-1 col-lg-1">
                         <div class="form-group">
                         <label for="medida">Medida</label>
@@ -109,8 +109,8 @@
                     </div>
                     <div class="col-md-1 col-lg-1">
                         <div class="form-group">
-                        <label for="medida">Estado</label>
-                        <input type="text" class="form-control" name="estado" placeholder="" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="estado">
+                        <label for="estado">Estado</label>
+                        <input type="text" class="form-control" name="estado" placeholder="Inicio" value="{{isset($categoria->medida)?$categoria->medida:old('estado')}}" id="estado">
 
                         </div>
                     </div>
@@ -154,7 +154,7 @@
     </div>
     </div>
         </div>
-        
+
     </div>
     <!-MODAL PARA EL INGRESOO DE MATERIA PRIMA PARA PRODUCCION COMO DETALLE-!>
     <div class="modal fade" id="modalPrimaNormal" tabindex="-1" role="dialog" aria-labelledby="modalPrimaNormalLabel" aria-hidden="true">
@@ -170,7 +170,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="">Nombre</label>
-                    
+
                     <select name="materias" id="materias" class="form-control" onchange="colocar_stock()">
                         <option value="">Seleccione</option>
                         @foreach ($materia_prima as $materia_primas)
@@ -212,7 +212,7 @@
             let cantidad = $("#cantidad_df").val();
             let stock = $("#cantidad").val();
             let costoUnitario = parseFloat($("#costoUnitario").val());
-            let restando  =  (parseFloat(stock)) - parseFloat(cantidad) ; 
+            let restando  =  (parseFloat(stock)) - parseFloat(cantidad) ;
             if (identificarRepetidos.includes(parseInt(insumo_id)) === false) {
                     identificarRepetidos.push(parseInt(insumo_id));
                     if (cantidad > 0 && stock > 0) {
