@@ -67,7 +67,8 @@ class ProductoAFabricarController extends Controller
                 "material"=>$input["material"],
                 "estado"=>$input["estado"],
                 "id_s_categoria"=>$input["id_s_categoria"],
-                "id_responsable"=>$input["id_responsable"]
+                "id_responsable"=>$input["id_responsable"],
+                "total_pf"=> $input["total_pf"]
             ]);
             foreach($input["insumo_id"] as $key =>$value ){
                     hp_producto_fabricar::create([

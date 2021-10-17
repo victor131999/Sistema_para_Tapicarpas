@@ -26,36 +26,14 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-<div class="container">
-<div id="accordion">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="text-center">
-                <h3>Registrar Orden de producción</h3>
-            </div>
-        </div>
-    </div>
-
-    <div class="card card-default">
-        <div class="card-header">
-            <h4 class="card-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                    <i class="glyphicon glyphicon-search text-gold"></i>
-                    <b>Información</b>
-                </a>
-            </h4>
-        </div>
-        <div id="collapse1" class="collapse show">
-            <div class="card-body">
-            <div class="row">
-                        <div class="col-md-3 col-lg-12">
-                            <div class="form-group">
-                                <label class="control-label">Nombre del Producto</label>
-                                <input type="text" class="form-control" name="nombre" value="{{isset($categoria->nombre)?$categoria->nombre:old('nombre')}}" id="nombre">
-                            </div>
-                        </div>
-                    </div>
+        <div class="container">
+            <div id="accordion">
                 <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <h3>Registrar Orden de producción</h3>
+
 
                     <div class="col-md-3 col-lg-4">
                         <div class="form-group">
@@ -68,34 +46,72 @@
                                 @endforeach
 
                             </select>
-                        </div>
-                    </div>
-                    <div class="col-md-1 col-lg-4">
-                        <div class="form-group">
-                        <label for="id_s_categoria">Subcategorías</label>
-                                <select class="form-control" type="text" name="id_s_categoria" value="{{isset($subcategoria->id)?$subcategoria->id:old('id_s_categoria')}}" id="id_s_categoria">
-                                    @foreach ($subcategoria as $categorias)
-                                            <option value="{{$categorias->id}}">
-                                                {{$categorias->id}} - {{$categorias->nombre}}
-                                            </option>
-                                    @endforeach
 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-lg-3">
-                        <div class="form-group">
-                        <label for="material">Material</label>
-                        <input type="text" class="form-control" name="material" value="{{isset($categoria->material)?$categoria->material:old('material')}}" id="material">
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-4 col-lg-4">
-                        <div class="form-group">
-                        <label for="color">Color</label>
-                        <input type="text" class="form-control" name="color" value="{{isset($categoria->color)?$categoria->color:old('color')}}" id="color">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                <i class="glyphicon glyphicon-search text-gold"></i>
+                                <b>Información</b>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="collapse show">
+                        <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Nombre del Producto</label>
+                                            <input type="text" class="form-control" name="nombre" value="{{isset($categoria->nombre)?$categoria->nombre:old('nombre')}}" id="nombre">
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="row">
+                            
+                                <div class="col-md-3 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="id_responsable">Responsable</label>
+                                        <select class="form-control" type="text" name="id_responsable" value="{{isset($categoria->id_responsable)?$categoria->id_responsable:old('id_responsable')}}" id="id_responsable">
+                                            @foreach ($responsable as $responsables)
+                                                    <option value="{{$responsables->id}}">
+                                                        {{$responsables->id}} - {{$responsables->Nombre}}
+                                                    </option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-1 col-lg-4">
+                                    <div class="form-group">
+                                    <label for="id_s_categoria">Subcategorías</label>
+                                            <select class="form-control" type="text" name="id_s_categoria" value="{{isset($subcategoria->id)?$subcategoria->id:old('id_s_categoria')}}" id="id_s_categoria">
+                                                @foreach ($subcategoria as $categorias)
+                                                        <option value="{{$categorias->id}}">
+                                                            {{$categorias->id}} - {{$categorias->nombre}}
+                                                        </option>
+                                                @endforeach
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-lg-3">
+                                    <div class="form-group">
+                                    <label for="material">Material</label>
+                                    <input type="text" class="form-control" name="material" value="{{isset($categoria->material)?$categoria->material:old('material')}}" id="material">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                    <label for="color">Color</label>
+                                    <input type="text" class="form-control" name="color" value="{{isset($categoria->color)?$categoria->color:old('color')}}" id="color">
 
                         </div>
                     </div>
@@ -112,47 +128,72 @@
                         <label for="estado">Estado</label>
                         <input type="text" class="form-control" name="estado" placeholder="Inicio" value="{{isset($categoria->medida)?$categoria->medida:old('estado')}}" id="estado">
 
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-lg-3">
-                        <div class="form-group">
-                        <label for="fecha_inicio">Fecha de inicio</label>
-                        <input type="date" class="form-control" name="fecha_inicio" value="{{isset($categoria->fecha_inicio)?$categoria->fecha_inicio:old('fecha_inicio')}}" id="fecha_inicio">
 
-                        </div>
-                    </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="form-group">
+                                    <label for="medida">Medida</label>
+                                    <input type="text" class="form-control" name="medida" placeholder="3 x 5" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida">
 
-                    <div class="col-md-3 col-lg-3">
-                        <div class="form-group">
-                        <label for="fecha_fin">Fecha de Finalización</label>
-                        <input type="date" class="form-control" name="fecha_fin" value="{{isset($categoria->fecha_fin)?$categoria->fecha_fin:old('fecha_fin')}}" id="fecha_fin">
+                                    </div>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="form-group">
+                                    <label for="medida">Estado</label>
+                                    <input type="text" class="form-control" name="estado" placeholder="" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="estado">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-lg-3">
+                                    <div class="form-group">
+                                    <label for="fecha_inicio">Fecha de inicio</label>
+                                    <input type="date" class="form-control" name="fecha_inicio" value="{{isset($categoria->fecha_inicio)?$categoria->fecha_inicio:old('fecha_inicio')}}" id="fecha_inicio">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                    <label for="fecha_fin">Fecha de Finalización</label>
+                                    <input type="date" class="form-control" name="fecha_fin" value="{{isset($categoria->fecha_fin)?$categoria->fecha_fin:old('fecha_fin')}}" id="fecha_fin">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <br>
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                <a >
+                                    <b>Detalles</b></br>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal" data-whatever="@mdo">Agregar materiales</button>
+                                </a>
+                            </h4>
+                        </div>
+                        <br>
+                        <table class="table">
+                            <thead>
+                                <tr><th>Nombre</th><th>Cantidad</th> <th>Costo Unitario</th><th>Opciones</th></tr>
+                            </thead>
+                            <tbody id="tblmaterias"></tbody>
+                        </table>
+                    
+                        <div class="row">
+                            <div class="col-md-3 col-lg-6">
+                                <div class="form-group">
+                                    <label class="control-label">Total</label>
+                                    <input type="text" class="form-control" name="total_pf" value="{{isset($categoria->nombre)?$categoria->nombre:old('total_pf')}}" id="total_pf" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <p></p><br/> <br/>
+                        <input class="btn btn-outline-success" type="submit" value="{{$modo}} datos">
+                        <a href="{{url('producto_a_fabricar/')}}">Regresar</a>
+
                     </div>
                 </div>
             </div>
-            <br>
-            <div class="card-header">
-            <h4 class="card-title">
-                <a >
-                    <b>Detalles</b></br>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal" data-whatever="@mdo">Agregar materiales</button>
-                </a>
-            </h4>
-        </div>
-        <br>
-        <table class="table">
-            <thead>
-                <tr><th>Nombre</th><th>Cantidad</th> <th>Costo Unitario</th><th>Opciones</th></tr>
-            </thead>
-            <tbody id="tblmaterias"></tbody>
-        </table>
-        <p></p><br/> <br/>
-        <input class="btn btn-outline-success" type="submit" value="{{$modo}} datos">
-        <a href="{{url('producto_a_fabricar/')}}">Regresar</a>
-
-        </div>
-    </div>
-    </div>
         </div>
 
     </div>
@@ -228,10 +269,13 @@
                                     <td>${cantidad}</td>
                                     <td>${costoUnitario} $</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${insumo_id})">X</button>
+                                        <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${insumo_id},${parseInt(cantidad) * parseInt(costoUnitario)})">X</button>
                                     </td>
                                 </tr>
                             `);
+                        
+                            let total_pf = $("#total_pf").val() || 0;
+                            $("#total_pf").val(parseInt(total_pf) + parseInt(cantidad) * parseInt(costoUnitario));
                     } else {
                         alert("Se debe ingresar una cantidad o stock valido");
                     }
@@ -242,7 +286,7 @@
                     document.getElementById("tblmaterias").appendChild(TR)
         }
 
-        function eliminar_insumo(id, elemento) {
+        function eliminar_insumo(id, elemento,subtotal) {
                 var TR= id.parentNode.parentNode;
                 document.getElementById("tblmaterias").removeChild(TR);
                 console.log(elemento)
@@ -252,6 +296,8 @@
                     identificarRepetidos.splice(index, 1);
                 }
                 console.log(identificarRepetidos)
+                let total_pf = $("#total_pf").val() || 0;
+                $("#total_pf").val(parseInt(total_pf) - subtotal);
         }
         function colocar_stock() {
             let precio = $("#materias option:selected").attr("cantidad");
