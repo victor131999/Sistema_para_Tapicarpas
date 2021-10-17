@@ -22,6 +22,8 @@ class CreateProductoAFabricarsTable extends Migration
             $table->string('medida');
             $table->string('material');
             $table->string('estado');
+            $table->float('total_pf');
+            $table->float('subtotal_pf');
             $table->timestamps();
 
             //relaciones
