@@ -94,7 +94,7 @@ body {
 
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Total</div>
-                            <div class="h2 font-weight-light" id ='total'>{{$total}}</div>
+                            <div class="h2 font-weight-light" id ='total'>{{$datos->total_pf}} $</div>
                         </div>
                     </div>
                 </div>
