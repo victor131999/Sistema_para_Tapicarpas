@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                             <div class="row">
-                            
+
                                 <div class="col-md-3 col-lg-4">
                                     <div class="form-group">
                                         <label for="id_responsable">Responsable</label>
@@ -131,21 +131,7 @@
 
                                     </div>
                                 </div>
-                                
-                                <div class="col-md-1 col-lg-1">
-                                    <div class="form-group">
-                                    <label for="medida">Medida</label>
-                                    <input type="text" class="form-control" name="medida" placeholder="3 x 5" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida">
 
-                                    </div>
-                                </div>
-                                <div class="col-md-1 col-lg-1">
-                                    <div class="form-group">
-                                    <label for="medida">Estado</label>
-                                    <input type="text" class="form-control" name="estado" placeholder="" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="estado">
-
-                                    </div>
-                                </div>
                                 <div class="col-md-2 col-lg-3">
                                     <div class="form-group">
                                     <label for="fecha_inicio">Fecha de inicio</label>
@@ -178,7 +164,7 @@
                             </thead>
                             <tbody id="tblmaterias"></tbody>
                         </table>
-                    
+
                         <div class="row">
                             <div class="col-md-3 col-lg-6">
                                 <div class="form-group">
@@ -273,7 +259,7 @@
                                     </td>
                                 </tr>
                             `);
-                        
+
                             let total_pf = $("#total_pf").val() || 0;
                             $("#total_pf").val(parseInt(total_pf) + parseInt(cantidad) * parseInt(costoUnitario));
                     } else {
