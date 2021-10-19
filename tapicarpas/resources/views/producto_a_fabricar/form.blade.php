@@ -261,7 +261,7 @@
                             `);
 
                             let total_pf = $("#total_pf").val() || 0;
-                            $("#total_pf").val(parseInt(total_pf) + parseInt(cantidad) * parseInt(costoUnitario));
+                            $("#total_pf").val(parseFloat(total_pf) + parseFloat(cantidad) * parseFloat(costoUnitario));
                     } else {
                         alert("Se debe ingresar una cantidad o stock valido");
                     }
