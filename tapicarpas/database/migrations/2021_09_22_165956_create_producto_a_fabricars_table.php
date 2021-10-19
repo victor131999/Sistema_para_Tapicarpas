@@ -21,7 +21,7 @@ class CreateProductoAFabricarsTable extends Migration
             $table->string('color');
             $table->string('medida');
             $table->string('material');
-            $table->string('estado');
+            $table->string('estado')->default('En proceso');
             $table->float('total_pf');
             $table->timestamps();
 

@@ -74,7 +74,9 @@ class ProductoFinalizadoController extends Controller
 
         }
         DB::commit();
+        producto_a_fabricar::where('id', '=',$input["id_orden"])->update(['estado' => 'Finalizado']);
         return redirect("producto_finalizado")->with('status','1');
+
         }catch(\Exception $e){
             DB::rollBack();
             return redirect("producto_finalizado")->with('status',$e->getMessage());

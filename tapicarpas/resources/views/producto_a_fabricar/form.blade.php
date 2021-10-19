@@ -126,7 +126,7 @@
                     <div class="col-md-1 col-lg-1">
                         <div class="form-group">
                         <label for="estado">Estado</label>
-                        <input type="text" class="form-control" name="estado" placeholder="Inicio" value="{{isset($categoria->medida)?$categoria->medida:old('estado')}}" id="estado">
+                        <input type="text" class="form-control" name="estado" placeholder="En proceso" value="{{isset($categoria->medida)?$categoria->medida:old('estado')}}" id="estado" readonly>
 
 
                                     </div>
