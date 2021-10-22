@@ -28,36 +28,43 @@ body {
                             <p class="font-weight-bold mb-1">Producto:  {{$datos->nombre}}</p>
                         </div>
                         <div class="col-md-6 text-right">
-                            <p class="font-weight-bold mb-1">Orden de Producción  #{{$datos->id}}</p>
-                            <p class="text-muted">Fecha: </p>
+                            <p class="font-weight-bold mb-1">Orden de trabajo  #{{$datos->id}}</p>
+                            <p class="text-muted">Fecha: {{$datos->created_at}}</p>
                         </div>
                     </div>
                     <hr class="my-0">
                     <div class="row pb-1 p-5">
-                        <div class="col-md-6">
-                            <p class="font-weight-bold mb-4">Información</p>
-                            <p class="mb-1">Responsable : {{$datos->responsables->Nombre}}</p>
-                            <p class="mb-1">Fecha de entrega : </p>
-                            <p class="mb-1">Medida:  {{$datos->medida}}</p>
+                        <div class="col-md-7">
+                            <p class="font-weight-bold mb-1">Información</p>
+                            <br>
                                 <div class="row">
                                     <div class="col">
-                                   Material: {{$datos->material}}
+                                        <p class="font-weight-bold mb-1">Responsable:</p> {{$datos->responsables->Nombre}}
                                     </div>
                                     <div class="col">
-                                   Color:  {{$datos->color}}
+                                        <p class="font-weight-bold mb-1">Material:</p> {{$datos->material}}
                                     </div>
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Medida</p> {{$datos->medida}}
+                                    </div>
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Color:</p> {{$datos->color}}
+                                    </div>
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Categoría:</p> {{$datos->sub_categorias->nombre}}
+                                    </div>
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Material:</p> {{$datos->material}}
+                                    </div>
+
                                 </div>
                         </div>
 
-                        <div class="col-md-6 text-right">
-                            <p class="font-weight-bold mb-4">Detalle</p>
-                            <p class="mb-1"><span class="text-muted">CATEGORIA: </span> {{$datos->categorias->nombre ?? '' }} </p>
-                            <p class="mb-1"><span class="text-muted">Sub Categoria: </span> 10253642</p>
-                        </div>
                     </div>
 
                     <div class="row p-5">
                         <div class="col-md-12">
+                            <p class="font-weight-bold mb-1">Materia prima</p>
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -68,7 +75,7 @@ body {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($datos->hpProductoFabricar as $menu )
+                                @foreach ($datos->hp_orden_trabajo_materia as $menu )
                                 <tr>
                                         <td>{{$menu->id}}</td>
                                         <td>{{$menu->nombre_mp}}</td>
@@ -79,6 +86,80 @@ body {
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+
+                    <div class="row pb-1 p-5">
+                        <div class="col-md-5">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="font-weight-bold mb-0"> Costo de materia prima:</p>
+                                </div>
+                                <div class="col">
+                                    <p > {{$datos->total_pf}} $</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p-5">
+                        <div class="col-md-12">
+                            <p class="font-weight-bold mb-1">Mano de obra</p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0 text-uppercase small font-weight-bold">ID</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Nombre</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Horas</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Costo por hora</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($datos->hp_orden_trabajo_materia as $menu )
+                                <tr>
+                                        <td>{{$menu->id}}</td>
+
+                                </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row pb-1 p-5">
+                        <div class="col-md-10">
+                            <p class="font-weight-bold mb-1">Costos adicionales y mano de obra</p>
+                            <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Agua:</p> {{$datos->c_agua}}
+                                    </div>
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Luz:</p> {{$datos->c_luz}}
+                                    </div>
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Varios</p> {{$datos->c_varios}}
+                                    </div>
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Administración:</p> {{$datos->c_admin}}
+                                    </div>
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Total:</p> {{$datos->total}}
+                                    </div>
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Imprevistos 5%:</p> {{$datos->c_imprevistos}}
+                                    </div>
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Costo total:</p> {{$datos->c_total}}
+                                    </div>
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Utilidad:</p> {{$datos->c_utilidad}}
+                                    </div>
+                                    <div class="col">
+                                        <p class="font-weight-bold mb-1">Costo final con iva:</p> {{$datos->c_iva}}
+                                    </div>
+
+                                </div>
+                        </div>
+
                     </div>
 
                     <div class="d-flex flex-row-reverse bg-dark text-white p-4">
@@ -94,7 +175,7 @@ body {
 
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Total</div>
-                            <div class="h2 font-weight-light" id ='total'>{{$datos->total_pf}} $</div>
+                            <div class="h2 font-weight-light" id ='total'>{{$datos->c_iva}} $</div>
                         </div>
                     </div>
                 </div>

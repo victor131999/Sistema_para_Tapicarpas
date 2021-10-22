@@ -19,8 +19,10 @@ class CreateHpOrdenTrabajoManosTable extends Migration
 
             //relaciones
             $table->unsignedBigInteger('mano_obra_id')->nullable();
+            $table->unsignedBigInteger('orden_trabajo_id')->nullable();
 
             $table->foreign('mano_obra_id')->references('id')->on('mano_de_obras')->onDelete('set null');
+            $table->foreign('orden_trabajo_id')->references('id')->on('orden_trabajos')->onDelete('set null');
         });
     }
 

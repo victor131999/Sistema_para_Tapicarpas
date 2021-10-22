@@ -114,21 +114,15 @@ class OrdenTrabajoController extends Controller
         }
     }
 
-    public function calcular_total(orden_trabajo $data){
+   /* public function calcular_total(orden_trabajo $data){
         $suma = 0;
         foreach ($data->hp_orden_trabajo_mano as $menu) {
            $suma+= $menu->precio_hora;
        }
         return $suma;
-    }
+    }*/
 
-    public function calcular_tota(orden_trabajo $data){
-        $suma = 0;
-        foreach ($data->hp_orden_trabajo_materia as $menu) {
-           $suma+= $menu->costo_unidad_mp;
-       }
-        return $suma;
-    }
+
 
     /**
      * Display the specified resource.
@@ -139,9 +133,9 @@ class OrdenTrabajoController extends Controller
     public function show($id)
     {
         $datos=orden_trabajo::find($id);
-        $data[]= $datos->hp_orden_trabajo_mano;
-        $total=$this->calcular_total($datos);
-        return View::make('orden_trabajo.show', compact('data','datos'))->with('total',$total);
+        $data[]= $datos->hp_orden_trabajo_materia;
+        //$data1[]= $datos->hp_orden_trabajo_mano;
+        return View::make('orden_trabajo.show', compact('data','datos'));
     }
 
     /**

@@ -20,8 +20,10 @@ class CreateHpOrdenTrabajoMateriasTable extends Migration
 
             //relaciones
             $table->unsignedBigInteger('materia_prima_id')->nullable();
+            $table->unsignedBigInteger('orden_trabajo_id')->nullable();
 
             $table->foreign('materia_prima_id')->references('id')->on('materia_primas')->onDelete('set null');
+            $table->foreign('orden_trabajo_id')->references('id')->on('orden_trabajos')->onDelete('set null');
         });
     }
 

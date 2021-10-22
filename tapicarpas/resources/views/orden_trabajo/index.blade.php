@@ -44,8 +44,6 @@
             <th>Color</th>
             <th>Medida</th>
             <th>Subcategoría</th>
-            <th>Fecha de inicio</th>
-            <th>Fecha de fin</th>
             <th>Acciones</th>
 
         </tr>
@@ -61,20 +59,18 @@
             <td>{{$orden_trabajo->color}}</td>
             <td>{{$orden_trabajo->medida}}</td>
             <td>{{$orden_trabajo->sub_categorias->nombre ?? '' }}  </td>
-            <td>{{$orden_trabajo->fecha_inicio}}</td>
-            <td>{{$orden_trabajo->fecha_fin}}</td>
             <td>
             <a href="{{url('/orden_trabajo/'.$orden_trabajo->id)}}" class="btn btn-outline-info">Ver</a>
-            |
-            <a href="{{url('/orden_trabajo/'.$orden_trabajo->id.'/edit')}}" class="btn btn-outline-info">Editar </a>
+           <!-- |
+            <a href="{{url('/orden_trabajo/'.$orden_trabajo->id.'/edit')}}" class="btn btn-outline-info">Editar </a> -->
             |
             <form action="{{url('/orden_trabajo/'.$orden_trabajo->id)}}" class="d-inline" method="post">
             @csrf
             {{method_field('DELETE')}}
                 <input class="btn btn-outline-dark" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
             </form>
-            |
-            <a class="btn btn-outline-danger" href="{{ url('/producto_finalizado/create') }}">Finalizar orden</a>
+            <!--|
+            <a class="btn btn-outline-danger" href="{{ url('/producto_finalizado/create') }}">Finalizar orden</a> -->
             </th>
         </tr>
         @endforeach

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class hp_orden_trabajo_mano extends Model
 {
     use HasFactory;
-    protected $fillable = ['id','mano_obra_id'];
+    protected $fillable = ['id','mano_obra_id','orden_trabajo_id'];
 }
