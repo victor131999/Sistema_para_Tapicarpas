@@ -13,6 +13,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\SubcategoriaProductoController;
 use App\Http\Controllers\ProductoAFabricarController;
 use App\Http\Controllers\ProductoFinalizadoController;
+use App\Http\Controllers\OrdenTrabajoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,8 @@ Route::resource('subcategoria', SubcategoriaProductoController::class)->middlewa
 Route::resource('producto_a_fabricar', ProductoAFabricarController::class)->middleware('auth');
 
 Route::resource('producto_finalizado', ProductoFinalizadoController::class)->middleware('auth');
+
+Route::resource('orden_trabajo', OrdenTrabajoController::class)->middleware('auth');
 
 Route::group(['middleware' => 'auth'],function () {
     Route::get('/', [InicioController::class, 'index'])-> name('home');

@@ -336,6 +336,10 @@ return [
                     'url'  => 'subcategoria',
                 ],
                 [
+                    'text' => 'Orden de trabajo',
+                    'url'  => 'orden_trabajo',
+                ],
+                [
                     'text' => 'Orden de producción',
                     'url'  => 'producto_a_fabricar',
                 ],

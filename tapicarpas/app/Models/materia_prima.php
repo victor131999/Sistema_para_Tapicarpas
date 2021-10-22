@@ -22,6 +22,10 @@ class materia_prima extends Model
     public function hpFabricarProducto(){
         return $this->belongsToMany('App\Models\producto_a_fabricar');
     }
-    
+
+    public function hpOrdenTrabajoMateria(){
+        return $this->belongsToMany('App\Models\orden_trabajo');
+    }
+
 }
 

@@ -12,4 +12,8 @@ class mano_de_obra extends Model
     public function mano_obra_has_producto_f(){
         return $this->belongsToMany('App\Models\producto_finalizado');
     }
+
+    public function hp_orden_trabajo_mano(){
+        return $this->belongsToMany('App\Models\orden_trabajo');
+    }
 }
