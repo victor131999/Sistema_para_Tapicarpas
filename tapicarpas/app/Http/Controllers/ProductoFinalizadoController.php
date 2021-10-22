@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\producto_finalizado;
 use App\Models\mano_obra_has_producto_f;
 use App\Models\mano_de_obra;
+use App\Models\producto_a_fabricar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use DB;
@@ -36,7 +37,9 @@ class ProductoFinalizadoController extends Controller
     public function create()
     {
         $mano_de_obra['mano_de_obra']=mano_de_obra::all();
+        $producto_a_fabricar['producto_a_fabricar']=producto_a_fabricar::all();
         return View::make('producto_finalizado.create' )->
+        with($producto_a_fabricar)->
         with($mano_de_obra);
     }
 
@@ -60,7 +63,8 @@ class ProductoFinalizadoController extends Controller
                 "c_total"=>$input["c_total"],
                 "c_utilidad"=>$input["c_utilidad"],
                 "c_iva"=>$input["c_iva"],
-                "total"=>$input["total"]
+                "total"=>$input["total"],
+                "id_orden"=>$input["id_orden"]
             ]);
        foreach($input["insumo_id"] as $key =>$value ){
             mano_obra_has_producto_f::create([

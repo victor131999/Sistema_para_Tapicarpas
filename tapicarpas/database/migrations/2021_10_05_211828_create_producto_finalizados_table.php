@@ -25,6 +25,9 @@ class CreateProductoFinalizadosTable extends Migration
             $table->float('c_iva');
             $table->float('total');
             $table->timestamps();
+
+            $table->unsignedBigInteger('id_orden');
+            $table->foreign('id_orden')->references('id')->on('producto_a_fabricars')->onDelete('cascade');
         });
     }
 
