@@ -33,22 +33,6 @@
                     <div class="col-lg-12">
                         <div class="text-center">
                             <h3>Registrar Orden de producción</h3>
-
-
-                    <div class="col-md-3 col-lg-4">
-                        <div class="form-group">
-                        <label for="id_responsable">Responsable</label>
-                            <select class="form-control" type="text" name="id_responsable" value="{{isset($categoria->id_responsable)?$categoria->id_responsable:old('id_responsable')}}" id="id_responsable">
-                                @foreach ($responsable as $responsables)
-                                        <option value="{{$responsables->id}}">
-                                            {{$responsables->id}} - {{$responsables->Nombre}}
-                                        </option>
-                                @endforeach
-
-                            </select>
-
-                        </div>
-                    </div>
                 </div>
 
                 <div class="card card-default">
@@ -126,7 +110,7 @@
                     <div class="col-md-1 col-lg-1">
                         <div class="form-group">
                         <label for="estado">Estado</label>
-                        <input type="text" class="form-control" name="estado" placeholder="En proceso" value="{{isset($categoria->medida)?$categoria->medida:old('estado')}}" id="estado" readonly>
+                        <input type="text" class="form-control" name="estado" placeholder="En proceso" value="{{isset($categoria->medida)?$categoria->medida:old('estado')}}" id="estado">
 
 
                                     </div>
