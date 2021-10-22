@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\materia_prima;
 use App\Models\tipo_materia_primas;
+use App\Models\factura_detalle_compra_materia;
 use Illuminate\Http\Request;
 
 class MateriaPrimaController extends Controller
@@ -64,15 +65,17 @@ class MateriaPrimaController extends Controller
 
         $this->validate($request, $campos, $mensaje);
         $datosMateria_prima = request()->except('_token');
-
-
-        materia_prima::insert($datosMateria_prima);
+        materia_prima::insert($datosMateria_prima + ['cantidad_mp'=>0,'ancho_mp'=>0,'largo_mp'=>0,'costo_unidad_mp'=>0.0]);
         return redirect('materia_prima')->with('mensaje','La materia prima fue agregada con exito');
     }
 
     public function show(materia_prima $materia_prima)
     {
-        //
+       $detalles = factura_detalle_compra_materia::where('id_mp','=',$materia_prima->id)->get();
+       $detallesSumaCantidad = factura_detalle_compra_materia::where('id_mp','=',$materia_prima->id)->sum('cantidad_df');
+       $detallesInversion = factura_detalle_compra_materia::where('id_mp','=',$materia_prima->id)->sum('subtotal_df');
+       $detalles->load('facturaDeCompra');
+        return view('materia_prima.show',compact('materia_prima','detalles','detallesSumaCantidad','detallesInversion'));
     }
     public function edit($id)
     {

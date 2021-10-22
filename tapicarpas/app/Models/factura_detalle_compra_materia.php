@@ -10,5 +10,8 @@ class factura_detalle_compra_materia extends Model
 
     use HasFactory;
     protected $fillable = ['id','cantidad_df','costoU_df','subtotal_df','id_fac','id_mp'];
-    
+    public function facturaDeCompra()
+    {
+        return $this->hasOne(facturaCompra::class,'id','id_fac');
+    }
 }
