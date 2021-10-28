@@ -115,7 +115,8 @@ body {
                                 <tbody>
                                 @foreach ($datos->hp_orden_trabajo_materia as $menu )
                                 <tr>
-                                        <td>{{$menu->id}}</td>
+                                    <td>{{$menu->id}}</td>
+
 
                                 </tr>
                                 @endforeach
