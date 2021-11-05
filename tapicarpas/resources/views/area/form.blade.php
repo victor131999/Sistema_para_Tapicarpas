@@ -3,7 +3,7 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-    <h1>{{$modo}}Categoría</h1>
+    <h1>{{$modo}}Area</h1>
 
 @stop
 
