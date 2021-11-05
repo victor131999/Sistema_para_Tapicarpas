@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\area;
+use App\Models\clase;
+use App\Models\familia;
 use App\Models\herramienta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
+use DB;
 
 class HerramientaController extends Controller
 {
     //Colocamos el middleware
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -34,7 +39,13 @@ class HerramientaController extends Controller
     public function create()
     {
         //
-        return view('herramienta.create');
+        $datosArea['area']=area::all();
+        $datosClase['clase']=clase::all();
+        $datosFamilia['familia']=familia::all();
+        return View::make('herramienta.create', ['codA'=> 0])->
+        with($datosArea)->
+        with($datosClase)->
+        with($datosFamilia);
     }
 
     /**
@@ -46,27 +57,31 @@ class HerramientaController extends Controller
     public function store(Request $request)
     {
         //
-                //Validación de datos
-                $campos=[
-                    'Nombre'=>'required|string|max:100',
-                    'Descripcion'=>'required|string|max:100',
-                    'costo'=>'numeric|min:0|nullable',
-                    'unidades'=>'numeric|min:0|nullable',
-                ];
-                $mensaje=[
-                    'required'=>'El :attribute es requerido',
-                ];
+        //Validación de datos
+        $campos=[
+            'Nombre'=>'required|string|max:100',
+            'marca'=>'required|string|max:100',
+            'modelo'=>'required|string|max:100',
+            'costo'=>'numeric|min:0|nullable',
+            'codA'=>'numeric|min:0|nullable',
+            'codC'=>'numeric|min:0|nullable',
+            'codF'=>'numeric|min:0|nullable',
+            'codI'=>'numeric|min:0|nullable',
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido',
+        ];
 
-                $mensaje=[
-                    'numeric'=>'El :attribute tiene que ser un número',
-                ];
+        $mensaje=[
+            'numeric'=>'El :attribute tiene que ser un número',
+        ];
 
-                $this->validate($request, $campos, $mensaje);
-                $datosHerramienta = request()->except('_token');
+        $this->validate($request, $campos, $mensaje);
+        $datosHerramienta = request()->except('_token');
 
 
-                Herramienta::insert($datosHerramienta);
-                return redirect('herramienta')->with('mensaje','Herramienta agregado con exito');
+        Herramienta::insert($datosHerramienta);
+        return redirect('herramienta')->with('mensaje','Herramienta agregado con exito');
     }
 
     /**
@@ -106,9 +121,13 @@ class HerramientaController extends Controller
          //Validación de datos
          $campos=[
             'Nombre'=>'required|string|max:100',
-            'Descripcion'=>'required|string|max:100',
+            'marca'=>'required|string|max:100',
+            'modelo'=>'required|string|max:100',
             'costo'=>'numeric|min:0|nullable',
-            'unidades'=>'numeric|min:0|nullable',
+            'codA'=>'numeric|min:0|nullable',
+            'codC'=>'numeric|min:0|nullable',
+            'codF'=>'numeric|min:0|nullable',
+            'codI'=>'numeric|min:0|nullable',
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -140,4 +159,23 @@ class HerramientaController extends Controller
         Herramienta::destroy($id);
         return redirect('herramienta')->with('mensaje','Herramienta eliminado');
     }
+
+    public static function generar_codigo_api(Request $request){
+        $codA = $request->codA;
+        $codC = $request->codC;
+        $codF = $request->codF;
+        $match = ['codA'=>$codA, 'codC'=>$codC, 'codF'=>$codF];
+        $counter = count(Herramienta::where($match)->get());
+        $index = null;
+        if($counter != 0){
+            $max_reg =  Herramienta::where($match)->max('codI');
+            $index = $max_reg+1;
+           
+        }else if($counter == 0){
+            $index = 1;
+        }
+        return $index;
+        
+    }
+
 }

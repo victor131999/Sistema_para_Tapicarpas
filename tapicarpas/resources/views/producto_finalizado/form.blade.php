@@ -27,9 +27,10 @@
             <div class="col-md-3 col-lg-4">
                 <div class="form-group">
                 <label for="id_orden">Orden</label>
-                    <select class="form-control" type="text" name="id_orden" value="{{isset($producto_finalizado->id_orden)?$producto_finalizado->id_orden:old('id_orden')}}" id="id_orden">
+                    <select class="form-control" type="text" name="id_orden" value="{{isset($producto_finalizado->id_orden)?$producto_finalizado->id_orden:old('id_orden')}}" id="id_orden" onchange="colocar_costo_mano()">
+                        <option value="">Seleccione</option>
                         @foreach ($producto_a_fabricar as $producto_a_fabricars)
-                                <option costo_mano_obra="{{ $producto_a_fabricars->medida }}" value="{{$producto_a_fabricars->id}}">
+                                <option costoMano="{{ $producto_a_fabricars->total_pf }}" value="{{$producto_a_fabricars->id}}">
                                     {{$producto_a_fabricars->id}} - {{$producto_a_fabricars->nombre}}
                                 </option>
                         @endforeach
@@ -42,7 +43,7 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="">Precio de materia prima </label>
-                    <input type="number" id="costo_mano_obra" class="form-control" readonly>
+                    <input type="number" id="costoMano" class="form-control" readonly>
                 </div>
             </div>
 
@@ -175,8 +176,8 @@
             let insumo_text = $("#mano_obras option:selected").text();
             let cantidad = $("#cantidad_df").val();
             let costo = $("#cantidad").val();
+            let costoManoObra = $("#costoMano").val();
             let costohora  =  (parseFloat(costo)) * parseFloat(cantidad) ;
-
             let agua = $("#c_agua").val();
             let luz = $("#c_luz").val();
             let varios = $("#c_varios").val();
@@ -206,7 +207,7 @@
 
                 let costoU_df_total = $("#subtotal").val() || 0;
                 $("#subtotal").val(parseFloat(costoU_df_total) + parseFloat(costohora));
-                $("#total").val(parseFloat( $("#subtotal").val()) + parseFloat(subtotal2) );
+                $("#total").val(parseFloat( $("#subtotal").val()) + parseFloat(subtotal2) + parseFloat(costoManoObra));
                 $("#c_imprevistos").val(parseFloat( $("#total").val()) * (5/100) );
                 $("#c_total").val(parseFloat( $("#total").val()) + parseFloat( $("#c_imprevistos").val()));
                 $("#c_utilidad").val(parseFloat( $("#c_total").val()) * (1.35));
@@ -258,6 +259,11 @@
             $("#cantidad").val(precio);
             let costoUnitario = $("#mano_obras option:selected").attr("costoUnitario");
             $("#costoUnitario").val(costoUnitario);
+        }
+        function colocar_costo_mano() {
+            let precioMano = $("#id_orden option:selected").attr("costoMano");
+            $("#costoMano").val(precioMano);
+            console.log(precioMano);
         }
 
     </script>

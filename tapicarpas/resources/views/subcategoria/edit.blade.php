@@ -1,6 +1,6 @@
-<form action="{{url('/categoria/'.$categoria->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{url('/subcategoria/'.$subcategoria->id)}}" method="post" enctype="multipart/form-data">
 @csrf
 {{method_field('PATCH')}}
-    @include('categoria.form',['modo'=>'Editar ']);
+    @include('subcategoria.form',['modo'=>'Editar ']);
 
 </form>

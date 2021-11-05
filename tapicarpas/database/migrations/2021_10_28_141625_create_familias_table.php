@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHerramientasTable extends Migration
+class CreateFamiliasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateHerramientasTable extends Migration
      */
     public function up()
     {
-        Schema::create('herramientas', function (Blueprint $table) {
+        Schema::create('familias', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre');
-            $table->string('Descripcion');
-            $table->float('costo');
-            $table->float('unidades');
+            $table->integer('cod');
+            $table->string('nombre');
             $table->timestamps();
+
         });
     }
 
@@ -30,6 +29,6 @@ class CreateHerramientasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('herramientas');
+        Schema::dropIfExists('familias');
     }
 }

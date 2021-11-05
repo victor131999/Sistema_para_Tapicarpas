@@ -1,10 +1,10 @@
 
 @extends('adminlte::page')
 
-@section('title', 'herramientas')
+@section('title', 'Categorías')
 
 @section('content_header')
-    <h1>Herramientas</h1>
+    <h1>Familias</h1>
 @stop
 
 @section('content')
@@ -21,39 +21,35 @@
 
 
 
-<a href="{{url('herramienta/create')}}" class="btn btn-outline-success">Registrar nuevo herramienta</a>
+<a href="{{url('familia/create')}}" class="btn btn-outline-success">Registrar nuevo familia</a>
 <br/>
 <br/>
 <table class="table table-light">
 
     <thead class="thead-light">
         <tr>
-            <th>Código</th>
+            <th>#</th>
             <th>Nombre</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Precio</th>
+            <th>Código</th>
             <th>Acciones</th>
         </tr>
     </thead>
 
     <tbody>
 
-        @foreach ($herramientas as $herramienta)
+        @foreach ($familias as $familia)
         <tr>
-            <td>{{$herramienta->codA}}.{{$herramienta->codC}}.{{$herramienta->codF}}.{{$herramienta->codI}}</td>
-            <td>{{$herramienta->Nombre}}</td>
-            <td>{{$herramienta->marca}}</td>
-            <td>{{$herramienta->modelo}}</td>
-            <td>{{$herramienta->costo}}</td>
+            <td>{{$familia->id}}</td>
+            <td>{{$familia->nombre}}</td>
+            <td>{{$familia->cod}}</td>
             <td>
-               <!-- <a href="{{url('/herramienta/'.$herramienta->id.'/edit')}}" class="btn btn-outline-info">
+                <a href="{{url('/familia/'.$familia->id.'/edit')}}" class="btn btn-outline-info">
                     Editar
                 </a>
 
-                |-->
+                |
 
-                <form action="{{url('/herramienta/'.$herramienta->id)}}" class="d-inline" method="post">
+                <form action="{{url('/familia/'.$familia->id)}}" class="d-inline" method="post">
                 @csrf
                 {{method_field('DELETE')}}
                     <input class="btn btn-outline-dark" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
@@ -66,7 +62,7 @@
     </tbody>
 
 </table>
-{!!$herramientas->links()!!}
+{!!$familias->links()!!}
 @stop
 
 @section('css')

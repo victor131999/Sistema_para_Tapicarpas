@@ -33,22 +33,6 @@
                     <div class="col-lg-12">
                         <div class="text-center">
                             <h3>Registrar Orden de producción</h3>
-
-
-                    <div class="col-md-3 col-lg-4">
-                        <div class="form-group">
-                        <label for="id_responsable">Responsable</label>
-                            <select class="form-control" type="text" name="id_responsable" value="{{isset($categoria->id_responsable)?$categoria->id_responsable:old('id_responsable')}}" id="id_responsable">
-                                @foreach ($responsable as $responsables)
-                                        <option value="{{$responsables->id}}">
-                                            {{$responsables->id}} - {{$responsables->Nombre}}
-                                        </option>
-                                @endforeach
-
-                            </select>
-
-                        </div>
-                    </div>
                 </div>
 
                 <div class="card card-default">
@@ -71,7 +55,7 @@
                                     </div>
                                 </div>
                             <div class="row">
-                            
+
                                 <div class="col-md-3 col-lg-4">
                                     <div class="form-group">
                                         <label for="id_responsable">Responsable</label>
@@ -126,26 +110,12 @@
                     <div class="col-md-1 col-lg-1">
                         <div class="form-group">
                         <label for="estado">Estado</label>
-                        <input type="text" class="form-control" name="estado" placeholder="Inicio" value="{{isset($categoria->medida)?$categoria->medida:old('estado')}}" id="estado">
+                        <input type="text" class="form-control" name="estado" placeholder="En proceso" value="{{isset($categoria->medida)?$categoria->medida:old('estado')}}" id="estado">
 
 
                                     </div>
                                 </div>
-                                
-                                <div class="col-md-1 col-lg-1">
-                                    <div class="form-group">
-                                    <label for="medida">Medida</label>
-                                    <input type="text" class="form-control" name="medida" placeholder="3 x 5" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida">
 
-                                    </div>
-                                </div>
-                                <div class="col-md-1 col-lg-1">
-                                    <div class="form-group">
-                                    <label for="medida">Estado</label>
-                                    <input type="text" class="form-control" name="estado" placeholder="" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="estado">
-
-                                    </div>
-                                </div>
                                 <div class="col-md-2 col-lg-3">
                                     <div class="form-group">
                                     <label for="fecha_inicio">Fecha de inicio</label>
@@ -178,7 +148,7 @@
                             </thead>
                             <tbody id="tblmaterias"></tbody>
                         </table>
-                    
+
                         <div class="row">
                             <div class="col-md-3 col-lg-6">
                                 <div class="form-group">
@@ -273,9 +243,9 @@
                                     </td>
                                 </tr>
                             `);
-                        
+
                             let total_pf = $("#total_pf").val() || 0;
-                            $("#total_pf").val(parseInt(total_pf) + parseInt(cantidad) * parseInt(costoUnitario));
+                            $("#total_pf").val(parseFloat(total_pf) + parseFloat(cantidad) * parseFloat(costoUnitario));
                     } else {
                         alert("Se debe ingresar una cantidad o stock valido");
                     }
