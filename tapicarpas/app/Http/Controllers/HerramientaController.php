@@ -8,13 +8,14 @@ use App\Models\familia;
 use App\Models\herramienta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use DB;
 
 class HerramientaController extends Controller
 {
     //Colocamos el middleware
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -41,7 +42,7 @@ class HerramientaController extends Controller
         $datosArea['area']=area::all();
         $datosClase['clase']=clase::all();
         $datosFamilia['familia']=familia::all();
-        return View::make('herramienta.create')->
+        return View::make('herramienta.create', ['codA'=> 0])->
         with($datosArea)->
         with($datosClase)->
         with($datosFamilia);
@@ -158,4 +159,23 @@ class HerramientaController extends Controller
         Herramienta::destroy($id);
         return redirect('herramienta')->with('mensaje','Herramienta eliminado');
     }
+
+    public static function generar_codigo_api(Request $request){
+        $codA = $request->codA;
+        $codC = $request->codC;
+        $codF = $request->codF;
+        $match = ['codA'=>$codA, 'codC'=>$codC, 'codF'=>$codF];
+        $counter = count(Herramienta::where($match)->get());
+        $index = null;
+        if($counter != 0){
+            $max_reg =  Herramienta::where($match)->max('codI');
+            $index = $max_reg+1;
+           
+        }else if($counter == 0){
+            $index = 1;
+        }
+        return $index;
+        
+    }
+
 }

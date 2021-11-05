@@ -3,9 +3,13 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-    <h1>{{$modo}}Herramienta</h1>
+    <h1>{{$modo}}Herramientas</h1>
 
 @stop
+
+
+
+
 
 @section('content')
 
@@ -26,7 +30,7 @@
             <div class="col-md-3 col-lg-4">
                 <div class="form-group">
                     <label for="id_area">Area</label>
-                    <select class="form-control" type="text" name="id_area" value="{{isset($area->id_area)?$area->id_area:old('id_area')}}" id="id_area" onchange="colocar_codA()">
+                    <select wire:model="codA" class="form-control" type="text" name="id_area" value="{{isset($area->id_area)?$area->id_area:old('id_area')}}" id="id_area" onchange="colocar_codA()">
                         <option value="">Seleccione</option>
                         @foreach ($area as $areas)
                                 <option value="{{$areas->id}}" codA="{{ $areas->cod }}">
@@ -56,7 +60,7 @@
             <div class="col-md-3 col-lg-4">
                 <div class="form-group">
                     <label for="id_familia">Familia</label>
-                    <select class="form-control" type="text" name="id_familia" value="{{isset($familia->id_familia)?$familia->id_familia:old('id_familia')}}" id="id_familia" onchange="colocar_codF()">
+                    <select  class="form-control" type="text" name="id_familia" value="{{isset($familia->id_familia)?$familia->id_familia:old('id_familia')}}" id="id_familia" onchange="colocar_codF()">
                         <option value="">Seleccione</option>
                         @foreach ($familia as $familias)
                                 <option value="{{$familias->id}}" codF="{{ $familias->cod }}">
@@ -84,11 +88,15 @@
                 <input type="number"  class="form-control" name="codF" value="{{isset($herramienta->codF)?$herramienta->codF:old('codF')}}" id="codF" readonly>
             </div>
             <div class="col-1">
-                <input type="number" class="form-control" name="codI" value="{{isset($herramienta->codI)?$herramienta->codI:old('codI')}}" id="codI">
+                <input type="number" class="form-control" name="codI" value="{{isset($herramienta->codI)?$herramienta->codI:old('codI')}}" id="codI" readonly>
             </div>
-            <div class="col-1">
-                <input class="btn btn-outline-success" value="Generar">
-            </div>
+            <!--
+                <div class="col-1">
+                    <input class="btn btn-outline-success" onclick="generar_codigo()" value="Generar">
+                
+                </div>
+            -->
+            
         </div>
 
         <div class="row">
@@ -115,7 +123,7 @@
         </div>
 
         <br/>
-
+        
         <input class="btn btn-outline-success" type="submit" value="{{$modo}} datos">
         <a href="{{url('herramienta/')}}">Regresar</a>
 
@@ -125,19 +133,52 @@
         function colocar_codA() {
             let codA = $("#id_area option:selected").attr("codA");
             $("#codA").val(codA);
+            generar_codigo();
         }
 
         function colocar_codC() {
             let codC = $("#id_clase option:selected").attr("codC");
             $("#codC").val(codC);
+            generar_codigo();
         }
 
         function colocar_codF() {
             let codF = $("#id_familia option:selected").attr("codF");
             $("#codF").val(codF);
+            generar_codigo();
         }
 
+        function generar_codigo(){
+            let codA = $("#id_area option:selected").attr("codA");
+            let codC = $("#id_clase option:selected").attr("codC");
+            let codF = $("#id_familia option:selected").attr("codF");
+            if(codA == null || codC == null || codF == null ) return;   
+
+            $.ajax({
+                url: '/api/herramienta/verificar_codigo', 
+                data: {
+                    "codA":codA,
+                    "codC":codC,
+                    "codF":codF
+                }, 
+                type: 'POST',
+                dataType: 'json', 
+                success: function(value){
+                    $("#codI").val(value);
+                },
+                error:  function(json, xhr, status){
+                    console.warn('error');
+                }, 
+                complete: function(json, xhr, status){
+                    console.log('finished')
+                }
+            })
+        }
+
+
+
     </script>
+
 
 @stop
 
