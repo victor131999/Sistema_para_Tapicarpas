@@ -316,13 +316,29 @@ return [
 
             ],
         ],
-
         [
-            'text' => 'Herramientas',
-            'url'  => 'herramienta',
-            'icon' => 'fas fa-tools',
-        ],
+            'text'    => 'Herramientas',
+            'icon'    => 'fab fa-product-hunt',
+            'submenu' => [
+                [
+                    'text' => 'Areas',
+                    'url'  => 'area',
+                ],
+                [
+                    'text' => 'Clases',
+                    'url'  => 'clase',
+                ],
+                [
+                    'text' => 'Familias',
+                    'url'  => 'familia',
+                ],
+                [
+                    'text' => 'Herramienta',
+                    'url'  => 'herramienta',
+                ],
 
+            ],
+        ],
         [
             'text'    => 'Producción',
             'icon'    => 'fab fa-product-hunt',
