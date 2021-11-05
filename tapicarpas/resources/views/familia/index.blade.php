@@ -4,7 +4,7 @@
 @section('title', 'Categorías')
 
 @section('content_header')
-    <h1>Categorías</h1>
+    <h1>Familias</h1>
 @stop
 
 @section('content')
