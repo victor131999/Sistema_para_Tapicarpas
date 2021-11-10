@@ -24,7 +24,8 @@ class orden_trabajo extends Model
     }
 
     public function hp_orden_trabajo_mano(){
-        return $this->belongsToMany('App\Models\mano_de_obra','hp_orden_trabajo_manos');
+        return $this->belongsToMany('App\Models\mano_de_obra','hp_orden_trabajo_manos')->withPivot('horas','horas_costo');
     }
+
 
 }

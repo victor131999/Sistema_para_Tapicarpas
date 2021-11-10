@@ -51,15 +51,15 @@
             <div class="row">
                 <div class="col-4">
                 <label for="bienes_servicios_sinIva_fac">Bienes o servicios sin iva</label>
-                <input type="number" step="any" class="form-control" name="bienes_servicios_sinIva_fac" id="bienes_servicios_sinIva_fac" value="{{isset($facturacompra->bienes_servicios_sinIva_fac)?$facturacompra->bienes_servicios_sinIva_fac:old('bienes_servicios_sinIva_fac')}}" required id="bienes_servicios_sinIva_fac">
+                <input type="number"  class="form-control" name="bienes_servicios_sinIva_fac" id="bienes_servicios_sinIva_fac" value="{{isset($facturacompra->bienes_servicios_sinIva_fac)?$facturacompra->bienes_servicios_sinIva_fac:old('bienes_servicios_sinIva_fac')}}" required id="bienes_servicios_sinIva_fac">
                 </div>
                 <div class="col-4">
                 <label for="bienes_conIva_fac">Bienes con iva</label>
-                <input type="number" step="any"  required class="form-control" name="bienes_conIva_fac" id="bienes_conIva_fac" value="{{isset($facturacompra->bienes_conIva_fac)?$facturacompra->bienes_conIva_fac:old('bienes_conIva_fac')}}" id="bienes_conIva_fac">
+                <input type="number"   required class="form-control" name="bienes_conIva_fac" id="bienes_conIva_fac" value="{{isset($facturacompra->bienes_conIva_fac)?$facturacompra->bienes_conIva_fac:old('bienes_conIva_fac')}}" id="bienes_conIva_fac">
                 </div>
                 <div class="col-4">
                 <label for="servicios_conIva_fac">Servicios con iva</label>
-                <input type="number" step="any" required class="form-control" name="servicios_conIva_fac" id="servicios_conIva_fac" value="{{isset($facturacompra->servicios_conIva_fac)?$facturacompra->servicios_conIva_fac:old('servicios_conIva_fac')}}" id="servicios_conIva_fac">
+                <input type="number" required class="form-control" name="servicios_conIva_fac" id="servicios_conIva_fac" value="{{isset($facturacompra->servicios_conIva_fac)?$facturacompra->servicios_conIva_fac:old('servicios_conIva_fac')}}" id="servicios_conIva_fac">
                 </div>
             </div>
         </div>
@@ -235,7 +235,7 @@
         function colocar_precio() {
         let precio = $("#materias option:selected").attr("precio");
         console.log(precio);
-        $("#costoU_df").val(precio);
+        $("#costoU_df").val(parseFloat(precio));
         }
 
     </script>

@@ -91,17 +91,18 @@ class OrdenTrabajoController extends Controller
                 "c_iva"=>$input["c_iva"],
                 "total"=>$input["total"],
             ]);
-            foreach($input["insumo_id"] as $key1 =>$value ){
+            foreach($input["insumos_id"] as $key =>$value ){
                     hp_orden_trabajo_materia::create([
                         'materia_prima_id'=> $value,
                         'orden_trabajo_id'=> $ordenTrabajo->id,
-                        'cantidad'=>$input["cantidades"][$key1],
+                        'cantidad'=>$input["cantidadeses"][$key],
                     ]);
-
             }
-            foreach($input["insumo_id"] as $key =>$value ){
+            foreach($input["mano_id"] as $key =>$value ){
                 hp_orden_trabajo_mano::create([
-                    'mano_obra_id'=> $value,
+                    'mano_de_obra_id'=> $value,
+                    'horas'=>$input["horas"][$key],
+                    'horas_costo'=>$input["costos"][$key],
                     'orden_trabajo_id'=> $ordenTrabajo->id,
                 ]);
 
@@ -134,8 +135,10 @@ class OrdenTrabajoController extends Controller
     {
         $datos=orden_trabajo::find($id);
         $data[]= $datos->hp_orden_trabajo_materia;
+        $dataMano[]= $datos->hp_orden_trabajo_mano;
+
         //$data1[]= $datos->hp_orden_trabajo_mano;
-        return View::make('orden_trabajo.show', compact('data','datos'));
+        return View::make('orden_trabajo.show', compact('data','datos','dataMano'));
     }
 
     /**

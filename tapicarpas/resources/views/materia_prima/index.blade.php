@@ -33,7 +33,7 @@
             <th>Nombre</th>
             <th>Color</th>
             <th>Stock</th>
-            <th>Tipo de materia</th>
+            <th>Unidad</th>
             <th>Acciones</th>
         </tr>
     </thead>

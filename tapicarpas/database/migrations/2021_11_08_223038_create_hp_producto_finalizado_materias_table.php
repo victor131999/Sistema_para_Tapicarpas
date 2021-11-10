@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateManoObraHasProductoFsTable extends Migration
+class CreateHpProductoFinalizadoMateriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,19 @@ class CreateManoObraHasProductoFsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mano_obra_has_producto_fs', function (Blueprint $table) {
-            $table->id();
+        Schema::create('hp_producto_finalizado_materias', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->float('cantidad');
             $table->timestamps();
 
-
             //relaciones
-            $table->unsignedBigInteger('mano_obra_id')->nullable();
+            $table->unsignedBigInteger('materia_prima_id')->nullable();
             $table->unsignedBigInteger('producto_finalizado_id')->nullable();
 
-            $table->foreign('mano_obra_id')->references('id')->on('mano_de_obras')->onDelete('set null');
+            $table->foreign('materia_prima_id')->references('id')->on('materia_primas')->onDelete('set null');
             $table->foreign('producto_finalizado_id')->references('id')->on('producto_finalizados')->onDelete('set null');
+       
+
         });
     }
 
@@ -34,6 +36,6 @@ class CreateManoObraHasProductoFsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mano_obra_has_producto_fs');
+        Schema::dropIfExists('hp_producto_finalizado_materias');
     }
 }

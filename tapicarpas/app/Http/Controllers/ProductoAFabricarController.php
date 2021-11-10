@@ -7,6 +7,7 @@ use App\Models\hp_producto_fabricar;
 use App\Models\materia_prima;
 use App\Models\Responsable;
 use App\Models\subcategoria_producto;
+use App\Models\orden_trabajo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use DB;
@@ -27,26 +28,19 @@ class ProductoAFabricarController extends Controller
 
     public function create()
     {
-        $materia_prima['materia_prima']=materia_prima::all();
-        $datosSubcategoria['subcategoria']=subcategoria_producto::all();
         $datosResponsable['responsable']=Responsable::all();
+        $datosOrden_trabajo['orden_trabajo']=orden_trabajo::all();
         return View::make('producto_a_fabricar.create' )->
-        with($datosSubcategoria)->
         with($datosResponsable)->
-        with($materia_prima);
+        with($datosOrden_trabajo);
     }
     public function store(Request $request)
     {
         $campos=[
-            'nombre'=>'required|string|max:100',
             'fecha_inicio'=>'required|string|max:100',
             'fecha_fin'=>'required|string|max:100',
-            'color'=>'required|string|max:100',
-            'medida'=>'required|string|max:100',
-            'material'=>'required|string|max:100',
-            'id_s_categoria'=>'numeric|min:0|nullable',
+            'orden_trabajo_id'=>'numeric|min:0|nullable',
             'id_responsable'=>'numeric|min:0|nullable',
-
         ];
         $mensaje=[
             'required'=>'El :attribute es requerido',
@@ -56,49 +50,22 @@ class ProductoAFabricarController extends Controller
         ];
         $this->validate($request, $campos, $mensaje);
         $input  = $request->all();
-        try{
-            DB::beginTransaction();
-            $productoAFabricar = producto_a_fabricar::create([
-                "nombre" =>$input["nombre" ],
+        $productoAFabricar = producto_a_fabricar::create([
                 "fecha_inicio" =>$input["fecha_inicio"],
                 "fecha_fin"=>$input["fecha_fin"],
-                "color" => $input["color"],
-                "medida"=>$input["medida"],
-                "material"=>$input["material"],
-                "estado"=>$input["estado"],
-                "id_s_categoria"=>$input["id_s_categoria"],
-                "id_responsable"=>$input["id_responsable"],
-                "total_pf"=> $input["total_pf"]
+                "estado"=>'Proceso',
+                "orden_trabajo_id"=>$input["orden_trabajo_id"],
+                "id_responsable"=>$input["id_responsable"]
             ]);
-            foreach($input["insumo_id"] as $key =>$value ){
-                    hp_producto_fabricar::create([
-                        'materia_prima_id'=> $value,
-                        'producto_a_fabricar_id'=> $productoAFabricar->id,
-                        'cantidad'=>$input["cantidades"][$key],
-                    ]);
-                materia_prima::where('id','=', $value)->update(['cantidad_mp' => $input["stocks"][$key]]);
-
-                }
-            DB::commit();
             return redirect("producto_a_fabricar")->with('status','1');
-        }catch(\Exception $e){
-            DB::rollBack();
-            return redirect("producto_a_fabricar")->with('status',$e->getMessage());
-        }
-    }
-    public function calcular_total(producto_a_fabricar $data){
-        $suma = 0;
-        foreach ($data->hpProductoFabricar as $menu) {
-           $suma+= $menu->costo_unidad_mp;
-       }
-        return $suma;
     }
     public function show($id)
     {
         $datos=producto_a_fabricar::find($id);
-        $data[]= $datos->hpProductoFabricar;
-        $total=$this->calcular_total($datos);
-        return View::make('producto_a_fabricar.show', compact('data','datos'))->with('total',$total);
+        $data[]= $datos->orden_de_trabajo->hp_orden_trabajo_materia;
+        //dd($data);
+       // $total=$this->calcular_total($datos);
+        return View::make('producto_a_fabricar.show', compact('data','datos'));
     }
     public function edit($id)
     {

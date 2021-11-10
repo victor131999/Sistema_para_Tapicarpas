@@ -70,7 +70,7 @@
     <thead>
       <tr>
         <th>Fecha</th>
-        <th>Tipo - Codigo - Detalle</th>
+        <th>Tipo - Factura - Detalle</th>
         <th>Costo Unitario</th>
         <th>Cantidad</th>
         <th>Costo Total</th>
@@ -88,6 +88,31 @@
     @endforeach
     </tbody>
   </table>
+  <p>Salidas  : Ordenes de Produccion Finalizadas</p>
+  <input class="form-control" id="myInputExit" type="text" placeholder="Search..">
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Tipo - Orden - Detalle</th>
+        <th>Costo Unitario</th>
+        <th>Cantidad/Salida</th>
+        
+      </tr>
+    </thead>
+    <tbody id="myTableExit">
+    @foreach ($salidas as $detalle)
+      <tr>
+        <td>{{\Carbon\Carbon::parse($detalle->productoFinalizado->created_at)->format('d M')}}</td>
+        <td>Op - {{$detalle->productoFinalizado->orden->id}}.{{$detalle->id}}</td>
+        <td>{{$detalle->materiaPrima->costo_unidad_mp}} $</td>
+        <td>{{$detalle->cantidad}} {{$detalle->materiaPrima->tipos->nombre_tipo}}</td>
+       
+      </tr>
+    @endforeach
+    </tbody>
+  </table>
   </div>
       
 @stop
@@ -101,6 +126,14 @@
   $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+}); </script>
+ <script> $(document).ready(function(){
+  $("#myInputExit").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTableExit tr").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });

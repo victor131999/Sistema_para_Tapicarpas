@@ -25,39 +25,43 @@ body {
                     <div class="row p-5">
                         <div class="col-md-6">
                             <img src="{{asset('vendor/adminlte/dist/img/logotapicarpas.jpg')}}" width="100" height="100" >
-                            <p class="font-weight-bold mb-1">Producto:  {{$datos->nombre}}</p>
+                            <p class="font-weight-bold mb-1">Producto:  {{$datos->orden_de_trabajo->nombre}}</p>
                         </div>
                         <div class="col-md-6 text-right">
-                            <p class="font-weight-bold mb-1">Orden de Producción  #{{$datos->id}}</p>
+                            <p class="font-weight-bold mb-1">Orden de Producción  #Or - 00{{$datos->id}}</p>
                             <p class="text-muted">Fecha: {{$datos->fecha_inicio}}</p>
+                            <p class="text-muted">Estado: {{$datos->estado}}</p>
                         </div>
                     </div>
                     <hr class="my-0">
                     <div class="row pb-1 p-5">
                         <div class="col-md-6">
                             <p class="font-weight-bold mb-4">Información</p>
-                            <p class="mb-1">Responsable : {{$datos->responsables->Nombre}}</p>
+                            <p class="mb-1">Responsable de la Orden de Trabajo : {{$datos->orden_de_trabajo->responsables->Nombre}}</p>
+                            <p class="mb-1">Responsable de la Orden de Producción : {{$datos->responsables->Nombre}}</p>
                             <p class="mb-1">Fecha de entrega : {{$datos->fecha_fin}}</p>
-                            <p class="mb-1">Medida:  {{$datos->medida}}</p>  
+                            <p class="mb-1">Medida:  {{$datos->orden_de_trabajo->medida}}</p>  
                                 <div class="row">
                                     <div class="col">
-                                   Material: {{$datos->material}} 
+                                   Material: {{$datos->orden_de_trabajo->material}} 
                                     </div>
                                     <div class="col">
-                                   Color:  {{$datos->color}}
+                                   Color:  {{$datos->orden_de_trabajo->color}}
                                     </div>
                                 </div>
                         </div>
 
                         <div class="col-md-6 text-right">
                             <p class="font-weight-bold mb-4">Detalle</p>
-                            <p class="mb-1"><span class="text-muted">CATEGORIA: </span> {{$datos->categorias->nombre ?? '' }} </p>
-                            <p class="mb-1"><span class="text-muted">Sub Categoria: </span> 10253642</p>
+                            <p class="mb-1"><span class="text-muted">CATEGORIA: </span> {{$datos->orden_de_trabajo->sub_categorias->categoria->nombre ?? '' }} </p>
+                            <p class="mb-1"><span class="text-muted">Sub Categoria: </span>{{$datos->orden_de_trabajo->sub_categorias->nombre ?? '' }}</p>
                         </div>
                     </div>
 
                     <div class="row p-5">
                         <div class="col-md-12">
+                        <p class="font-weight-bold mb-4" >Materia Prima</p>
+
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -68,7 +72,7 @@ body {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($datos->hpProductoFabricar as $menu )
+                                @foreach ($datos->orden_de_trabajo->hp_orden_trabajo_materia as $menu )
                                 <tr>
                                         <td>{{$menu->id}}</td>
                                         <td>{{$menu->nombre_mp}}</td>
@@ -80,30 +84,13 @@ body {
                             </table>
                         </div>
                     </div>
-
                     <div class="d-flex flex-row-reverse bg-dark text-white p-4">
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-2">Generar PDF</div>
-                            <div class="h2 font-weight-light"><button class="btn btn-primary">PDF</button></div>
-                        </div>
-
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-2"></div>
-                            <div class="h2 font-weight-light"></div>
-                        </div>
-
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-2">Total</div>
-                            <div class="h2 font-weight-light" id ='total'>{{$datos->total_pf}} $</div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="text-light mt-5 mb-5 text-center small">by : <a class="text-light" target="_blank" href="http://totoprayogo.com">totoprayogo.com</a></div>
-
 </div>
 
 

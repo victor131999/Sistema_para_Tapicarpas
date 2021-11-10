@@ -14,6 +14,7 @@ class producto_finalizado extends Model
     }
 
     public function orden(){
-        return $this->belongsTo('App\Models\producto_a_fabricar');
+        return $this->belongsTo('App\Models\producto_a_fabricar','id_orden');
     }
+    
 }

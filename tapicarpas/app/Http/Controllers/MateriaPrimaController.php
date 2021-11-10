@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\materia_prima;
 use App\Models\tipo_materia_primas;
 use App\Models\factura_detalle_compra_materia;
+use App\Models\hp_producto_finalizado_materia;
 use Illuminate\Http\Request;
 
 class MateriaPrimaController extends Controller
@@ -75,7 +76,9 @@ class MateriaPrimaController extends Controller
        $detallesSumaCantidad = factura_detalle_compra_materia::where('id_mp','=',$materia_prima->id)->sum('cantidad_df');
        $detallesInversion = factura_detalle_compra_materia::where('id_mp','=',$materia_prima->id)->sum('subtotal_df');
        $detalles->load('facturaDeCompra');
-        return view('materia_prima.show',compact('materia_prima','detalles','detallesSumaCantidad','detallesInversion'));
+       $salidas  = hp_producto_finalizado_materia::where('materia_prima_id','=',$materia_prima->id)->get();
+       $salidas->load('productoFinalizado','materiaPrima');
+        return view('materia_prima.show',compact('materia_prima','detalles','salidas','detallesSumaCantidad','detallesInversion'));
     }
     public function edit($id)
     {
