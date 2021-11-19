@@ -40,12 +40,11 @@
     <thead class="thead-light">
         <tr>
             <th>#</th>
-            <th>Nombre</th>
-            <th>Color</th>
-            <th>Medida</th>
-            <th>Subcategoría</th>
+            <th>Cliente</th>
+            <th>Producto</th>
             <th>Fecha de inicio</th>
             <th>Fecha de fin</th>
+            <th>Estado</th>
             <th>Acciones</th>
 
         </tr>
@@ -56,25 +55,26 @@
         @foreach ($producto_a_fabricars as $producto_a_fabricar)
         <tr>
             <td>{{$producto_a_fabricar->id}}</td>
-            <td>{{$producto_a_fabricar->nombre}}</td>
-
-            <td>{{$producto_a_fabricar->color}}</td>
-            <td>{{$producto_a_fabricar->medida}}</td>
-            <td>{{$producto_a_fabricar->sub_categorias->nombre ?? '' }}  </td>
+            <td>{{$producto_a_fabricar->id}}</td>
+            <td>{{$producto_a_fabricar->orden_de_trabajo->nombre}}</td>
             <td>{{$producto_a_fabricar->fecha_inicio}}</td>
             <td>{{$producto_a_fabricar->fecha_fin}}</td>
+            <td>{{$producto_a_fabricar->estado}}</td>
             <td>
             <a href="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id)}}" class="btn btn-outline-info">Ver</a>
-            |
-            <a href="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id.'/edit')}}" class="btn btn-outline-info">Editar </a>
-            |
-            <form action="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id)}}" class="d-inline" method="post">
+            
+           {{-- <a href="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id.'/edit')}}" class="btn btn-outline-info">Editar </a>--}}
+            
+           {{--<form action="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id)}}" class="d-inline" method="post">
             @csrf
             {{method_field('DELETE')}}
                 <input class="btn btn-outline-dark" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
-            </form>
-            |
-            <a class="btn btn-outline-danger" href="{{ url('/producto_finalizado/create') }}">Finalizar orden</a>
+            </form>--}}
+            
+            @if($producto_a_fabricar->estado =='Proceso')
+            ||
+            <a class="btn btn-outline-danger" href="{{ route('producto_a_fabricar.producto_finalizado.create',$producto_a_fabricar->id) }}">Finalizar orden</a>
+            @endif
             </th>
         </tr>
         @endforeach

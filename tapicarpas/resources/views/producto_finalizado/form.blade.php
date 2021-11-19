@@ -24,20 +24,21 @@
         @endif
 
         <div class="row card-body">
-            <div class="col-md-3 col-lg-4">
-                <div class="form-group">
-                <label for="id_orden">Orden</label>
-                    <select class="form-control" type="text" name="id_orden" value="{{isset($producto_finalizado->id_orden)?$producto_finalizado->id_orden:old('id_orden')}}" id="id_orden" onchange="colocar_costo_mano()">
-                        <option value="">Seleccione</option>
-                        @foreach ($producto_a_fabricar as $producto_a_fabricars)
-                                <option costoMano="{{ $producto_a_fabricars->total_pf }}" value="{{$producto_a_fabricars->id}}">
-                                    {{$producto_a_fabricars->id}} - {{$producto_a_fabricars->nombre}}
-                                </option>
-                        @endforeach
-
-                    </select>
-                </div>
-            </div>
+        <div class="card-header">
+                            <h4 class="card-title">
+                                <a >
+                                    <b>Materia prima utilizada </b></br>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMateriaPrima" data-whatever="@mdo">Agregar materiales</button>
+                                </a>
+                            </h4>
+                        </div>
+                        <br>
+                        <table class="table">
+                            <thead>
+                                <tr><th>Nombre</th><th>cantidades</th> <th>Costo Unitario</th><th>Opciones</th></tr>
+                            </thead>
+                            <tbody id="tblmaterias"></tbody>
+                        </table>
 
 
             <div class="col-3">
@@ -82,7 +83,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-3">
-                    <label for="total">Subtotal</label>
+                    <label for="total">Precio de mano de obra</label>
                     <input class="form-control" id="subtotal" readonly></input>
                 </div>
             </div>
@@ -120,7 +121,7 @@
 
     </div>
 
-    <!-MODAL PARA EL INGRESOO DE MATERIA PRIMA PARA PRODUCCION COMO DETALLE-!>
+    <!-MODAL PARA EL INGRESOO DE MANO DE OBRA-!>
     <div class="modal fade" id="modalPrimaNormal" tabindex="-1" role="dialog" aria-labelledby="modalPrimaNormalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -167,6 +168,116 @@
         </div>
         </div>
     </div>
+    
+     <!-MODAL PARA EL DETALLE DE MATERIA PRIMA UTILIZADA-!>
+     <div class="modal fade" id="modalMateriaPrima" tabindex="-1" role="dialog" aria-labelledby="modalMateriaPrimaLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalPrimaNormalLabel">Materia prima</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <div class="row card-body">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="">Nombre</label>
+
+                    <select name="materias" id="materias" class="form-control" onchange="colocar_stock()">
+                        <option value="">Seleccione</option>
+                        @foreach ($materia_prima as $materia_primas)
+                            <option cantidades="{{ $materia_primas->cantidad_mp }}" costoUnitario="{{ $materia_primas->costo_unidad_mp }}"  value="{{$materia_primas->id}} ">
+                                {{$materia_primas->nombre_mp}} 
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="">Cantidad</label>
+                    <input type="number" id="cantidades_df" class="form-control">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="">Stock</label>
+                    <input type="number" id="stock" name="stock" class="form-control" readonly />
+                    <input type="hidden" id="costoUnitario" name="costoUnitario" class="form-control" readonly />
+
+                </div>
+            </div>
+            <div class="col-12">
+                <button onclick="agregar_materias()" type="button"
+                    class="btn btn-success float-right">Agregar</button>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        let identificarRepetidos1 = []
+        function agregar_materias() {
+            var TR= document.createElement("tr");
+            let insumos_id = $("#materias option:selected").val();
+            let insumos_text = $("#materias option:selected").text();
+            let cantidades = $("#cantidades_df").val();
+            let costoUnitario = parseFloat($("#costoUnitario").val());
+            let restando  =  parseFloat($("#stock").val()) - parseFloat(cantidades) ;
+            if (identificarRepetidos1.includes(parseFloat(insumos_id)) === false) {
+                    identificarRepetidos1.push(parseFloat(insumos_id));
+                    if (cantidades > 0 ) {
+                        $("#tblmaterias").append(`
+                                <tr id="tr-${insumos_id}">
+                                    <td>
+                                        <input type="hidden" name="insumos_id[]" id="education1" value="${insumos_id}" />
+                                        <input type="hidden" name="cantidadeses[]"  value="${cantidades}" />
+                                        <input type="hidden" name="stocks[]" value="${restando}" />
+                                        <input type="hidden" name="costosUnitarios[]" value="${costoUnitario}" />
+                                        ${insumos_text}
+                                    </td>
+                                    <td>${cantidades}</td>
+                                    <td>${costoUnitario} $</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" onclick="eliminar_insumos(this, ${insumos_id},${parseFloat(cantidades) * parseFloat(costoUnitario)})">X</button>
+                                    </td>
+                                </tr>
+                            `);
+
+                            let total_pf = $("#costoMano").val() || 0;
+                            $("#costoMano").val(parseFloat(total_pf) + parseFloat(cantidades) * parseFloat(costoUnitario));
+                    } else {
+                        alert("Se debe ingresar una cantidades o stock valido");
+                    }
+                    }else{
+                        alert('Ya seleccionó  el articulo');
+                        return;
+                    }
+                    document.getElementById("tblmaterias").appendChild(TR)
+        }
+
+        function eliminar_insumos(id, elemento,subtotal) {
+                var TR= id.parentNode.parentNode;
+                document.getElementById("tblmaterias").removeChild(TR);
+                console.log(elemento)
+                var index = identificarRepetidos1.indexOf(elemento);
+                console.log(index)
+                if (index > -1) {
+                    identificarRepetidos1.splice(index, 1);
+                }
+                console.log(identificarRepetidos1)
+                let total_pf = $("#costoMano").val() || 0;
+                $("#costoMano").val(parseFloat(total_pf) - subtotal);
+        }
+        function colocar_stock() {
+            let precio = $("#materias option:selected").attr("cantidades");
+            $("#stock").val(precio);
+            let costoUnitario = $("#materias option:selected").attr("costoUnitario");
+            $("#costoUnitario").val(costoUnitario);
+        }
+
+    </script>
     <script>
         let identificarRepetidos = [];
 

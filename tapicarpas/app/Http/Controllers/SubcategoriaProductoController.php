@@ -45,7 +45,9 @@ class SubcategoriaProductoController extends Controller
     public function edit($id)
     {
         $subcategoria =subcategoria_producto::findOrFail($id);
-        return view('subcategoria.edit',compact('subcategoria'));
+        $datosCategoria['categoria']=categoria::all();
+        return view('subcategoria.edit',compact('subcategoria'))->
+        with($datosCategoria);
     }
     public function update(Request $request, $id)
     {
@@ -61,7 +63,7 @@ class SubcategoriaProductoController extends Controller
             'numeric'=>'El :attribute tiene que ser un número',
         ];
         $this->validate($request, $campos, $mensaje);
-        $datosSubcategoria = request()->except('_token');
+        $datosSubcategoria = request()->except('_token','_method');
         subcategoria_producto::where('id','=',$id)->update($datosSubcategoria);
         $subcategoria=subcategoria_producto::findOrFail($id);
         return redirect('subcategoria')->with('mensaje','Subcategoria modificada correctamente');

@@ -1,7 +1,5 @@
 
-<form action="{{url('/producto_finalizado')}}" method="post" enctype="multipart/form-data">
+<form action="{{ route("producto_a_fabricar.producto_finalizado.store", [$producto_a_fabricar->id]) }}" method="post" enctype="multipart/form-data">
 @csrf
-
     @include('producto_finalizado.form',['modo'=>'Crear '])
-
 </form>

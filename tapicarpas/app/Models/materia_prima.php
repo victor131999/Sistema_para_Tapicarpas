@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class materia_prima extends Model
 {
     use HasFactory;
-    protected $fillable = ['id_tipo'];
+    protected $fillable = ['id_tipo','id'];
     //realacion de uno a muchos
+    public function facturaCompra()
+    {
+        return $this->belongsToMany(facturaCompra::class,'factura_detalle_compra_materias','id_mp','id')->withPivot('cantidad_df','costoU_df','subtotal_df'); 
+    }
     public function tipos(){
         return $this->belongsTo('App\Models\tipo_materia_primas','id_tipo');
     }

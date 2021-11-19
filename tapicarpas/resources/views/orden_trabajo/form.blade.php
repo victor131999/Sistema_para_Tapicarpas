@@ -390,8 +390,8 @@
                     $("#tblManoObra").append(`
                             <tr id="tr-${insumo_id}">
                                 <td>
-                                    <input type="hidden" name="insumo_id[]" id="education1" value="${insumo_id}" />
-                                    <input type="hidden" name="cantidades[]"  value="${cantidad_mano}" />
+                                    <input type="hidden" name="mano_id[]" id="education1" value="${insumo_id}" />
+                                    <input type="hidden" name="horas[]"  value="${cantidad_mano}" />
                                     <input type="hidden" name="costos[]" value="${costohora}" />
                                     ${insumo_text}
                                 </td>

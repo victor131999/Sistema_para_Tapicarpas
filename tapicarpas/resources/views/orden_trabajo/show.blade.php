@@ -106,17 +106,19 @@ body {
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="border-0 text-uppercase small font-weight-bold">ID</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Nombre</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Horas</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Precio/Hora</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Costo por hora</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($datos->hp_orden_trabajo_materia as $menu )
+                                @foreach ($datos->hp_orden_trabajo_mano as $menu )
                                 <tr>
-                                    <td>{{$menu->id}}</td>
-
+                                    <td>{{$menu->nombre}}</td>
+                                    <td>{{$menu->pivot->horas}}</td>
+                                    <td>{{$menu->precio_hora}}</td>
+                                    <td>{{$menu->pivot->horas_costo}}</td>
 
                                 </tr>
                                 @endforeach

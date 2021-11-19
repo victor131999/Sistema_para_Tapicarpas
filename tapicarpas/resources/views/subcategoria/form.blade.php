@@ -34,8 +34,8 @@
             </select>
         </div>
         </div>
-        <label for="nombre">Nombre</label>
-        <input type="text" class="form-control" name="nombre" value="{{isset($categoria->nombre)?$categoria->nombre:old('nombre')}}" id="nombre">
+        <label for="nombre">Sub - Categoría</label>
+        <input type="text" class="form-control" name="nombre" value="{{isset($subcategoria->nombre)?$subcategoria->nombre:old('nombre')}}" id="nombre">
         <br/>
 
         <input class="btn btn-outline-success" type="submit" value="{{$modo}} datos">

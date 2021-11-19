@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\producto_finalizado;
 use App\Models\mano_obra_has_producto_f;
 use App\Models\mano_de_obra;
+use App\Models\materia_prima;
 use App\Models\producto_a_fabricar;
+use App\Models\hp_producto_finalizado_materia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use DB;
@@ -34,12 +36,12 @@ class ProductoFinalizadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(producto_a_fabricar $producto_a_fabricar)
     {
+        $materia_prima['materia_prima']=materia_prima::all();
         $mano_de_obra['mano_de_obra']=mano_de_obra::all();
-        $producto_a_fabricar['producto_a_fabricar']=producto_a_fabricar::all();
-        return View::make('producto_finalizado.create' )->
-        with($producto_a_fabricar)->
+        return View::make('producto_finalizado.create' ,compact('producto_a_fabricar'))->
+        with($materia_prima)->
         with($mano_de_obra);
     }
 
@@ -49,9 +51,10 @@ class ProductoFinalizadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,producto_a_fabricar $producto_a_fabricar )
     {
         $input  = $request->all();
+        //dd($input );
         try{
             DB::beginTransaction();
             $productoFinalizado = producto_finalizado::create([
@@ -64,17 +67,31 @@ class ProductoFinalizadoController extends Controller
                 "c_utilidad"=>$input["c_utilidad"],
                 "c_iva"=>$input["c_iva"],
                 "total"=>$input["total"],
-                "id_orden"=>$input["id_orden"]
+                "id_orden"=>$producto_a_fabricar->id
             ]);
-       foreach($input["insumo_id"] as $key =>$value ){
-            mano_obra_has_producto_f::create([
-                'mano_obra_id'=> $value,
-                'producto_finalizado_id'=> $productoFinalizado->id,
-            ]);
+            foreach($input["insumos_id"] as $key =>$value ){
+                hp_producto_finalizado_materia::create([
+                    'materia_prima_id'=> $value,
+                    'producto_finalizado_id'=> $productoFinalizado->id,
+                    'cantidad'=>$input["cantidadeses"][$key],
+                ]);
+                $materiaActua= materia_prima::findOrFail($value);
+                materia_prima::where('id','=', $value)->update(['cantidad_mp' => $materiaActua->cantidad_mp - $input["cantidadeses"][$key]] );
+           
+            }   
+            foreach($input["insumo_id"] as $key =>$value ){
+                    mano_obra_has_producto_f::create([
+                        'mano_de_obra_id'=> $value,
+                        'horas' => $input["cantidades"][$key],
+                        'horas_costo'=> $input["costos"][$key],
+                        'producto_finalizado_id'=> $productoFinalizado->id,
+                    ]);
 
-        }
+                }
         DB::commit();
-        producto_a_fabricar::where('id', '=',$input["id_orden"])->update(['estado' => 'Finalizado']);
+        producto_a_fabricar::where('id', '=',$producto_a_fabricar->id)->update(['estado' => 'Finalizado']);
+        //restando en stok 
+
         return redirect("producto_finalizado")->with('status','1');
 
         }catch(\Exception $e){

@@ -29,8 +29,8 @@
     <thead class="thead-light">
         <tr>
             <th>#</th>
-            <th>Nombre</th>
             <th>Categoria</th>
+            <th>Sub - Categoria</th>
             <th>Acciones</th>
         </tr>
     </thead>

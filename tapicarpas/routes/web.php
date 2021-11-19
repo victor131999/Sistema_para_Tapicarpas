@@ -56,6 +56,7 @@ Route::resource('categoria', CategoriaController::class)->middleware('auth');
 Route::resource('subcategoria', SubcategoriaProductoController::class)->middleware('auth');
 
 Route::resource('producto_a_fabricar', ProductoAFabricarController::class)->middleware('auth');
+Route::resource('producto_a_fabricar.producto_finalizado', ProductoFinalizadoController::class)->middleware('auth');
 
 Route::resource('producto_finalizado', ProductoFinalizadoController::class)->middleware('auth');
 

@@ -59,6 +59,9 @@ class FacturaCompraController extends Controller
                 'costoU_df'=>$input["costos"][$key],
                 'subtotal_df'=>$this->calcular_subtotal($input["costos"][$key],$input["cantidades"][$key])
             ]);
+            $materiaActua= materia_prima::findOrFail($value);
+
+            materia_prima::where('id','=', $value)->update(['cantidad_mp' => $materiaActua->cantidad_mp + $input["cantidades"][$key]]+['costo_unidad_mp' => $input["costos"][$key] ] );
         }
         DB::commit();
         return redirect("facturacompra")->with('status','1');

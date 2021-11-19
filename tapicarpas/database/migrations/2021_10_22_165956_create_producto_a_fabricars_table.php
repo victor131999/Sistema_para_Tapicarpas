@@ -15,21 +15,16 @@ class CreateProductoAFabricarsTable extends Migration
     {
         Schema::create('producto_a_fabricars', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
             $table->string('fecha_inicio');
             $table->string('fecha_fin');
-            $table->string('color');
-            $table->string('medida');
-            $table->string('material');
             $table->string('estado')->default('En proceso');
-            $table->float('total_pf');
             $table->timestamps();
 
             //relaciones
-            $table->unsignedBigInteger('id_s_categoria');
+            $table->unsignedBigInteger('orden_trabajo_id');
             $table->unsignedBigInteger('id_responsable');
 
-            $table->foreign('id_s_categoria')->references('id')->on('subcategoria_productos')->onDelete('cascade');
+            $table->foreign('orden_trabajo_id')->references('id')->on('orden_trabajos')->onDelete('cascade');
             $table->foreign('id_responsable')->references('id')->on('responsables')->onDelete('cascade');
         });
     }
