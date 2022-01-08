@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ResponsableController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ProveedorController;
@@ -67,6 +68,9 @@ Route::resource('area', AreaController::class)->middleware('auth');
 Route::resource('clase', ClaseController::class)->middleware('auth');
 
 Route::resource('familia', FamiliaController::class)->middleware('auth');
+
+Route::resource('cliente', ClienteController::class)->middleware('auth');
+
 
 Route::group(['middleware' => 'auth'],function () {
     Route::get('/', [InicioController::class, 'index'])-> name('home');

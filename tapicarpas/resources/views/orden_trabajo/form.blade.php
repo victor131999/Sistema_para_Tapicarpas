@@ -49,6 +49,21 @@
                                 <div class="row">
                                     <div class="col-md-3 col-lg-12">
                                         <div class="form-group">
+                                            <label for="cliente_id">Cliente</label>
+                                            <select  data-live-search="true" class="form-control" type="text" name="cliente_id" value="{{isset($cliente_id)?$cliente_id:old('cliente_id')}}" id="cliente_id">
+                                                @foreach ($cliente as $cliente)
+                                                        <option value="{{$cliente->id}}">
+                                                            {{$cliente->id}} - {{$cliente->nombre}}
+                                                        </option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-12">
+                                        <div class="form-group">
                                             <label class="control-label">Nombre del Producto</label>
                                             <input type="text" class="form-control" name="nombre" value="{{isset($categoria->nombre)?$categoria->nombre:old('nombre')}}" id="nombre">
                                         </div>
@@ -470,7 +485,9 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script> $('.form-control').selectpicker();</script>
 @stop
 
 

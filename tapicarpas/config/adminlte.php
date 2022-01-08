@@ -293,6 +293,10 @@ return [
                     'text' => 'Mano de obra',
                     'url'  => 'mano_de_obra',
                 ],
+                [
+                    'text' => 'Clientes',
+                    'url'  => 'cliente',
+                ],
             ],
         ],
 

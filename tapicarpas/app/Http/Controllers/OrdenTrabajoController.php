@@ -10,6 +10,7 @@ use App\Models\hp_orden_trabajo_materia;
 use App\Models\materia_prima;
 use App\Models\mano_de_obra;
 use App\Models\Responsable;
+use App\Models\cliente;
 use App\Models\subcategoria_producto;
 use DB;
 use Log;
@@ -38,19 +39,15 @@ class OrdenTrabajoController extends Controller
         $mano_de_obra['mano_de_obra']=mano_de_obra::all();
         $datosSubcategoria['subcategoria']=subcategoria_producto::all();
         $datosResponsable['responsable']=Responsable::all();
+        $datosCliente['cliente']=cliente::all();
         return View::make('orden_trabajo.create' )->
         with($datosSubcategoria)->
         with($datosResponsable)->
         with($mano_de_obra)->
+        with($datosCliente)->
         with($materia_prima);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $campos=[
@@ -60,6 +57,7 @@ class OrdenTrabajoController extends Controller
             'material'=>'required|string|max:100',
             'id_s_categoria'=>'numeric|min:0|nullable',
             'id_responsable'=>'numeric|min:0|nullable',
+            'cliente_id'=>'numeric|min:0|nullable',
 
         ];
         $mensaje=[
@@ -74,6 +72,7 @@ class OrdenTrabajoController extends Controller
         try{
             DB::beginTransaction();
             $ordenTrabajo = orden_trabajo::create([
+                "cliente_id"=>$input["cliente_id"],
                 "nombre" =>$input["nombre" ],
                 "color" => $input["color"],
                 "medida"=>$input["medida"],
