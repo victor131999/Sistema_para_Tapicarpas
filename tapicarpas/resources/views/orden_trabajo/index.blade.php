@@ -40,7 +40,8 @@
     <thead class="thead-light">
         <tr>
             <th>#</th>
-            <th>Nombre</th>
+            <th>Cliente</th>
+            <th>Producto</th>
             <th>Color</th>
             <th>Medida</th>
             <th>Subcategoría</th>
@@ -55,7 +56,7 @@
         <tr>
             <td>{{$orden_trabajo->id}}</td>
             <td>{{$orden_trabajo->nombre}}</td>
-
+            <td>{{$orden_trabajo->nombre}}</td>
             <td>{{$orden_trabajo->color}}</td>
             <td>{{$orden_trabajo->medida}}</td>
             <td>{{$orden_trabajo->sub_categorias->nombre ?? '' }}  </td>

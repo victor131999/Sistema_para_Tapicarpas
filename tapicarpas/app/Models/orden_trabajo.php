@@ -9,7 +9,7 @@ class orden_trabajo extends Model
 {
     use HasFactory;
     protected $fillable = ['id','nombre','color','medida','material','id_s_categoria','id_responsable', 'total_pf',
-    'subtotal_pf','c_agua','c_luz','c_varios','c_admin','c_imprevistos','c_total','c_utilidad','c_iva','total'];
+    'subtotal_pf','c_agua','c_luz','c_varios','c_admin','c_imprevistos','c_total','c_utilidad','c_iva','total','cliente_id'];
 
     public function hp_orden_trabajo_materia(){
         return $this->belongsToMany('App\Models\materia_prima','hp_orden_trabajo_materias')->withPivot('cantidad');

@@ -30,16 +30,16 @@ class CreateOrdenTrabajosTable extends Migration
             $table->float('c_utilidad');
             $table->float('c_iva');
             $table->float('total');
-
-            $table->timestamps();
-
             //relaciones
             $table->unsignedBigInteger('id_s_categoria');
             $table->unsignedBigInteger('id_responsable');
+            $table->unsignedBigInteger('cliente_id');
 
             $table->foreign('id_s_categoria')->references('id')->on('subcategoria_productos')->onDelete('cascade');
             $table->foreign('id_responsable')->references('id')->on('responsables')->onDelete('cascade');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
