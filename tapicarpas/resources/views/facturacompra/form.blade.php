@@ -3,7 +3,7 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-    <h1>{{$modo}}Factura de compra</h1>
+    <h1>{{$modo}}factura de compra</h1>
 
 @stop
 
@@ -51,22 +51,22 @@
             <div class="row">
                 <div class="col-4">
                 <label for="bienes_servicios_sinIva_fac">Bienes o servicios sin iva</label>
-                <input type="number"  class="form-control" name="bienes_servicios_sinIva_fac" id="bienes_servicios_sinIva_fac" value="{{isset($facturacompra->bienes_servicios_sinIva_fac)?$facturacompra->bienes_servicios_sinIva_fac:old('bienes_servicios_sinIva_fac')}}" required id="bienes_servicios_sinIva_fac">
+                <input type="number" step="any"  class="form-control" name="bienes_servicios_sinIva_fac" id="bienes_servicios_sinIva_fac" value="{{isset($facturacompra->bienes_servicios_sinIva_fac)?$facturacompra->bienes_servicios_sinIva_fac:old('bienes_servicios_sinIva_fac')}}" required id="bienes_servicios_sinIva_fac">
                 </div>
                 <div class="col-4">
                 <label for="bienes_conIva_fac">Bienes con iva</label>
-                <input type="number"   required class="form-control" name="bienes_conIva_fac" id="bienes_conIva_fac" value="{{isset($facturacompra->bienes_conIva_fac)?$facturacompra->bienes_conIva_fac:old('bienes_conIva_fac')}}" id="bienes_conIva_fac">
+                <input type="number" step="any"  required class="form-control" name="bienes_conIva_fac" id="bienes_conIva_fac" value="{{isset($facturacompra->bienes_conIva_fac)?$facturacompra->bienes_conIva_fac:old('bienes_conIva_fac')}}" id="bienes_conIva_fac">
                 </div>
                 <div class="col-4">
                 <label for="servicios_conIva_fac">Servicios con iva</label>
-                <input type="number" required class="form-control" name="servicios_conIva_fac" id="servicios_conIva_fac" value="{{isset($facturacompra->servicios_conIva_fac)?$facturacompra->servicios_conIva_fac:old('servicios_conIva_fac')}}" id="servicios_conIva_fac">
+                <input type="number" step="any" required class="form-control" name="servicios_conIva_fac" id="servicios_conIva_fac" value="{{isset($facturacompra->servicios_conIva_fac)?$facturacompra->servicios_conIva_fac:old('servicios_conIva_fac')}}" id="servicios_conIva_fac">
                 </div>
             </div>
         </div>
         <label for="descripcion_fac">Descripción</label>
         <input type="text" class="form-control" required name="descripcion_fac" value="{{isset($facturacompra->descripcion_fac)?$facturacompra->descripcion_fac:old('descripcion_fac')}}" id="descripcion_fac">
         <br>
-        <!-LLAMADA AL MODAL PARA MATERIA PRIMA NORMAL-!>
+        <!-LLAMADA AL MODAL PARA MATERIA PRIMA -!>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal" data-whatever="@mdo">Agregar materia prima</button>
         <td>
             <br>
@@ -91,8 +91,8 @@
                                 {{$valor->mp}}
                                 </td>
                                     <td>{{$valor->cantidad_df}}</td>
-                                    <td>{{$valor->costoU_df}}</td>
-                                    <td>{{$valor->subtotal_df}}</td>
+                                    <td>${{$valor->costoU_df}}</td>
+                                    <td>${{$valor->subtotal_df}}</td>
                                     <td>
                                 <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this,{{$valor->subtotal_df}},{{$valor->id}})">X</button>
                                 </td>
@@ -120,7 +120,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalPrimaNormalLabel">Materia prima normal</h5>
+            <h5 class="modal-title" id="modalPrimaNormalLabel">Materia prima</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -193,8 +193,8 @@
                             </td>
 
                             <td>${cantidad}</td>
-                            <td>${costoU_df}</td>
-                            <td>${parseFloat(cantidad) * parseFloat(costoU_df)}</td>
+                            <td>$${costoU_df}</td>
+                            <td>$${parseFloat(cantidad) * parseFloat(costoU_df)}</td>
                             <td>
                                 <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${parseFloat(cantidad) * parseFloat(costoU_df)},0)">X</button>
                             </td>
@@ -203,6 +203,8 @@
                 let costoU_df_total = $("#total_fac").val() || 0;
                 $("#total_fac").val(parseFloat(costoU_df_total) + parseFloat(cantidad) * parseFloat(costoU_df));
                 $("#total").val(parseFloat( $("#total_fac").val()) + parseFloat(fascturaSub) );
+                $("#cantidad_df").val(null);
+                $("#costoU_df").val(null);
 
             } else {
                 alert("Se debe ingresar una cantidad o costoU_df valido");
@@ -249,7 +251,7 @@
 
 @section('js')
     <script> console.log('Hi!'); </script>
-    
+
 @stop
 
 

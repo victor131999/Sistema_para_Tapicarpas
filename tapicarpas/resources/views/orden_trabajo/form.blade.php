@@ -6,7 +6,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
-
 @stop
 
 @section('content')
@@ -32,7 +31,7 @@
 
                     <div class="col-lg-12">
                         <div class="text-center">
-                            <h3>Registrar Orden de trabajo</h3>
+                            <h3>Registrar orden de trabajo</h3>
                 </div>
 
                 <div class="card card-default">
@@ -64,7 +63,7 @@
                                 <div class="row">
                                     <div class="col-md-3 col-lg-12">
                                         <div class="form-group">
-                                            <label class="control-label">Nombre del Producto</label>
+                                            <label class="control-label">Nombre del producto</label>
                                             <input type="text" class="form-control" name="nombre" value="{{isset($categoria->nombre)?$categoria->nombre:old('nombre')}}" id="nombre">
                                         </div>
                                     </div>
@@ -115,10 +114,10 @@
                         </div>
                     </div>
 
-                    <div class="col-md-1 col-lg-1">
+                    <div class="col-md-1 col-lg-12">
                         <div class="form-group">
-                        <label for="medida">Medida</label>
-                        <input type="text" class="form-control" name="medida" placeholder="3 x 5" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida">
+                        <label for="medida"> Detalles de Medidas</label>
+                        <textarea type="text" class="form-control" name="medida" placeholder=" detalle de medida Ejm:3 x 5" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida"></textarea>
 
                         </div>
                     </div>
@@ -135,7 +134,7 @@
                         <br>
                         <table class="table">
                             <thead>
-                                <tr><th>Nombre</th><th>cantidades</th> <th>Costo Unitario</th><th>Opciones</th></tr>
+                                <tr><th>Nombre</th><th>Cantidades</th> <th>Costo unitario</th><th>Opciones</th></tr>
                             </thead>
                             <tbody id="tblmaterias"></tbody>
                         </table>
@@ -216,7 +215,7 @@
 
                         <p></p><br/> <br/>
                         <input class="btn btn-outline-success" type="submit" value="{{$modo}} datos">
-                        <a href="{{url('producto_a_fabricar/')}}">Regresar</a>
+                        <a href="{{url('orden_trabajo/')}}">Regresar</a>
 
                     </div>
                 </div>
@@ -238,12 +237,11 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="">Nombre</label>
-
                     <select name="materias" id="materias" class="form-control" onchange="colocar_stock()">
                         <option value="">Seleccione</option>
                         @foreach ($materia_prima as $materia_primas)
                             <option cantidades="{{ $materia_primas->cantidades_mp }}" costoUnitario="{{ $materia_primas->costo_unidad_mp }}"  value="{{$materia_primas->id}} ">
-                                {{$materia_primas->nombre_mp}}
+                                {{$materia_primas->nombre_mp}} - {{$materia_primas->tipos->nombre_tipo}}
                             </option>
                         @endforeach
                     </select>
@@ -251,7 +249,7 @@
             </div>
             <div class="col-3">
                 <div class="form-group">
-                    <label for="">cantidades</label>
+                    <label for="">Cantidades</label>
                     <input type="number" id="cantidades_df" class="form-control">
                 </div>
             </div>
@@ -305,8 +303,6 @@
                 <div class="form-group">
                     <label for="">Precio/hora </label>
                     <input type="number" id="cantidad_mano" class="form-control" readonly>
-
-
                 </div>
             </div>
             <div class="col-12">
@@ -340,7 +336,7 @@
                                         ${insumos_text}
                                     </td>
                                     <td>${cantidades}</td>
-                                    <td>${costoUnitario} $</td>
+                                    <td>$${costoUnitario} $</td>
                                     <td>
                                         <button type="button" class="btn btn-danger" onclick="eliminar_insumos(this, ${insumos_id},${parseInt(cantidades) * parseInt(costoUnitario)})">X</button>
                                     </td>
@@ -349,6 +345,7 @@
 
                             let total_pf = $("#total_pf").val() || 0;
                             $("#total_pf").val(parseFloat(total_pf) + parseFloat(cantidades) * parseFloat(costoUnitario));
+                            $("#cantidades_df").val(null);
                     } else {
                         alert("Se debe ingresar una cantidades o stock valido");
                     }
@@ -411,8 +408,8 @@
                                     ${insumo_text}
                                 </td>
                                 <td>${cantidad_mano}</td>
-                                <td>${costo}</td>
-                                <td>${costohora}</td>
+                                <td>$${costo}</td>
+                                <td>$${costohora}</td>
                                 <td>
                                     <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${insumo_id},${costohora})">X</button>
                                 </td>
@@ -426,7 +423,7 @@
             $("#c_total").val(parseFloat( $("#total").val()) + parseFloat( $("#c_imprevistos").val()));
             $("#c_utilidad").val(parseFloat( $("#c_total").val()) * (1.35));
             $("#c_iva").val(parseFloat( $("#c_utilidad").val()) * (1.12));
-
+            $("#cantidad_mano_df").val(null);
                 } else {
                     alert("Se debe ingresar una cantidad o costo valido");
                 }
@@ -473,7 +470,9 @@
         $("#cantidad_mano").val(precio);
         let costoUnitario = $("#mano_obras option:selected").attr("costoUnitario");
         $("#costoUnitario").val(costoUnitario);
+
     }
+
 
 </script>
 

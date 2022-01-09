@@ -21,7 +21,7 @@
 @if(session('status'))
             @if(session('status')=='1')
                 <div class = "alert alert-success">
-                    La factura fue guardada con exito
+                    La orden de producción fue guardada con exito
                 </div>
             @else
                 <div class = "alert alert-success">
@@ -31,7 +31,7 @@
         @endif
 
 
-<a href="{{url('producto_a_fabricar/create')}}" class="btn btn-outline-success">Registrar nuevo producto a fabricar</a>
+<a href="{{url('producto_a_fabricar/create')}}" class="btn btn-outline-success">Registrar nueva orden de producción</a>
 <br/>
 <br/>
 
@@ -62,15 +62,15 @@
             <td>{{$producto_a_fabricar->estado}}</td>
             <td>
             <a href="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id)}}" class="btn btn-outline-info">Ver</a>
-            
+
            {{-- <a href="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id.'/edit')}}" class="btn btn-outline-info">Editar </a>--}}
-            
+
            {{--<form action="{{url('/producto_a_fabricar/'.$producto_a_fabricar->id)}}" class="d-inline" method="post">
             @csrf
             {{method_field('DELETE')}}
                 <input class="btn btn-outline-dark" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
             </form>--}}
-            
+
             @if($producto_a_fabricar->estado =='Proceso')
             ||
             <a class="btn btn-outline-danger" href="{{ route('producto_a_fabricar.producto_finalizado.create',$producto_a_fabricar->id) }}">Finalizar orden</a>

@@ -34,7 +34,7 @@
             </select>
         </div>
         </div>
-        <label for="nombre">Sub - Categoría</label>
+        <label for="nombre">Subcategoría</label>
         <input type="text" class="form-control" name="nombre" value="{{isset($subcategoria->nombre)?$subcategoria->nombre:old('nombre')}}" id="nombre">
         <br/>
 

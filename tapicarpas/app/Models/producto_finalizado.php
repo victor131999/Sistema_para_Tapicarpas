@@ -16,5 +16,10 @@ class producto_finalizado extends Model
     public function orden(){
         return $this->belongsTo('App\Models\producto_a_fabricar','id_orden');
     }
-    
+
+    public function hp_producto_finalizado_materia(){
+        return $this->belongsToMany('App\Models\materia_prima','hp_producto_finalizado_materias')->withPivot('cantidad');
+    }
+
+
 }

@@ -3,7 +3,7 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-    <h1>{{$modo}}Materia prima</h1>
+    <h1>{{$modo}}materia prima</h1>
 
 @stop
 
@@ -57,7 +57,7 @@
         }
         </script>
 
-      
+
         <br/>
 
         <input class="btn btn-outline-success" type="submit" value="{{$modo}} datos">

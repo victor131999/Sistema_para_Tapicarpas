@@ -21,13 +21,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-4">
-                <p for="bienes_servicios_sinIva_fac"><b>Bienes o servicios sin iva :</b>   {{$facturas[0]->bienes_servicios_sinIva_fac}} </p>
+                <p for="bienes_servicios_sinIva_fac"><b>Bienes o servicios sin iva :</b>   ${{$facturas[0]->bienes_servicios_sinIva_fac}} </p>
                 </div>
                 <div class="col-4">
-                <p for="bienes_conIva_fac"><b>Bienes o servicios con iva:</b>   {{$facturas[0]->bienes_conIva_fac}}</p>
+                <p for="bienes_conIva_fac"><b>Bienes o servicios con iva:</b>   ${{$facturas[0]->bienes_conIva_fac}}</p>
                 </div>
                 <div class="col-4">
-                <p for="servicios_conIva_fac"><b>Servicios con iva:</b>    {{$facturas[0]->servicios_conIva_fac}}</p>
+                <p for="servicios_conIva_fac"><b>Servicios con iva:</b>    ${{$facturas[0]->servicios_conIva_fac}}</p>
                 </div>
             </div>
             <p><b>Descripcion:</b>   {{$facturas[0]->descripcion_fac}} </p>
@@ -53,8 +53,8 @@
                 <tr>
                     <td>{{$valor->mp}}</td>
                     <td>{{$valor->cantidad_df}}</td>
-                    <td>{{$valor->costoU_df}}</td>
-                    <td>{{$valor->subtotal_df}}</td>
+                    <td>${{$valor->costoU_df}}</td>
+                    <td>${{$valor->subtotal_df}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -62,7 +62,7 @@
     </div>
 </div>
 @endif
-<p><b>Total a pagar:</b>   {{$facturas[0]->total_fac}} </p>
+<p><b>Total a pagar:</b>   ${{$facturas[0]->total_fac}} </p>
 <a href="{{url('facturacompra/')}}">Regresar</a>
 @stop
 

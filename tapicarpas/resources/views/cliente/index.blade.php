@@ -51,12 +51,12 @@
                 <a href="{{url('/cliente/'.$cliente->id.'/edit')}}" class="btn btn-outline-info">
                     Editar
                 </a>
-                |
+             <!--   |
                 <form action="{{url('/cliente/'.$cliente->id)}}" class="d-inline" method="post">
                 @csrf
                 {{method_field('DELETE')}}
                     <input class="btn btn-outline-dark" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
-                </form>
+                </form> -->
             </th>
         </tr>
         @endforeach

@@ -21,7 +21,7 @@
 
 
 
-<a href="{{url('categoria/create')}}" class="btn btn-outline-success">Registrar nuevo categoria</a>
+<a href="{{url('categoria/create')}}" class="btn btn-outline-success">Registrar nuevo categoría</a>
 <br/>
 <br/>
 <table class="table table-light">

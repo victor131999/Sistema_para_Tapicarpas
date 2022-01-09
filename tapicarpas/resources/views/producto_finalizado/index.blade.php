@@ -4,7 +4,7 @@
 @section('title', 'producto_finalizados')
 
 @section('content_header')
-    <h1>Productos</h1>
+    <h1>Productos finalizados</h1>
 @stop
 
 @section('content')
@@ -37,7 +37,7 @@
     <thead class="thead-light">
         <tr>
             <th>#</th>
-            <th># de Orden</th>
+            <th>Número de orden</th>
             <th>Responsable</th>
             <th>Cliente</th>
             <th>Estado</th>
@@ -51,7 +51,7 @@
 
         @foreach ($producto_finalizados as $producto_finalizado)
         <tr>
-            <td>{{$producto_finalizado->id}}</td>
+            <td>{{$producto_finalizado->id_orden}}</td>
             <td>{{$producto_finalizado->id}}</td>
             <td>{{$producto_finalizado->id}}</td>
             <td>{{$producto_finalizado->id}}</td>
@@ -91,7 +91,7 @@
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
-        }); 
+        });
     </script>
 @stop
 

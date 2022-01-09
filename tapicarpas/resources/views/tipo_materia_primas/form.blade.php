@@ -3,7 +3,7 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-    <h1>{{$modo}}Unidad de materia prima</h1>
+    <h1>{{$modo}}unidad de materia prima</h1>
 
 @stop
 
