@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Inicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 class InicioController extends Controller
 {
@@ -19,8 +21,21 @@ class InicioController extends Controller
      */
     public function index()
     {
-        //
-        return view('inicio.index');
+        $detalles = [];
+        //$NumClientes = DB::table('clientes')->get();
+        $NumClientes = DB::table('clientes')->orderBy('id', 'desc')->first();
+        $NumOrdenesProduccion = DB::table('producto_a_fabricars')->orderBy('id', 'desc')->first();
+        $NumProductosFinalizados = DB::table('producto_finalizados')->orderBy('id', 'desc')->first();
+        //dd($NumClientes);
+        //dd($NumOrdenesProduccion);
+        //dd($NumProductosFinalizados);
+        /*return view('inicio.index',
+        ['NumClientes' => $NumClientes],
+        ['NumOrdenesProduccion' => $NumOrdenesProduccion],
+        ['NumProductosFinalizados' => $NumProductosFinalizados]);*/
+        return View::make('inicio.index',compact("detalles","NumClientes","NumOrdenesProduccion","NumProductosFinalizados") );
+
+
     }
 
     /**
