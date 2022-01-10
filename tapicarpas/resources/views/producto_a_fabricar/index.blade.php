@@ -40,7 +40,7 @@
     <thead class="thead-light">
         <tr>
             <th>#</th>
-            <th>Cliente</th>
+            <th>Responsable</th>
             <th>Producto</th>
             <th>Fecha de inicio</th>
             <th>Fecha de fin</th>
@@ -55,7 +55,7 @@
         @foreach ($producto_a_fabricars as $producto_a_fabricar)
         <tr>
             <td>{{$producto_a_fabricar->id}}</td>
-            <td>{{$producto_a_fabricar->id}}</td>
+            <td>{{$producto_a_fabricar->responsables->Nombre}}</td>
             <td>{{$producto_a_fabricar->orden_de_trabajo->nombre}}</td>
             <td>{{$producto_a_fabricar->fecha_inicio}}</td>
             <td>{{$producto_a_fabricar->fecha_fin}}</td>

@@ -31,7 +31,7 @@
             <th>#</th>
             <th>Nombre</th>
             <th>Dirección</th>
-            <th>Telefono</th>
+            <th>Teléfono</th>
             <th>Acciones</th>
         </tr>
     </thead>

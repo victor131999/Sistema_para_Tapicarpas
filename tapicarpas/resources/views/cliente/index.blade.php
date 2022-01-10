@@ -30,9 +30,9 @@
         <tr>
             <th>#</th>
             <th>Nombre</th>
-            <th>Cedula</th>
+            <th>Cédula</th>
             <th>Dirección</th>
-            <th>Telefono</th>
+            <th>Teléfono</th>
             <th>Correo</th>
             <th>Acciones</th>
         </tr>

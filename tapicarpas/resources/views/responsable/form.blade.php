@@ -30,7 +30,7 @@
         <input type="text" class="form-control" name="Direccion" value="{{isset($responsable->Direccion)?$responsable->Direccion:old('Direccion')}}" id="Direccion">
 
 
-        <label for="Telefono">Telefono</label>
+        <label for="Telefono">Teléfono</label>
         <input type="text"class="form-control" name="Telefono" value="{{isset($responsable->Telefono)?$responsable->Telefono:old('Telefono')}}" id="Telefono">
 
         <br/>
