@@ -72,17 +72,73 @@
               <a href="{{url('cliente/')}}" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
-
-          <!-- ./col -->
         </div>
         <!-- /.row -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <div id="chart-container"></div>
         <!-- Main row -->
 
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+<script>
+    var datas = "<?php echo json_encode ($datas)?>"
+    var datass = datas.split(',').map(_=>_|0);
+    var costocompra = "<?php echo json_encode ($egresofacturacompra)?>"
+    //alert(datas)
+    //alert(typeof datas)
+    //alert(datass)
+    //alert(typeof datass)
+
+    Highcharts.chart('chart-container',{
+        title:{
+            text: 'Incremento de nuevas facturas de compra'
+        },
+        subtitle:{
+            text: 'El monto total invertido en la materia prima en el mes actual es: $'+costocompra
+        },
+        xAxis:{
+            categories: ['Diciembre','Enero', 'Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre']
+        },
+        yAxis:{
+            title:{
+                text: 'Numero de nuevas facturas de compra'
+            }
+        },
+        legend:{
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+
+        },
+        plotOptions:{
+            series:{
+                allowPointSelect: true
+            }
+        },
+        series:[{
+            name: 'Nueva factura de compra',
+            data: datass
+        }],
+        responsive:{
+            rules:[{
+                condition:{
+                    maxwidth:500
+                },
+                chartOptions:{
+                    legend:{
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    }
+
+    )
+</script>
 
 @stop
 

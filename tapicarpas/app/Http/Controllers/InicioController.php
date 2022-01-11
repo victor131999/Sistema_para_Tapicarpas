@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Inicio;
 use Illuminate\Http\Request;
+use Illuminate\Http\Console;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+use App\Models\facturaCompra;
+use SebastianBergmann\Environment\Console as EnvironmentConsole;
 
 class InicioController extends Controller
 {
@@ -21,8 +24,31 @@ class InicioController extends Controller
      */
     public function index()
     {
+        $facturacompras = facturaCompra::select (DB::raw("COUNT(*) as count"))
+                            ->whereYear('created_at', date('Y'))
+                            ->groupBy(DB::raw("Month(created_at)"))
+                            ->pluck('count');
+
+        $months = facturaCompra::select (DB::raw("Month(created_at) as month"))
+                            ->whereYear('created_at',date('Y'))
+                            ->groupBy(DB::raw("Month(created_at)"))
+                            ->pluck('month');
+
+        $fechaEntera = time();
+        //$anio = date("Y", $fechaEntera);
+        $mes = date("m", $fechaEntera);
+        //$dia = date("d", $fechaEntera);
+
+        //$egresofacturacompra = DB::table('factura_compras',now()->month)->sum('total_fac');
+        $egresofacturacompra =DB::table('factura_compras')->whereMonth('created_at', $mes)->sum('total_fac');
+
+        //dd($egresofacturacompra);
+
+        $datas = array(0,0,0,0,0,0,0,0,0,0,0,0);
+        foreach ($months as $index => $month){
+            $datas[$month] = $facturacompras[$index];
+        }
         $detalles = [];
-        //$NumClientes = DB::table('clientes')->get();
         $NumClientes = DB::table('clientes')->orderBy('id', 'desc')->first();
         $NumOrdenesProduccion = DB::table('producto_a_fabricars')->orderBy('id', 'desc')->first();
         $NumProductosFinalizados = DB::table('producto_finalizados')->orderBy('id', 'desc')->first();
@@ -33,7 +59,7 @@ class InicioController extends Controller
         ['NumClientes' => $NumClientes],
         ['NumOrdenesProduccion' => $NumOrdenesProduccion],
         ['NumProductosFinalizados' => $NumProductosFinalizados]);*/
-        return View::make('inicio.index',compact("detalles","NumClientes","NumOrdenesProduccion","NumProductosFinalizados") );
+        return View::make('inicio.index',compact("detalles","NumClientes","NumOrdenesProduccion","NumProductosFinalizados","datas","egresofacturacompra") );
 
 
     }
