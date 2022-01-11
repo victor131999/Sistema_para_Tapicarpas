@@ -93,7 +93,7 @@
 
     Highcharts.chart('chart-container',{
         title:{
-            text: 'Incremento de nuevas facturas de compra'
+            text: 'Incremento de nuevas facturas de compra de materia prima'
         },
         subtitle:{
             text: 'El monto total invertido en la materia prima en el mes actual es: $'+costocompra
