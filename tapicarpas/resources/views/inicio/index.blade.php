@@ -72,20 +72,7 @@
               <a href="{{url('cliente/')}}" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>Materia</h3>
 
-                <p>Por año determinado</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="{{url('cliente/')}}" class="small-box-footer">Ver estadísticas <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
         </div>
         <!-- /.row -->
         <script src="https://code.highcharts.com/highcharts.js"></script>
