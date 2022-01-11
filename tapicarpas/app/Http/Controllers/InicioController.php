@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Inicio;
 use Illuminate\Http\Request;
-use Illuminate\Http\Console;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use App\Models\facturaCompra;
-use SebastianBergmann\Environment\Console as EnvironmentConsole;
+use JeroenNoten\LaravelAdminLte\Components\Widget\Alert;
+use Log;
 
 class InicioController extends Controller
 {
@@ -24,7 +24,7 @@ class InicioController extends Controller
      */
     public function index()
     {
-        $facturacompras = facturaCompra::select (DB::raw("COUNT(*) as count"))
+        $facturacompras = facturaCompra::select (DB::raw("SUM(total_fac) as count"))
                             ->whereYear('created_at', date('Y'))
                             ->groupBy(DB::raw("Month(created_at)"))
                             ->pluck('count');
@@ -52,7 +52,7 @@ class InicioController extends Controller
         $NumClientes = DB::table('clientes')->orderBy('id', 'desc')->first();
         $NumOrdenesProduccion = DB::table('producto_a_fabricars')->orderBy('id', 'desc')->first();
         $NumProductosFinalizados = DB::table('producto_finalizados')->orderBy('id', 'desc')->first();
-        //dd($NumClientes);
+        //dd($facturacompras);
         //dd($NumOrdenesProduccion);
         //dd($NumProductosFinalizados);
         /*return view('inicio.index',
@@ -60,9 +60,8 @@ class InicioController extends Controller
         ['NumOrdenesProduccion' => $NumOrdenesProduccion],
         ['NumProductosFinalizados' => $NumProductosFinalizados]);*/
         return View::make('inicio.index',compact("detalles","NumClientes","NumOrdenesProduccion","NumProductosFinalizados","datas","egresofacturacompra") );
-
-
     }
+
 
     /**
      * Show the form for creating a new resource.
