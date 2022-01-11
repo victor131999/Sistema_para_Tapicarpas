@@ -37,10 +37,9 @@
     <thead class="thead-light">
         <tr>
             <th>#</th>
-            <th>Número de orden</th>
+            <th>Producto</th>
             <th>Responsable</th>
             <th>Cliente</th>
-            <th>Estado</th>
             <th>Total</th>
             <th>Acciones</th>
 
@@ -55,11 +54,9 @@
             <td>{{$producto_finalizado->id}}</td>
             <td>{{$producto_finalizado->id}}</td>
             <td>{{$producto_finalizado->id}}</td>
-            <td>{{$producto_finalizado->id}}</td>
-            <td>{{$producto_finalizado->c_total}}</td>
+            <td>${{$producto_finalizado->c_total}}</td>
             <td>
             <a href="{{url('/producto_finalizado/'.$producto_finalizado->id)}}" class="btn btn-outline-info">Ver</a>
-            |
            {{-- <a href="{{url('/producto_finalizado/'.$producto_finalizado->id.'/edit')}}" class="btn btn-outline-info">Editar </a>
             |
             <form action="{{url('/producto_finalizado/'.$producto_finalizado->id)}}" class="d-inline" method="post">

@@ -188,7 +188,7 @@
                         <option value="">Seleccione</option>
                         @foreach ($materia_prima as $materia_primas)
                             <option cantidades="{{ $materia_primas->cantidad_mp }}" costoUnitario="{{ $materia_primas->costo_unidad_mp }}"  value="{{$materia_primas->id}} ">
-                                {{$materia_primas->nombre_mp}}
+                                {{$materia_primas->nombre_mp}} - {{$materia_primas->tipos->nombre_tipo}}
                             </option>
                         @endforeach
                     </select>
