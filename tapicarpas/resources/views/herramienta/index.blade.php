@@ -45,7 +45,7 @@
             <td>{{$herramienta->Nombre}}</td>
             <td>{{$herramienta->marca}}</td>
             <td>{{$herramienta->modelo}}</td>
-            <td>{{$herramienta->costo}}</td>
+            <td>${{$herramienta->costo}}</td>
             <td>
                <!-- <a href="{{url('/herramienta/'.$herramienta->id.'/edit')}}" class="btn btn-outline-info">
                     Editar

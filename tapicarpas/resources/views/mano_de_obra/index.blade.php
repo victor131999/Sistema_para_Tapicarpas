@@ -43,7 +43,7 @@
             <td>{{$mano_de_obra->id}}</td>
             <td>{{$mano_de_obra->nombre}}</td>
             <td>{{$mano_de_obra->contacto}}</td>
-            <td>{{$mano_de_obra->precio_hora}}</td>
+            <td>${{$mano_de_obra->precio_hora}}</td>
             <td>
                 <a href="{{url('/mano_de_obra/'.$mano_de_obra->id.'/edit')}}" class="btn btn-outline-info">
                     Editar

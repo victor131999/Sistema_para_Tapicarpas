@@ -21,7 +21,7 @@
 @if(session('status'))
             @if(session('status')=='1')
                 <div class = "alert alert-success">
-                    La factura fue guardada con exito
+                    La orden de trabajo fue agregada con éxito
                 </div>
             @else
                 <div class = "alert alert-success">
@@ -31,7 +31,7 @@
         @endif
 
 
-<a href="{{url('orden_trabajo/create')}}" class="btn btn-outline-success">Registrar nuevo producto a fabricar</a>
+<a href="{{url('orden_trabajo/create')}}" class="btn btn-outline-success">Registrar nueva orden de trabajo</a>
 <br/>
 <br/>
 
@@ -55,7 +55,7 @@
         @foreach ($orden_trabajos as $orden_trabajo)
         <tr>
             <td>{{$orden_trabajo->id}}</td>
-            <td>{{$orden_trabajo->nombre}}</td>
+            <td>{{$orden_trabajo->cliente_id}}</td>
             <td>{{$orden_trabajo->nombre}}</td>
             <td>{{$orden_trabajo->color}}</td>
             <td>{{$orden_trabajo->medida}}</td>

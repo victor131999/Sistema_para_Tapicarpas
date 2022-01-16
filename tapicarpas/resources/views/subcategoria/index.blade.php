@@ -4,7 +4,7 @@
 @section('title', 'Categorías')
 
 @section('content_header')
-    <h1>Categorías</h1>
+    <h1>Subcategorías</h1>
 @stop
 
 @section('content')
@@ -21,7 +21,7 @@
 
 
 
-<a href="{{url('subcategoria/create')}}" class="btn btn-outline-success">Registrar nuevo Subcategoria</a>
+<a href="{{url('subcategoria/create')}}" class="btn btn-outline-success">Registrar nuevo Subcategoría</a>
 <br/>
 <br/>
 <table class="table table-light">
@@ -29,8 +29,8 @@
     <thead class="thead-light">
         <tr>
             <th>#</th>
-            <th>Categoria</th>
-            <th>Sub - Categoria</th>
+            <th>Categoría</th>
+            <th>Subcategoría</th>
             <th>Acciones</th>
         </tr>
     </thead>

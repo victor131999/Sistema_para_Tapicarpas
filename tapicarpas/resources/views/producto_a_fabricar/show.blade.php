@@ -39,24 +39,22 @@ body {
                     <div class="row pb-1 p-5">
                         <div class="col-md-6">
                             <p class="font-weight-bold mb-4">Información</p>
-                            <p class="mb-1">Responsable de la Orden de Trabajo : {{$datos->orden_de_trabajo->responsables->Nombre}}</p>
-                            <p class="mb-1">Responsable de la Orden de Producción : {{$datos->responsables->Nombre}}</p>
-                            <p class="mb-1">Fecha de entrega : {{$datos->fecha_fin}}</p>
-                            <p class="mb-1">Medida:  {{$datos->orden_de_trabajo->medida}}</p>  
-                                <div class="row">
-                                    <div class="col">
-                                   Material: {{$datos->orden_de_trabajo->material}} 
-                                    </div>
-                                    <div class="col">
-                                   Color:  {{$datos->orden_de_trabajo->color}}
-                                    </div>
-                                </div>
+                            <p class="font-weight-bold mb-4">Responsable de la Orden de Trabajo:</p>
+                            <p class="mb-1"> {{$datos->orden_de_trabajo->responsables->Nombre}}</p>
+                            <p class="font-weight-bold mb-4">Responsable de la Orden de Producción:</p>
+                            <p class="mb-1"> {{$datos->responsables->Nombre}}</p>
+                            <p class="font-weight-bold mb-4">Fecha de entrega:</p>
+                            <p class="mb-1">{{$datos->fecha_fin}}</p>
+                            <p class="font-weight-bold mb-4">Detalles de medidas:</p>
+                            <p class="mb-1">{{$datos->orden_de_trabajo->medida}}</p>
                         </div>
 
                         <div class="col-md-6 text-right">
                             <p class="font-weight-bold mb-4">Detalle</p>
                             <p class="mb-1"><span class="text-muted">CATEGORIA: </span> {{$datos->orden_de_trabajo->sub_categorias->categoria->nombre ?? '' }} </p>
                             <p class="mb-1"><span class="text-muted">Sub Categoria: </span>{{$datos->orden_de_trabajo->sub_categorias->nombre ?? '' }}</p>
+                            <p class="mb-1"><span class="text-muted">Material: {{$datos->orden_de_trabajo->material}}</p>
+                            <p class="mb-1"><span class="text-muted">Color:  {{$datos->orden_de_trabajo->color}}</p>
                         </div>
                     </div>
 
@@ -79,7 +77,7 @@ body {
                                         <td>{{$menu->id}}</td>
                                         <td>{{$menu->nombre_mp}}</td>
                                         <td>{{$menu->pivot->cantidad}}</td>
-                                        <td>{{$menu->costo_unidad_mp}}</td>
+                                        <td>${{$menu->costo_unidad_mp}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -87,7 +85,7 @@ body {
                         </div>
                     </div>
                     <div class="d-flex flex-row-reverse bg-dark text-white p-4">
-                       
+
                     </div>
                 </div>
             </div>

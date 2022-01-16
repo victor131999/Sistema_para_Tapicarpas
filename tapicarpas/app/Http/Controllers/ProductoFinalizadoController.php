@@ -79,8 +79,8 @@ class ProductoFinalizadoController extends Controller
                 ]);
                 $materiaActua= materia_prima::findOrFail($value);
                 materia_prima::where('id','=', $value)->update(['cantidad_mp' => $materiaActua->cantidad_mp - $input["cantidadeses"][$key]] );
-           
-            }   
+
+            }
             foreach($input["insumo_id"] as $key =>$value ){
                     mano_obra_has_producto_f::create([
                         'mano_de_obra_id'=> $value,
@@ -92,7 +92,7 @@ class ProductoFinalizadoController extends Controller
                 }
         DB::commit();
         producto_a_fabricar::where('id', '=',$producto_a_fabricar->id)->update(['estado' => 'Finalizado']);
-        //restando en stok 
+        //restando en stok
 
         return redirect("producto_finalizado")->with('status','1');
 
@@ -121,8 +121,9 @@ class ProductoFinalizadoController extends Controller
     {
         $datos=producto_finalizado::find($id);
         $data[]= $datos->mano_obra_has_producto_f;
+        $dataMateria[]= $datos->hp_producto_finalizado_materia;
         $total=$this->calcular_total($datos);
-        return View::make('producto_finalizado.show', compact('data','datos'))->with('total',$total);
+        return View::make('producto_finalizado.show', compact('data','datos','dataMateria'))->with('total',$total);
     }
 
     /**

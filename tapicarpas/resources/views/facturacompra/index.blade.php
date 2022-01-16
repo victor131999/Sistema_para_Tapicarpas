@@ -55,7 +55,7 @@
             <td>{{$facturacompra->proveedor->Nombre}}</td>
             <td>{{$facturacompra->responsable->Nombre}} </td>
             <td>{{$facturacompra->descripcion_fac}} </td>
-            <td>{{$facturacompra->total_fac}}</td>
+            <td>${{$facturacompra->total_fac}}</td>
             <td>
                 <a href="{{url('/facturacompra/'.$facturacompra->id)}}" class="btn btn-outline-info">Ver</a>
                 |

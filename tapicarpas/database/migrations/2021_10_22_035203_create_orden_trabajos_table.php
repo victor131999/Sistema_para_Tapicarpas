@@ -18,7 +18,7 @@ class CreateOrdenTrabajosTable extends Migration
             $table->integer('cantidad_producto');
             $table->string('nombre');
             $table->string('color');
-            $table->string('medida');
+            $table->longtext('medida');
             $table->string('material');
             $table->float('total_pf');
 

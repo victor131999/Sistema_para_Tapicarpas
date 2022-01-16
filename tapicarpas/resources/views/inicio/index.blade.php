@@ -32,14 +32,14 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{$NumOrdenesProduccion->id}}</h3>
 
-                <p>Ordenes nuevas</p>
+                <p>Ordenes de producción</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">Mas información <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('producto_a_fabricar/')}}" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -47,14 +47,14 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>{{$NumProductosFinalizados->id}}<sup style="font-size: 20px"></sup></h3>
 
-                <p>productos cancelados</p>
+                <p>Productos finalizados</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">mas información<i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('producto_finalizado/')}}" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -62,40 +62,84 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{$NumClientes->id}}</h3>
 
-                <p>Carpas</p>
+                <p>Clientes registrados</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">Mas información <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{url('cliente/')}}" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
 
-                <p>Facturas</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">Mas información <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
         </div>
         <!-- /.row -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <div id="chart-container"></div>
         <!-- Main row -->
 
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+<script>
+    var datas = "<?php echo json_encode ($datas)?>"
+    var datass = datas.split(',').map(_=>_|0);
+    var costocompra = "<?php echo json_encode ($egresofacturacompra)?>"
+    //alert(datas)
+    //alert(typeof datas)
+    //alert(datass)
+    //alert(typeof datass)
+
+    Highcharts.chart('chart-container',{
+        title:{
+            text: 'Compra de materia prima'
+        },
+        subtitle:{
+            text: 'El monto total invertido en la materia prima en el mes actual es: $'+costocompra
+        },
+        xAxis:{
+            categories: ['Diciembre','Enero', 'Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre']
+        },
+        yAxis:{
+            title:{
+                text: 'Monto de la compra'
+            }
+        },
+        legend:{
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+
+        },
+        plotOptions:{
+            series:{
+                allowPointSelect: true
+            }
+        },
+        series:[{
+            name: 'El monto en el mes es $',
+            data: datass
+        }],
+        responsive:{
+            rules:[{
+                condition:{
+                    maxwidth:500
+                },
+                chartOptions:{
+                    legend:{
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    }
+
+    )
+</script>
 
 @stop
 

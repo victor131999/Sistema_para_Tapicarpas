@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\hp_orden_trabajo_mano;
 use App\Models\hp_orden_trabajo_materia;
 use App\Models\materia_prima;
+use App\Models\tipo_materia_primas;
 use App\Models\mano_de_obra;
 use App\Models\Responsable;
 use App\Models\cliente;
@@ -17,6 +18,16 @@ use Log;
 
 class OrdenTrabajoController extends Controller
 {
+    protected $fillable = ['id_tipo','cliente_id'];
+    //realacion de uno a muchos
+    public function tipos(){
+        return $this->belongsTo('App\Models\tipo_materia_primas','id_tipo');
+    }
+    //realacion de uno a muchos
+    public function nombre_cliente(){
+        return $this->belongsTo('App\Models\cliente','cliente_id');
+    }
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -35,6 +46,7 @@ class OrdenTrabajoController extends Controller
      */
     public function create()
     {
+        $datostipo['tipo_materia_primas']=tipo_materia_primas::all();
         $materia_prima['materia_prima']=materia_prima::all();
         $mano_de_obra['mano_de_obra']=mano_de_obra::all();
         $datosSubcategoria['subcategoria']=subcategoria_producto::all();
@@ -45,7 +57,8 @@ class OrdenTrabajoController extends Controller
         with($datosResponsable)->
         with($mano_de_obra)->
         with($datosCliente)->
-        with($materia_prima);
+        with($materia_prima)->
+        with($datostipo);
     }
 
     public function store(Request $request)
@@ -54,7 +67,7 @@ class OrdenTrabajoController extends Controller
             'cantidad_producto' =>'numeric|min:0|nullable',
             'nombre'=>'required|string|max:100',
             'color'=>'required|string|max:100',
-            'medida'=>'required|string|max:100',
+            'medida'=>'required',
             'material'=>'required|string|max:100',
             'id_s_categoria'=>'numeric|min:0|nullable',
             'id_responsable'=>'numeric|min:0|nullable',
@@ -174,7 +187,7 @@ class OrdenTrabajoController extends Controller
         $campos=[
             'nombre'=>'required|string|max:100',
             'color'=>'required|string|max:100',
-            'medida'=>'required|string|max:100',
+            'medida'=>'required|string|max:10000',
             'material'=>'required|string|max:100',
             'id_s_categoria'=>'numeric|min:0|nullable',
             'id_responsable'=>'numeric|min:0|nullable',

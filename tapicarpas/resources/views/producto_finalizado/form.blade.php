@@ -168,7 +168,7 @@
         </div>
         </div>
     </div>
-    
+
      <!-MODAL PARA EL DETALLE DE MATERIA PRIMA UTILIZADA-!>
      <div class="modal fade" id="modalMateriaPrima" tabindex="-1" role="dialog" aria-labelledby="modalMateriaPrimaLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -188,7 +188,7 @@
                         <option value="">Seleccione</option>
                         @foreach ($materia_prima as $materia_primas)
                             <option cantidades="{{ $materia_primas->cantidad_mp }}" costoUnitario="{{ $materia_primas->costo_unidad_mp }}"  value="{{$materia_primas->id}} ">
-                                {{$materia_primas->nombre_mp}} 
+                                {{$materia_primas->nombre_mp}} - {{$materia_primas->tipos->nombre_tipo}}
                             </option>
                         @endforeach
                     </select>
@@ -238,7 +238,7 @@
                                         ${insumos_text}
                                     </td>
                                     <td>${cantidades}</td>
-                                    <td>${costoUnitario} $</td>
+                                    <td>$${costoUnitario} $</td>
                                     <td>
                                         <button type="button" class="btn btn-danger" onclick="eliminar_insumos(this, ${insumos_id},${parseFloat(cantidades) * parseFloat(costoUnitario)})">X</button>
                                     </td>
@@ -247,6 +247,7 @@
 
                             let total_pf = $("#costoMano").val() || 0;
                             $("#costoMano").val(parseFloat(total_pf) + parseFloat(cantidades) * parseFloat(costoUnitario));
+                            $("#cantidades_df").val(null);
                     } else {
                         alert("Se debe ingresar una cantidades o stock valido");
                     }
@@ -308,8 +309,8 @@
                                         ${insumo_text}
                                     </td>
                                     <td>${cantidad}</td>
-                                    <td>${costo}</td>
-                                    <td>${costohora}</td>
+                                    <td>$${costo}</td>
+                                    <td>$${costohora}</td>
                                     <td>
                                         <button type="button" class="btn btn-danger" onclick="eliminar_insumo(this, ${insumo_id},${costohora})">X</button>
                                     </td>
@@ -323,7 +324,7 @@
                 $("#c_total").val(parseFloat( $("#total").val()) + parseFloat( $("#c_imprevistos").val()));
                 $("#c_utilidad").val(parseFloat( $("#c_total").val()) * (1.35));
                 $("#c_iva").val(parseFloat( $("#c_utilidad").val()) * (1.12));
-
+                $("#cantidad_df").val(null);
                     } else {
                         alert("Se debe ingresar una cantidad o costo valido");
                     }
