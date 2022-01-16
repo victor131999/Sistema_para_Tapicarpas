@@ -3,15 +3,15 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-<a href="{{url('producto_finalizado/')}}">Regresar</a>
+<a href="{{url('factura_venta/')}}">Regresar</a>
 @stop
 
 @section('content')
 <style>
 body {
     background: grey;
-    margin-top: 120px;
-    margin-bottom: 120px;
+    margin-top: 50px;
+    margin-bottom: 100px;
 }
 </style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -19,60 +19,55 @@ body {
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <div class="container">
     <div class="row">
-        <div class="col-12">
+        <div class="col-10">
             <div class="card">
                 <div class="card-body p-0">
                     <div class="row p-5">
-                    <div class="col-md-6">
+                        <div class="col-md-6">
                             <img src="{{asset('vendor/adminlte/dist/img/logotapicarpas.jpg')}}" width="100" height="100" >
-                            <p class="font-weight-bold mb-1">Producto:  {{$datos->orden->orden_de_trabajo->nombre}}</p>
-                            <p class="font-weight-bold mb-1">Cantidad del producto:  </p><p>{{$datos->orden->orden_de_trabajo->cantidad_producto}}</p>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <p class="font-weight-bold mb-1">Factura de venta  #{{$datos->id}}</p>
+                            <p class="text-muted">Fecha: {{$datos->created_at}}</p>
                         </div>
                     </div>
                     <hr class="my-0">
                     <div class="row pb-1 p-5">
-                        <div class="col-md-6">
-                            <p class="font-weight-bold mb-4">Información</p>
-                            <p class="mb-1">Producto : {{$datos->id_orden}}</p>
-                            <p class="mb-1">Imprevistos : {{$datos->c_imprevistos}}</p>
-                            <p class="mb-1">Costo total :  {{$datos->c_total}}</p>
-                                <div class="row">
-                                    <div class="col">
-                                   sub total: {{$datos->c_total}}
-                                    </div>
-                                    <div class="col">
-                                   Utilidad:  {{$datos->c_utilidad}}
-                                    </div>
+                        <div class="col-md-7">
+                            <p class="font-weight-bold mb-1">Información</p>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="font-weight-bold mb-1">Cliente:</p> {{$datos->cliente->nombre}}
                                 </div>
+                            </div>
                         </div>
-
                     </div>
-
                     <div class="row p-5">
                         <div class="col-md-12">
+                            <p class="font-weight-bold mb-1">Productos </p>
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th class="border-0 text-uppercase small font-weight-bold">ID</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Nombre</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Hora</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Costo por hora</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Descripción</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Cantidad</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Costo Unitario</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($datos->mano_obra_has_producto_f as $menu )
+                                @foreach ($datos->hp_facturas as $menu )
                                 <tr>
                                         <td>{{$menu->id}}</td>
-                                        <td>{{$menu->c_agua}}</td>
-                                        <td>{{$menu->c_luz}}</td>
-                                        <td>{{$menu->total}}</td>
+                                        <td>{{$menu->orden->orden_de_trabajo->nombre}}</td>
+                                        <td>{{$menu->orden->orden_de_trabajo->cantidad_producto}}</td>
+                                        <td>{{$menu->c_iva}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
                     <div class="d-flex flex-row-reverse bg-dark text-white p-4">
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Generar PDF</div>
@@ -86,16 +81,13 @@ body {
 
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Total</div>
-                            <div class="h2 font-weight-light" id ='total'>{{$total}}</div>
+                            <div class="h2 font-weight-light" id ='total'>{{$datos->total_fv}} $</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="text-light mt-5 mb-5 text-center small">by : <a class="text-light" target="_blank" href="http://totoprayogo.com">totoprayogo.com</a></div>
-
 </div>
 
 

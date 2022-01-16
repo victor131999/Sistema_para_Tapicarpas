@@ -344,7 +344,7 @@ return [
             ],
         ],
         [
-            'text'    => 'Producción',
+            'text'    => 'Tipos de Producto',
             'icon'    => 'fab fa-product-hunt',
             'submenu' => [
                 [
@@ -355,6 +355,12 @@ return [
                     'text' => 'Sub Categorías',
                     'url'  => 'subcategoria',
                 ],
+            ],
+        ],
+        [
+            'text'    => 'Producción',
+            'icon'    => 'fab fa-product-hunt',
+            'submenu' => [
                 [
                     'text' => 'Orden de trabajo',
                     'url'  => 'orden_trabajo',
@@ -366,6 +372,16 @@ return [
                 [
                     'text' => 'Producto finalizado',
                     'url'  => 'producto_finalizado',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Ventas',
+            'icon'    => 'fab fa-product-hunt',
+            'submenu' => [
+                [
+                    'text' => 'Facturas de Venta',
+                    'url'  => 'factura_venta',
                 ],
             ],
         ],

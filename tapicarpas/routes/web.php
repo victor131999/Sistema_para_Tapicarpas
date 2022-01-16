@@ -18,6 +18,7 @@ use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\FamiliaController;
+use App\Http\Controllers\FacturasVentaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,7 @@ Route::resource('clase', ClaseController::class)->middleware('auth');
 Route::resource('familia', FamiliaController::class)->middleware('auth');
 
 Route::resource('cliente', ClienteController::class)->middleware('auth');
+Route::resource('factura_venta', FacturasVentaController::class)->middleware('auth');
 
 
 Route::group(['middleware' => 'auth'],function () {

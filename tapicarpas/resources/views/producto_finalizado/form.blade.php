@@ -4,8 +4,8 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-    <h1>Producto</h1>
-
+    <h3>Producto: {{$producto_a_fabricar->orden_de_trabajo->nombre}}</h3>
+    <p>Cantidad: {{$producto_a_fabricar->cantidad_producto}}</p>
 @stop
 
 @section('content')

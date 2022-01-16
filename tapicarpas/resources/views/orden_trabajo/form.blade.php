@@ -62,13 +62,20 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3 col-lg-12">
+                                    <div class="col-md-3 col-lg-10">
                                         <div class="form-group">
                                             <label class="control-label">Nombre del Producto</label>
                                             <input type="text" class="form-control" name="nombre" value="{{isset($categoria->nombre)?$categoria->nombre:old('nombre')}}" id="nombre">
                                         </div>
                                     </div>
+                                    <div class="col-md-1 col-lg-2">
+                                        <div class="form-group">
+                                            <label for="cantidad_producto">Cantidad de productos</label>
+                                            <input type="number"  required name="cantidad_producto" min='0' class="form-control" placeholder="3" value="{{isset($cantidad_producto)?$cantidad_producto:old('cantidad_producto')}}" id="cantidad_producto">
+                                        </div>
+                                    </div>
                                 </div>
+                                
                             <div class="row">
 
                                 <div class="col-md-3 col-lg-4">
@@ -109,19 +116,18 @@
                             <div class="row">
                                 <div class="col-md-4 col-lg-4">
                                     <div class="form-group">
-                                    <label for="color">Color</label>
-                                    <input type="text" class="form-control" name="color" value="{{isset($categoria->color)?$categoria->color:old('color')}}" id="color">
+                                        <label for="color">Color</label>
+                                        <input type="text" class="form-control" name="color" value="{{isset($categoria->color)?$categoria->color:old('color')}}" id="color">
 
-                        </div>
-                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1 col-lg-7">
+                                    <div class="form-group">
+                                    <label for="medida"> Medida o Detalle de medida</label>
+                                    <input type="text" class="form-control" name="medida" placeholder="3 x 5" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida">
 
-                    <div class="col-md-1 col-lg-1">
-                        <div class="form-group">
-                        <label for="medida">Medida</label>
-                        <input type="text" class="form-control" name="medida" placeholder="3 x 5" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida">
-
-                        </div>
-                    </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-header">

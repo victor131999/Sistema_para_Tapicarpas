@@ -8,6 +8,7 @@ use App\Models\materia_prima;
 use App\Models\Responsable;
 use App\Models\subcategoria_producto;
 use App\Models\orden_trabajo;
+use App\Models\cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use DB;
@@ -33,6 +34,7 @@ class ProductoAFabricarController extends Controller
         return View::make('producto_a_fabricar.create' )->
         with($datosResponsable)->
         with($datosOrden_trabajo);
+    
     }
     public function store(Request $request)
     {
@@ -50,12 +52,14 @@ class ProductoAFabricarController extends Controller
         ];
         $this->validate($request, $campos, $mensaje);
         $input  = $request->all();
+        $orden_de_trabajo =orden_trabajo::findOrFail( $input['orden_trabajo_id']);
         $productoAFabricar = producto_a_fabricar::create([
                 "fecha_inicio" =>$input["fecha_inicio"],
                 "fecha_fin"=>$input["fecha_fin"],
                 "estado"=>'Proceso',
                 "orden_trabajo_id"=>$input["orden_trabajo_id"],
-                "id_responsable"=>$input["id_responsable"]
+                "id_responsable"=>$input["id_responsable"],
+                "cliente_id"=>$orden_de_trabajo->cliente_id
             ]);
             return redirect("producto_a_fabricar")->with('status','1');
     }

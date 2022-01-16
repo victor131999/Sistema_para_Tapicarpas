@@ -24,10 +24,12 @@ class CreateProductoFinalizadosTable extends Migration
             $table->float('c_utilidad');
             $table->float('c_iva');
             $table->float('total');
-            $table->timestamps();
-
+            $table->string('estado');
+            $table->unsignedBigInteger('cliente_id');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
             $table->unsignedBigInteger('id_orden');
             $table->foreign('id_orden')->references('id')->on('producto_a_fabricars')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

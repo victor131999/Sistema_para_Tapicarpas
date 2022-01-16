@@ -4,7 +4,7 @@
 @section('title', 'orden_trabajos')
 
 @section('content_header')
-    <h1>Orden de producción</h1>
+    <h1>Orden de trabajo</h1>
 @stop
 
 @section('content')

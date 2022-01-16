@@ -18,14 +18,18 @@ class CreateProductoAFabricarsTable extends Migration
             $table->string('fecha_inicio');
             $table->string('fecha_fin');
             $table->string('estado')->default('En proceso');
-            $table->timestamps();
 
             //relaciones
+            $table->unsignedBigInteger('cliente_id');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
+
             $table->unsignedBigInteger('orden_trabajo_id');
             $table->unsignedBigInteger('id_responsable');
 
             $table->foreign('orden_trabajo_id')->references('id')->on('orden_trabajos')->onDelete('cascade');
             $table->foreign('id_responsable')->references('id')->on('responsables')->onDelete('cascade');
+            $table->timestamps();
+
         });
     }
 

@@ -26,6 +26,7 @@ body {
                         <div class="col-md-6">
                             <img src="{{asset('vendor/adminlte/dist/img/logotapicarpas.jpg')}}" width="100" height="100" >
                             <p class="font-weight-bold mb-1">Producto:  {{$datos->nombre}}</p>
+                            <p class="font-weight-bold mb-1">Cantidad del producto:  </p><p>{{$datos->cantidad_producto}}</p>
                         </div>
                         <div class="col-md-6 text-right">
                             <p class="font-weight-bold mb-1">Orden de trabajo  #{{$datos->id}}</p>
