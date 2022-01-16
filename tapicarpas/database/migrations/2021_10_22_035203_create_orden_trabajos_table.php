@@ -15,6 +15,7 @@ class CreateOrdenTrabajosTable extends Migration
     {
         Schema::create('orden_trabajos', function (Blueprint $table) {
             $table->id();
+            $table->integer('cantidad_producto');
             $table->string('nombre');
             $table->string('color');
             $table->longtext('medida');

@@ -50,7 +50,7 @@
                         <div class="card-body">
                             <div class="row">
 
-                                <div class="col-md-3 col-lg-4">
+                                <div class="col-md-3 col-lg-7">
                                     <div class="form-group">
                                         <label for="id_responsable">Responsable</label>
                                         <select class="form-control" type="text" name="id_responsable" value="{{isset($categoria->id_responsable)?$categoria->id_responsable:old('id_responsable')}}" id="id_responsable">
@@ -68,13 +68,13 @@
                             </div>
                             <div class="row">
 
-                                <div class="col-md-3 col-lg-4">
+                                <div class="col-md-3 col-lg-7">
                                     <div class="form-group">
-                                        <label for="orden_trabajo_id">Orden de Trabajo</label>
+                                        <label for="orden_trabajo_id">Orden de Trabajo / Cantidad del producto</label>
                                         <select  data-live-search="true" class="form-control" type="text" name="orden_trabajo_id" value="{{isset($categoria->orden_trabajo_id)?$categoria->orden_trabajo_id:old('orden_trabajo_id')}}" id="orden_trabajo_id">
                                             @foreach ($orden_trabajo as $orden_trabajos)
                                                     <option value="{{$orden_trabajos->id}}">
-                                                        {{$orden_trabajos->id}} - {{$orden_trabajos->nombre}}
+                                                         {{$orden_trabajos->nombre}} / {{$orden_trabajos->cantidad_producto}}
                                                     </option>
                                             @endforeach
 

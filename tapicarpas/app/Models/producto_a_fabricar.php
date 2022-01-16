@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class producto_a_fabricar extends Model
 {
     use HasFactory;
-    protected $fillable = ['id','fecha_inicio','fecha_fin','orden_trabajo_id','id_responsable','estado'];
+    protected $fillable = ['id','fecha_inicio','fecha_fin','orden_trabajo_id','id_responsable','estado','cliente_id'];
     public function hpProductoFabricar(){
         return $this->belongsToMany('App\Models\materia_prima','hp_producto_fabricars')->withPivot('cantidad');;
     }

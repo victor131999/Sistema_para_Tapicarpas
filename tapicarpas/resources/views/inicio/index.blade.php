@@ -76,7 +76,20 @@
         </div>
         <!-- /.row -->
         <script src="https://code.highcharts.com/highcharts.js"></script>
-        <div id="chart-container"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+            <div id="chart-container"></div>
+
+            </div>
+            <div class="col-6">
+              <div id="chart-ventas"></div>
+            </div>
+           
+          </div>
+        </div>
+       
+        
         <!-- Main row -->
 
         <!-- /.row (main row) -->
@@ -86,12 +99,13 @@
 <script>
     var datas = "<?php echo json_encode ($datas)?>"
     var datass = datas.split(',').map(_=>_|0);
-    var costocompra = "<?php echo json_encode ($egresofacturacompra)?>"
-    //alert(datas)
-    //alert(typeof datas)
-    //alert(datass)
-    //alert(typeof datass)
+    
+    var venta = "<?php echo json_encode ($datasVenta)?>"
+    var ventass = venta.split(',').map(_=>_|0);
 
+
+    var costocompra = "<?php echo json_encode ($egresofacturacompra)?>"
+    var costoventa = "<?php echo json_encode ($ingresofacturaventa)?>"
     Highcharts.chart('chart-container',{
         title:{
             text: 'Compra de materia prima'
@@ -121,6 +135,54 @@
         series:[{
             name: 'El monto en el mes es $',
             data: datass
+        }],
+        responsive:{
+            rules:[{
+                condition:{
+                    maxwidth:500
+                },
+                chartOptions:{
+                    legend:{
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    }
+
+    );
+  
+    Highcharts.chart('chart-ventas',{
+        title:{
+            text: 'Venta de productos'
+        },
+        subtitle:{
+            text: 'Ingresos en ventas el mes actual es: $'+costoventa
+        },
+        xAxis:{
+            categories: ['Diciembre','Enero', 'Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre']
+        },
+        yAxis:{
+            title:{
+                text: 'Monto de ventas'
+            }
+        },
+        legend:{
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+
+        },
+        plotOptions:{
+            series:{
+                allowPointSelect: true
+            }
+        },
+        series:[{
+            name: 'Monto de venta al mes $',
+            data: ventass
         }],
         responsive:{
             rules:[{

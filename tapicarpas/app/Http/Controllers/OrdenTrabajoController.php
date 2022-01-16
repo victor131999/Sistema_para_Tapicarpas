@@ -64,6 +64,7 @@ class OrdenTrabajoController extends Controller
     public function store(Request $request)
     {
         $campos=[
+            'cantidad_producto' =>'numeric|min:0|nullable',
             'nombre'=>'required|string|max:100',
             'color'=>'required|string|max:100',
             'medida'=>'required',
@@ -86,6 +87,7 @@ class OrdenTrabajoController extends Controller
             DB::beginTransaction();
             $ordenTrabajo = orden_trabajo::create([
                 "cliente_id"=>$input["cliente_id"],
+                "cantidad_producto"=>$input["cantidad_producto"],
                 "nombre" =>$input["nombre" ],
                 "color" => $input["color"],
                 "medida"=>$input["medida"],

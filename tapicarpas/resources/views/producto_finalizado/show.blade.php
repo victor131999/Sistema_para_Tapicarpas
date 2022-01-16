@@ -23,9 +23,10 @@ body {
             <div class="card">
                 <div class="card-body p-0">
                     <div class="row p-5">
-                        <div class="col-md-6">
+                    <div class="col-md-6">
                             <img src="{{asset('vendor/adminlte/dist/img/logotapicarpas.jpg')}}" width="100" height="100" >
-                            <p class="font-weight-bold mb-1">Producto final  #{{$datos->id}}</p>
+                            <p class="font-weight-bold mb-1">Producto:  {{$datos->orden->orden_de_trabajo->nombre}}</p>
+                            <p class="font-weight-bold mb-1">Cantidad del producto:  </p><p>{{$datos->orden->orden_de_trabajo->cantidad_producto}}</p>
                         </div>
                     </div>
                     <hr class="my-0">
