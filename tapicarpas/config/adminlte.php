@@ -247,7 +247,7 @@ return [
         [
             'text'        => 'Inicio',
             'url'         => 'inicio',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fa fa-home',
             //'label'       => 4,
             'label_color' => 'success',
         ],
@@ -255,36 +255,12 @@ return [
 
         [
             'text'    => 'Personal',
-            'icon'    => 'fas fa-address-book',
+            'icon'    => 'fa fa-users',
             'submenu' => [
                 [
                     'text' => 'Responsables',
                     'url'  => 'responsable',
                 ],
-               /* [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],*/
                 [
                     'text' => 'Proveedores',
                     'url'  => 'proveedor',
@@ -302,7 +278,7 @@ return [
 
         [
             'text'    => 'Materia prima',
-            'icon'    => 'fas fa-address-book',
+            'icon'    => 'fa fa-truck',
             'submenu' => [
                 [
                     'text' => 'Unidades de medida',
@@ -322,7 +298,7 @@ return [
         ],
         [
             'text'    => 'Herramientas',
-            'icon'    => 'fab fa-product-hunt',
+            'icon'    => 'fa fa-wrench',
             'submenu' => [
                 [
                     'text' => 'Areas',
@@ -377,7 +353,7 @@ return [
         ],
         [
             'text'    => 'Ventas',
-            'icon'    => 'fab fa-product-hunt',
+            'icon'    => 'fa fa-credit-card',
             'submenu' => [
                 [
                     'text' => 'Facturas de Venta',
