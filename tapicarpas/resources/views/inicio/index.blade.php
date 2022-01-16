@@ -76,9 +76,20 @@
         </div>
         <!-- /.row -->
         <script src="https://code.highcharts.com/highcharts.js"></script>
-        <div id="chart-container"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+            <div id="chart-container"></div>
 
-        <div id="chart-ventas"></div>
+            </div>
+            <div class="col-6">
+              <div id="chart-ventas"></div>
+            </div>
+           
+          </div>
+        </div>
+       
+        
         <!-- Main row -->
 
         <!-- /.row (main row) -->
@@ -155,7 +166,7 @@
         },
         yAxis:{
             title:{
-                text: 'Monto de venta'
+                text: 'Monto de ventas'
             }
         },
         legend:{
@@ -170,7 +181,7 @@
             }
         },
         series:[{
-            name: 'El monto en el mes es $',
+            name: 'Monto de venta al mes $',
             data: ventass
         }],
         responsive:{
