@@ -62,7 +62,22 @@
     </div>
 </div>
 @endif
-<p><b>Total a pagar:</b>   ${{$facturas[0]->total_fac}} </p>
+<div class="d-flex flex-row-reverse bg-dark text-white p-4">
+    <div class="py-3 px-5 text-right">
+        <div class="mb-2">Generar PDF</div>
+        <div class="h2 font-weight-light"><button class="btn btn-primary">PDF</button></div>
+    </div>
+
+    <div class="py-3 px-5 text-right">
+        <div class="mb-2"></div>
+        <div class="h2 font-weight-light"></div>
+    </div>
+
+    <div class="py-3 px-5 text-right">
+        <div class="mb-2">Total a pagar</div>
+        <div class="h2 font-weight-light" id ='total'>${{$facturas[0]->total_fac}}</div>
+    </div>
+</div>
 <a href="{{url('facturacompra/')}}">Regresar</a>
 @stop
 
