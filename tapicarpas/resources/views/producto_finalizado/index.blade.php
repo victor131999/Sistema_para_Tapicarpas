@@ -38,7 +38,8 @@
         <tr>
             <th>#</th>
             <th>Producto</th>
-            <th>Responsable</th>
+            <th>Responsable/Orden de trabajo</th>
+            <th>Responsable/Orden de producción</th>
             <th>Cliente</th>
             <th>Total</th>
             <th>Acciones</th>
@@ -50,11 +51,12 @@
 
         @foreach ($producto_finalizados as $producto_finalizado)
         <tr>
-            <td>{{$producto_finalizado->id_orden}}</td>
             <td>{{$producto_finalizado->id}}</td>
-            <td>{{$producto_finalizado->id}}</td>
-            <td>{{$producto_finalizado->id}}</td>
-            <td>${{$producto_finalizado->c_total}}</td>
+            <td>{{$producto_finalizado->orden->orden_de_trabajo->nombre}}</td>
+            <td>{{$producto_finalizado->orden->orden_de_trabajo->responsables->Nombre ?? ''}}</br><p class="text-muted">{{$producto_finalizado->orden->orden_de_trabajo->responsables->Telefono ?? ''}}</p></td>
+            <td>{{$producto_finalizado->orden->responsables->Nombre ?? ''}}</br><p class="text-muted">{{$producto_finalizado->orden->responsables->Telefono ?? ''}}</p></td>
+            <td>{{$producto_finalizado->cliente->nombre ?? ''}}</br><p class="text-muted">{{$producto_finalizado->cliente->cedula ?? ''}}</p></td>
+            <td>{{$producto_finalizado->c_iva}}</td>
             <td>
             <a href="{{url('/producto_finalizado/'.$producto_finalizado->id)}}" class="btn btn-outline-info">Ver</a>
            {{-- <a href="{{url('/producto_finalizado/'.$producto_finalizado->id.'/edit')}}" class="btn btn-outline-info">Editar </a>
