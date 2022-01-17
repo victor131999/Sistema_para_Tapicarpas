@@ -4,7 +4,7 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-
+<h1 align="center">Crear factura</h1>
 @stop
 
 @section('content')

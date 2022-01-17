@@ -3,7 +3,7 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-
+    <h1 align="center">Crear clase</h1>
 @stop
 
 @section('content')
