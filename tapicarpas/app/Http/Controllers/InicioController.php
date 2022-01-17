@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use App\Models\facturaCompra;
 use App\Models\facturas_venta;
-use JeroenNoten\LaravelAdminLte\Components\Widget\Alert;
-use Log;
 
 class InicioController extends Controller
 {
@@ -46,9 +44,12 @@ class InicioController extends Controller
             $datasVenta[$month] = $facturaventas[$index];
         }
         $detalles = [];
-        $NumClientes = DB::table('clientes')->orderBy('id', 'desc')->first();
-        $NumOrdenesProduccion = DB::table('producto_a_fabricars')->orderBy('id', 'desc')->first();
-        $NumProductosFinalizados = DB::table('producto_finalizados')->orderBy('id', 'desc')->first();
+
+        $NumClientes = DB::table('clientes')->count();
+        $NumOrdenesTrabajos = DB::table('orden_trabajos')->count();
+        $NumOrdenesProduccion = DB::table('producto_a_fabricars')->count();
+        $NumProductosFinalizados = DB::table('producto_finalizados')->count();
+
         //dd($facturacompras);
         //dd($NumOrdenesProduccion);
         //dd($NumProductosFinalizados);
@@ -56,7 +57,7 @@ class InicioController extends Controller
         ['NumClientes' => $NumClientes],
         ['NumOrdenesProduccion' => $NumOrdenesProduccion],
         ['NumProductosFinalizados' => $NumProductosFinalizados]);*/
-        return View::make('inicio.index',compact("detalles","NumClientes","NumOrdenesProduccion","NumProductosFinalizados","datas","datasVenta","egresofacturacompra","ingresofacturaventa") );
+        return View::make('inicio.index',compact("detalles","NumClientes","NumOrdenesProduccion","NumProductosFinalizados","datas","datasVenta","egresofacturacompra","ingresofacturaventa","NumOrdenesTrabajos") );
     }
 
 

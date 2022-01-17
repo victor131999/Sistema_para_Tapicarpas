@@ -28,12 +28,35 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+
+            <div class="col-lg-3 col-6">
+            <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        @if ($NumOrdenesTrabajos != null)
+                            <h3>{{$NumOrdenesTrabajos}}<sup style="font-size: 20px"></sup></h3>
+                        @else
+                            <h3>0<sup style="font-size: 20px"></sup></h3>
+                        @endif
+                        <p>Ordenes de trabajo</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    <a href="{{url('orden_trabajo/')}}" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
+            <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>{{$NumOrdenesProduccion->id}}</h3>
-
+                @if ($NumOrdenesProduccion != null)
+                    <h3>{{$NumOrdenesProduccion}}</h3>
+                @else
+                    <h3>0</h3>
+                @endif
                 <p>Ordenes de producción</p>
               </div>
               <div class="icon">
@@ -47,8 +70,11 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{$NumProductosFinalizados->id}}<sup style="font-size: 20px"></sup></h3>
-
+                @if ($NumProductosFinalizados != null)
+                    <h3>{{$NumProductosFinalizados}}<sup style="font-size: 20px"></sup></h3>
+                @else
+                    <h3>0<sup style="font-size: 20px"></sup></h3>
+                @endif
                 <p>Productos finalizados</p>
               </div>
               <div class="icon">
@@ -62,8 +88,11 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>{{$NumClientes->id}}</h3>
-
+                @if ($NumClientes != null)
+                    <h3>{{$NumClientes}}</h3>
+                @else
+                    <h3>0</h3>
+                @endif
                 <p>Clientes registrados</p>
               </div>
               <div class="icon">
@@ -85,11 +114,11 @@
             <div class="col-6">
               <div id="chart-ventas"></div>
             </div>
-           
+
           </div>
         </div>
-       
-        
+
+
         <!-- Main row -->
 
         <!-- /.row (main row) -->
@@ -99,7 +128,7 @@
 <script>
     var datas = "<?php echo json_encode ($datas)?>"
     var datass = datas.split(',').map(_=>_|0);
-    
+
     var venta = "<?php echo json_encode ($datasVenta)?>"
     var ventass = venta.split(',').map(_=>_|0);
 
@@ -153,7 +182,7 @@
     }
 
     );
-  
+
     Highcharts.chart('chart-ventas',{
         title:{
             text: 'Venta de productos'
@@ -202,7 +231,6 @@
 
     )
 </script>
-
 @stop
 
 

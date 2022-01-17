@@ -26,7 +26,7 @@ class HerramientaController extends Controller
     public function index()
     {
         //
-        $datos['herramientas']=Herramienta::paginate(5);
+        $datos['herramientas']=Herramienta::orderBy('id','DESC')->paginate(10);
 
         return view('herramienta.index',$datos);
     }
@@ -170,12 +170,12 @@ class HerramientaController extends Controller
         if($counter != 0){
             $max_reg =  Herramienta::where($match)->max('codI');
             $index = $max_reg+1;
-           
+
         }else if($counter == 0){
             $index = 1;
         }
         return $index;
-        
+
     }
 
 }

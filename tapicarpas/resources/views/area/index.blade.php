@@ -28,7 +28,7 @@
 
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            <th>#{{$Numdatos = DB::table('areas')->count()}}</th>
             <th>Nombre</th>
             <th>Código</th>
             <th>Acciones</th>
@@ -39,7 +39,7 @@
 
         @foreach ($areas as $area)
         <tr>
-            <td>{{$area->id}}</td>
+            <td>{{$loop->iteration}}</td>
             <td>{{$area->nombre}}</td>
             <td>{{$area->cod}}</td>
             <td>

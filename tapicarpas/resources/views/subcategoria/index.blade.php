@@ -28,7 +28,7 @@
 
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            <th>#/{{$Numdatos = DB::table('subcategoria_productos')->count()}}</th>
             <th>Categoría</th>
             <th>Subcategoría</th>
             <th>Acciones</th>

@@ -35,7 +35,7 @@ class OrdenTrabajoController extends Controller
     public function index()
     {
         //
-        $datos['orden_trabajos']=orden_trabajo::paginate(5);
+        $datos['orden_trabajos']=orden_trabajo::orderBy('id','DESC')->paginate(10);
         return view('orden_trabajo.index',$datos);
     }
 

@@ -27,7 +27,7 @@ class ProductoFinalizadoController extends Controller
     public function index()
     {
         //
-        $datos['producto_finalizados']=producto_finalizado::paginate(5);
+        $datos['producto_finalizados']=producto_finalizado::orderBy('id','DESC')->paginate(10);
         return view('producto_finalizado.index',$datos);
     }
 

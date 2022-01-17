@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Responsable;
 use Illuminate\Http\Request;
-
 class ResponsableController extends Controller
 {
         //Colocamos el middleware
@@ -20,8 +19,7 @@ class ResponsableController extends Controller
      */
     public function index()
     {
-        //
-        $datos['responsables']=Responsable::paginate(5);
+        $datos['responsables']=Responsable::orderBy('id','DESC')->paginate(10);
 
         return view('responsable.index',$datos);
     }

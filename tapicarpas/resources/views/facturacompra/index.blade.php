@@ -38,7 +38,7 @@
 
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            <th>#/{{$Numdatos = DB::table('factura_compras')->count()}}</th>
             <th>Proveedor</th>
             <th>Responsable</th>
             <th>Descripción</th>
@@ -51,7 +51,7 @@
 
         @foreach ($facturacompras as $facturacompra)
         <tr>
-            <td>{{$facturacompra->id}}</td>
+            <td>{{$loop->iteration}}</td>
             <td>{{$facturacompra->proveedor->Nombre}}</td>
             <td>{{$facturacompra->responsable->Nombre}} </td>
             <td>{{$facturacompra->descripcion_fac}} </td>

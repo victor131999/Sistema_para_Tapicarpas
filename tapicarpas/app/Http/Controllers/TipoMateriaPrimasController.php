@@ -24,7 +24,7 @@ class TipoMateriaPrimasController extends Controller
         //$tipo_materia_prima = tipo_materia_primas::all();
         //return view('tipo.index', compact('tipo_materia_prima'));
          //
-         $datos['tipo_materia_primass']=tipo_materia_primas::paginate(5);
+         $datos['tipo_materia_primass']=tipo_materia_primas::orderBy('id','DESC')->paginate(10);
 
          return view('tipo_materia_primas.index',$datos);
     }

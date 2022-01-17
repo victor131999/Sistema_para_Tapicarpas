@@ -23,6 +23,10 @@ class orden_trabajo extends Model
         return $this->belongsTo('App\Models\Responsable','id_responsable');
     }
 
+    public function clientes(){
+        return $this->belongsTo('App\Models\cliente','cliente_id');
+    }
+
     public function hp_orden_trabajo_mano(){
         return $this->belongsToMany('App\Models\mano_de_obra','hp_orden_trabajo_manos')->withPivot('horas','horas_costo');
     }

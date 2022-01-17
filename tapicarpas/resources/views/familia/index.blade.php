@@ -28,7 +28,7 @@
 
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            <th>#/{{$Numdatos = DB::table('familias')->count()}}</th>
             <th>Nombre</th>
             <th>Código</th>
             <th>Acciones</th>
@@ -39,7 +39,7 @@
 
         @foreach ($familias as $familia)
         <tr>
-            <td>{{$familia->id}}</td>
+            <td>{{$loop->iteration}}</td>
             <td>{{$familia->nombre}}</td>
             <td>{{$familia->cod}}</td>
             <td>
