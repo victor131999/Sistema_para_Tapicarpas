@@ -53,8 +53,6 @@
         <tr>
 
             <td>{{$loop->iteration}}</td>
-
-            <td>{{$producto_finalizado->id}}</td>
             <td>{{$producto_finalizado->orden->orden_de_trabajo->nombre}}</td>
             <td>{{$producto_finalizado->orden->orden_de_trabajo->responsables->Nombre ?? ''}}</br><p class="text-muted">{{$producto_finalizado->orden->orden_de_trabajo->responsables->Telefono ?? ''}}</p></td>
             <td>{{$producto_finalizado->orden->responsables->Nombre ?? ''}}</br><p class="text-muted">{{$producto_finalizado->orden->responsables->Telefono ?? ''}}</p></td>
