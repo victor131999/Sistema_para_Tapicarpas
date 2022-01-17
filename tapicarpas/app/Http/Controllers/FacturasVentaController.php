@@ -20,7 +20,7 @@ class FacturasVentaController extends Controller
     }
     public static function byProducto($id)
     {
-           $pf=producto_finalizado::where('cliente_id',$id)->where('estado','No')->get();
+           $pf=producto_finalizado::where('cliente_id',$id)->where('estado','Undelivered')->get();
            $pf->loadMissing('orden.orden_de_trabajo');
             return  $pf;
     }
@@ -62,7 +62,7 @@ class FacturasVentaController extends Controller
                         'producto_finalizado_id'=> $value,
                         'facturas_venta_id'=> $factura_de_venta->id,
                     ]);
-                    producto_finalizado::where('id','=', $value)->update(['estado' => 'Entregado'] );
+                    producto_finalizado::where('id','=', $value)->update(['estado' => 'Y_delivered'] );
             }
             DB::commit();
             return redirect("factura_venta")->with('status','1');
