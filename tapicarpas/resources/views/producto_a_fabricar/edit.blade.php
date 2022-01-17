@@ -181,8 +181,8 @@
         </div>
 
 
-        
- 
+
+
     </div>
     <!-MODAL PARA EL INGRESOO DE MATERIA PRIMA PARA PRODUCCION COMO DETALLE-!>
     <div class="modal fade" id="modalPrimaNormal" tabindex="-1" role="dialog" aria-labelledby="modalPrimaNormalLabel" aria-hidden="true">
@@ -272,7 +272,7 @@
                             `);
                             let total_pf = $("#total_pf").val() || 0;
                             $("#total_pf").val(parseInt(total_pf) + parseInt(cantidad) * parseInt(costoUnitario));
-                   
+
                     } else {
                         alert("Se debe ingresar una cantidad o stock valido");
                     }
@@ -304,7 +304,7 @@
                 console.log(identificarRepetidos)
                 let total_pf = $("#total_pf").val() || 0;
                 $("#total_pf").val(parseInt(total_pf) - subtotal);
-       
+
         }
         function colocar_stock() {
             let precio = $("#materias option:selected").attr("cantidad");
@@ -324,10 +324,5 @@
 @section('js')
     <script> console.log('Hi!'); </script>
 @stop
-
-
-
-
-
 
 </form>
