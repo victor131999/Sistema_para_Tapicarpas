@@ -67,7 +67,7 @@ class ProductoFinalizadoController extends Controller
                 "c_utilidad"=>$input["c_utilidad"],
                 "c_iva"=>$input["c_iva"],
                 "total"=>$input["total"],
-                "estado"=>"No entregado",
+                "estado"=>"Undelivered",
                 "cliente_id"=>$producto_a_fabricar->cliente_id,
                 "id_orden"=>$producto_a_fabricar->id
             ]);
