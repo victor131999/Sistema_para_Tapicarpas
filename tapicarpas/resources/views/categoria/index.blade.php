@@ -28,7 +28,7 @@
 
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            <th>#/{{$Numdatos = DB::table('categorias')->count()}}</th>
             <th>Nombre</th>
             <th>Acciones</th>
         </tr>
@@ -38,7 +38,7 @@
 
         @foreach ($categorias as $categoria)
         <tr>
-            <td>{{$categoria->id}}</td>
+            <td>{{$loop->iteration}}</td>
             <td>{{$categoria->nombre}}</td>
             <td>
                 <a href="{{url('/categoria/'.$categoria->id.'/edit')}}" class="btn btn-outline-info">

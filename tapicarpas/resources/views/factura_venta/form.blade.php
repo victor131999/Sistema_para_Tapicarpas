@@ -47,6 +47,7 @@
                                         <div class="form-group">
                                             <label for="cliente_id">Cliente</label>
                                             <select  data-live-search="true" class="form-control" type="text" name="cliente_id" value="{{isset($cliente_id)?$cliente_id:old('cliente_id')}}" id="cliente_id" onchange="colocar_producto()">
+                                                <option value="">Seleccione el cliente</option>
                                                 @foreach ($cliente as $clienteData)
                                                         <option value="{{$clienteData->id}}">
                                                             {{$clienteData->id}} - {{$clienteData->nombre}}
@@ -65,7 +66,7 @@
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="">Producto</label>
-                                                    <select name="materias_name" id="materias" class="form-control" onchange="colocar_cantidad()"></select>  
+                                                    <select name="materias_name" id="materias" class="form-control" onchange="colocar_cantidad()"></select>
                                                 </div>
                                             </div>
                                             <div class="col-3">
@@ -86,10 +87,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
-                           
+
                         </div>
                         <div class="card-header">
                             <h4 class="card-title">
@@ -180,7 +181,7 @@
                 $("#total_pf").val(parseFloat(total_pf) - parseFloat(subtotal));
         }
         function colocar_producto(){
-            
+
             let id_cliente = $("#cliente_id option:selected").val();
                 if(!id_cliente){
                     $("#materias").html("<option >Seleccione</option>");
@@ -198,7 +199,7 @@
             let costoUnitario = $("#materias option:selected").attr("costoUnitario");
             $("#costoUnitario").val(costoUnitario);
         }
-        
+
     </script>
 @stop
 

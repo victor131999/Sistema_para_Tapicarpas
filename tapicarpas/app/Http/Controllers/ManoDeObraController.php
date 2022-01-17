@@ -20,7 +20,7 @@ class ManoDeObraController extends Controller
     public function index()
     {
         //
-        $datos['mano_de_obras']=mano_de_obra::paginate(5);
+        $datos['mano_de_obras']=mano_de_obra::orderBy('id','DESC')->paginate(10);
 
         return view('mano_de_obra.index',$datos);
     }

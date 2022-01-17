@@ -7,10 +7,6 @@
 
 @stop
 
-
-
-
-
 @section('content')
 
     <div class="form-gourp">
@@ -93,10 +89,10 @@
             <!--
                 <div class="col-1">
                     <input class="btn btn-outline-success" onclick="generar_codigo()" value="Generar">
-                
+
                 </div>
             -->
-            
+
         </div>
 
         <div class="row">
@@ -123,7 +119,7 @@
         </div>
 
         <br/>
-        
+
         <input class="btn btn-outline-success" type="submit" value="{{$modo}} datos">
         <a href="{{url('herramienta/')}}">Regresar</a>
 
@@ -152,23 +148,23 @@
             let codA = $("#id_area option:selected").attr("codA");
             let codC = $("#id_clase option:selected").attr("codC");
             let codF = $("#id_familia option:selected").attr("codF");
-            if(codA == null || codC == null || codF == null ) return;   
+            if(codA == null || codC == null || codF == null ) return;
 
             $.ajax({
-                url: '/api/herramienta/verificar_codigo', 
+                url: '/api/herramienta/verificar_codigo',
                 data: {
                     "codA":codA,
                     "codC":codC,
                     "codF":codF
-                }, 
+                },
                 type: 'POST',
-                dataType: 'json', 
+                dataType: 'json',
                 success: function(value){
                     $("#codI").val(value);
                 },
                 error:  function(json, xhr, status){
                     console.warn('error');
-                }, 
+                },
                 complete: function(json, xhr, status){
                     console.log('finished')
                 }

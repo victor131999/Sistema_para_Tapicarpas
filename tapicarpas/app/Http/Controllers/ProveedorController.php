@@ -21,7 +21,7 @@ class ProveedorController extends Controller
     public function index()
     {
         //
-        $datos['proveedors']=Proveedor::paginate(5);
+        $datos['proveedors']=Proveedor::orderBy('id','DESC')->paginate(10);
 
         return view('proveedor.index',$datos);
     }

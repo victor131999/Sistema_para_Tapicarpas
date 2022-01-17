@@ -4,8 +4,8 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-    <h3>Producto: {{$producto_a_fabricar->orden_de_trabajo->nombre}}</h3>
-    <p>Cantidad: {{$producto_a_fabricar->cantidad_producto}}</p>
+    <h3 align="center">{{$producto_a_fabricar->orden_de_trabajo->nombre}}</h3>
+    <h4>Cantidad de productos: {{$producto_a_fabricar->orden_de_trabajo->cantidad_producto}}</h4>
 @stop
 
 @section('content')
@@ -23,32 +23,21 @@
             </div>
         @endif
 
-        <div class="row card-body">
-        <div class="card-header">
-                            <h4 class="card-title">
-                                <a >
-                                    <b>Materia prima utilizada </b></br>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMateriaPrima" data-whatever="@mdo">Agregar materiales</button>
-                                </a>
-                            </h4>
-                        </div>
-                        <br>
-                        <table class="table">
-                            <thead>
-                                <tr><th>Nombre</th><th>cantidades</th> <th>Costo Unitario</th><th>Opciones</th></tr>
-                            </thead>
-                            <tbody id="tblmaterias"></tbody>
-                        </table>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMateriaPrima" data-whatever="@mdo">Agregar materiales</button>
+    <br>
+    <table class="table">
+        <thead>
+            <tr><th>Nombre</th><th>cantidades</th> <th>Costo Unitario</th><th>Opciones</th></tr>
+        </thead>
+        <tbody id="tblmaterias"></tbody>
+    </table>
 
-
-            <div class="col-3">
-                <div class="form-group">
-                    <label for="">Precio de materia prima </label>
-                    <input type="number" id="costoMano" class="form-control" readonly>
-                </div>
-            </div>
-
+    <div class="col-3">
+        <div class="form-group">
+            <label for="">Precio de materia prima </label>
+            <input type="number" id="costoMano" class="form-control" readonly>
         </div>
+    </div>
 
     <div class="container">
         <div class="row">

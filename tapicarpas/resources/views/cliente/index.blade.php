@@ -28,7 +28,7 @@
 
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            <th>#/{{$Numdatos = DB::table('clientes')->count()}}</th>
             <th>Nombre</th>
             <th>Cédula</th>
             <th>Dirección</th>
@@ -41,7 +41,7 @@
     <tbody>
         @foreach($clientes as $key => $cliente)
         <tr>
-            <td>{{$cliente->id}}</td>
+            <td>{{$loop->iteration}}</td>
             <td>{{$cliente->nombre}}</td>
             <td>{{$cliente->cedula}}</td>
             <td>{{$cliente->direccion}}</td>

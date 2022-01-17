@@ -20,7 +20,7 @@ class FamiliaController extends Controller
     public function index()
     {
         //
-        $datos['familias']=familia::paginate(5);
+        $datos['familias']=familia::orderBy('id','DESC')->paginate(10);
 
         return view('familia.index',$datos);
     }

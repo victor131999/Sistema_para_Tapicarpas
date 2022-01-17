@@ -20,7 +20,7 @@ class ClaseController extends Controller
     public function index()
     {
         //
-        $datos['clases']=clase::paginate(5);
+        $datos['clases']=clase::orderBy('id','DESC')->paginate(10);
 
         return view('clase.index',$datos);
     }

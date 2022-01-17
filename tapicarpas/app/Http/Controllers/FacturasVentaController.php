@@ -26,7 +26,7 @@ class FacturasVentaController extends Controller
     }
     public function index()
     {
-        $datos['factura_ventas']=facturas_venta::paginate(5);
+        $datos['factura_ventas']=facturas_venta::orderBy('id','DESC')->paginate(10);
         return view('factura_venta.index',$datos);
     }
     public function create()

@@ -28,6 +28,7 @@
 
     <thead class="thead-light">
         <tr>
+            <th>#/{{$Numdatos = DB::table('herramientas')->count()}}</th>
             <th>Código</th>
             <th>Nombre</th>
             <th>Marca</th>
@@ -41,6 +42,7 @@
 
         @foreach ($herramientas as $herramienta)
         <tr>
+            <td>{{$loop->iteration}}</td>
             <td>{{$herramienta->codA}}.{{$herramienta->codC}}.{{$herramienta->codF}}.{{$herramienta->codI}}</td>
             <td>{{$herramienta->Nombre}}</td>
             <td>{{$herramienta->marca}}</td>

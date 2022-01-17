@@ -36,7 +36,7 @@
 
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            <th>#/{{$Numdatos = DB::table('producto_finalizados')->count()}}</th>
             <th>Producto</th>
             <th>Responsable/Orden de trabajo</th>
             <th>Responsable/Orden de producción</th>
@@ -51,6 +51,9 @@
 
         @foreach ($producto_finalizados as $producto_finalizado)
         <tr>
+
+            <td>{{$loop->iteration}}</td>
+
             <td>{{$producto_finalizado->id}}</td>
             <td>{{$producto_finalizado->orden->orden_de_trabajo->nombre}}</td>
             <td>{{$producto_finalizado->orden->orden_de_trabajo->responsables->Nombre ?? ''}}</br><p class="text-muted">{{$producto_finalizado->orden->orden_de_trabajo->responsables->Telefono ?? ''}}</p></td>

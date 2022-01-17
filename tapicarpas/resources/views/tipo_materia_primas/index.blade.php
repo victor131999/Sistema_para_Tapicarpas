@@ -28,7 +28,7 @@
 
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            <th>#/{{$Numdatos = DB::table('tipo_materia_primas')->count()}}</th>
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Acciones</th>
@@ -39,7 +39,7 @@
 
         @foreach ($tipo_materia_primass as $tipo_materia_primas)
         <tr>
-            <td>{{$tipo_materia_primas->id}}</td>
+            <td>{{$loop->iteration}}</td>
 
             <td>{{$tipo_materia_primas->nombre_tipo}}</td>
             <td>{{$tipo_materia_primas->descripcion_tipo}}</td>

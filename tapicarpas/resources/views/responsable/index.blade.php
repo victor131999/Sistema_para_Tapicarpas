@@ -25,10 +25,9 @@
 <br/>
 <br/>
 <table class="table table-light">
-
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            <th>#/{{$Numdatos = DB::table('responsables')->count()}}</th>
             <th>Nombre</th>
             <th>Dirección</th>
             <th>Teléfono</th>
@@ -40,7 +39,7 @@
 
         @foreach ($responsables as $responsable)
         <tr>
-            <td>{{$responsable->id}}</td>
+            <td>{{$loop->iteration}}</td>
 
             <td>{{$responsable->Nombre}}</td>
             <td>{{$responsable->Direccion}}</td>

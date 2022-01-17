@@ -8,11 +8,9 @@ use App\Models\materia_prima;
 use App\Models\Responsable;
 use App\Models\subcategoria_producto;
 use App\Models\orden_trabajo;
-use App\Models\cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use DB;
-use Log;
 
 class ProductoAFabricarController extends Controller
 {
@@ -23,7 +21,7 @@ class ProductoAFabricarController extends Controller
     public function index()
     {
         //
-        $datos['producto_a_fabricars']=producto_a_fabricar::paginate(5);
+        $datos['producto_a_fabricars']=producto_a_fabricar::orderBy('id','DESC')->paginate(10);
         return view('producto_a_fabricar.index',$datos);
     }
 
@@ -34,7 +32,7 @@ class ProductoAFabricarController extends Controller
         return View::make('producto_a_fabricar.create' )->
         with($datosResponsable)->
         with($datosOrden_trabajo);
-    
+
     }
     public function store(Request $request)
     {

@@ -14,7 +14,7 @@ class SubcategoriaProductoController extends Controller
     }
     public function index()
     {
-        $datos['subcategorias']=subcategoria_producto::paginate(5);
+        $datos['subcategorias']=subcategoria_producto::orderBy('id','DESC')->paginate(10);
         return view('subcategoria.index',$datos);
     }
     public function create()
@@ -40,7 +40,7 @@ class SubcategoriaProductoController extends Controller
         $datosSubcategoria = request()->except('_token');
         subcategoria_producto::insert($datosSubcategoria);
         return redirect('subcategoria')->with('mensaje','Subcategoría agregada con exito');
-    
+
     }
     public function edit($id)
     {
@@ -67,13 +67,13 @@ class SubcategoriaProductoController extends Controller
         subcategoria_producto::where('id','=',$id)->update($datosSubcategoria);
         $subcategoria=subcategoria_producto::findOrFail($id);
         return redirect('subcategoria')->with('mensaje','Subcategoria modificada correctamente');
- 
+
     }
     public function destroy($id)
     {
         $subcategoria=subcategoria_producto::findOrFail($id);
         subcategoria_producto::destroy($id);
         return redirect('subcategoria')->with('mensaje','Subcategoria eliminada');
-   
+
     }
 }

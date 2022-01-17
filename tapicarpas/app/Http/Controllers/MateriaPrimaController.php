@@ -28,7 +28,7 @@ class MateriaPrimaController extends Controller
     public function index()
     {
         //
-        $datos['materia_primas']=materia_prima::paginate(5);
+        $datos['materia_primas']=materia_prima::orderBy('id','DESC')->paginate(10);
         return view('materia_prima.index',$datos,);
     }
 

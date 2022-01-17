@@ -32,7 +32,7 @@
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            <th>#/{{$Numdatos = DB::table('facturas_ventas')->count()}}</th>
             <th>Cliente</th>
             <th>Total</th>
             <th>Acciones</th>
@@ -41,7 +41,7 @@
     <tbody id="myTable">
         @foreach ($factura_ventas as $factura)
         <tr>
-            <td>{{$factura->id}}</td>
+            <td>{{$loop->iteration}}</td>
             <td>{{$factura->cliente->nombre ?? ''}}</br><p class="text-muted">{{$factura->cliente->cedula ?? ''}}</p></td>
             <td>{{$factura->total_fv ?? ''}}</td>
             <td><a href="{{url('/factura_venta/'.$factura->id)}}" class="btn btn-outline-info">Ver</a>
@@ -66,7 +66,7 @@
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
-        }); 
+        });
     </script>
 @stop
 

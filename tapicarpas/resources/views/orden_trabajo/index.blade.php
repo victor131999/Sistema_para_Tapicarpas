@@ -39,7 +39,7 @@
 
     <thead class="thead-light">
         <tr>
-            <th>#</th>
+            <th>#/{{$Numdatos = DB::table('orden_trabajos')->count()}}</th>
             <th>Cliente</th>
             <th>Producto</th>
             <th>Color</th>
@@ -54,8 +54,8 @@
 
         @foreach ($orden_trabajos as $orden_trabajo)
         <tr>
-            <td>{{$orden_trabajo->id}}</td>
-            <td>{{$orden_trabajo->cliente_id}}</td>
+            <td>{{$loop->iteration}}</td>
+            <td>{{$orden_trabajo->clientes->nombre}}</td>
             <td>{{$orden_trabajo->nombre}}</td>
             <td>{{$orden_trabajo->color}}</td>
             <td>{{$orden_trabajo->medida}}</td>

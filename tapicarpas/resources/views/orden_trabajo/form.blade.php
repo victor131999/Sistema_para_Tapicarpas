@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             <div class="row">
 
                                 <div class="col-md-3 col-lg-4">
@@ -354,7 +354,7 @@
                         alert("Se debe ingresar una cantidades o stock valido");
                     }
                     }else{
-                        alert('Ya seleccionó  el articulo');
+                        alert('Ya seleccionó  a la persona');
                         return;
                     }
                     document.getElementById("tblmaterias").appendChild(TR)
