@@ -3,7 +3,7 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-    <h1>Factura de compra </h1>
+<a id="regresar" href="{{url('facturacompra/')}}">Regresar</a>
 
 @stop
 
@@ -63,7 +63,7 @@
 </div>
 @endif
 <div class="d-flex flex-row-reverse bg-dark text-white p-4">
-    <div class="py-3 px-5 text-right">
+    <div id="pdf" class="py-3 px-5 text-right">
         <div class="mb-2">Generar PDF</div>
         <div class="h2 font-weight-light"><button class="btn btn-primary" onclick="window.print()">PDF</button></div>
     </div>
@@ -78,7 +78,14 @@
         <div class="h2 font-weight-light" id ='total'>${{$facturas[0]->total_fac}}</div>
     </div>
 </div>
-<a href="{{url('facturacompra/')}}">Regresar</a>
+
+<style type="text/css" media="print">
+    @media print {
+    #regresar {display:none;}
+    #pdf {display:none;}
+    }
+</style>
+
 @stop
 
 @section('css')
