@@ -85,7 +85,10 @@ body {
                         </div>
                     </div>
                     <div class="d-flex flex-row-reverse bg-dark text-white p-4">
-
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Generar PDF</div>
+                            <div class="h2 font-weight-light"><button class="btn btn-primary" onclick="window.print()">PDF</button></div>
+                        </div>
                     </div>
                 </div>
             </div>
