@@ -251,6 +251,6 @@ class OrdenTrabajoController extends Controller
     {
         $orden_trabajo=orden_trabajo::findOrFail($id);
         orden_trabajo::destroy($id);
-        return redirect('orden_trabajo')->with('mensaje','Producto a fabricar eliminado');
+        return redirect('orden_trabajo')->with('mensaje','Orden de trabajo eliminado');
     }
 }
