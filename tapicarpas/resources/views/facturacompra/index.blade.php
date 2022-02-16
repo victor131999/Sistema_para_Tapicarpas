@@ -52,8 +52,8 @@
         @foreach ($facturacompras as $facturacompra)
         <tr>
             <td>{{$loop->iteration}}</td>
-            <td>{{$facturacompra->proveedor->Nombre}}</td>
-            <td>{{$facturacompra->responsable->Nombre}} </td>
+            <td>{{$facturacompra->proveedor->Nombre ?? "Ninguno"}} </td>
+            <td>{{$facturacompra->responsable->Nombre ?? "Ninguno"}} </td>
             <td>{{$facturacompra->descripcion_fac}} </td>
             <td>${{$facturacompra->total_fac}}</td>
             <td>
