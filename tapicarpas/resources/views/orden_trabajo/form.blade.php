@@ -114,14 +114,9 @@
                                     </div>
                                 </div>
                             </div>
-                        <div class="card-header">
-                            <h4 class="card-title">
-                                <a >
-                                    <b>Detalles</b></br>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal" data-whatever="@mdo">Agregar materiales</button>
-                                </a>
-                            </h4>
-                        </div>
+                        <br>
+                        <label for="medida" style="color:red"> Materia prima</label><br>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal" data-whatever="@mdo">Agregar materiales</button>
                         <br>
                         <table class="table">
                             <thead>
@@ -158,8 +153,8 @@
                                 </div>
                             </div>
                         </div>
-
                         <br>
+                        <label for="medida" style="color:red"> Mano de obra</label><br>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPrimaNormal1" data-whatever="@mdo">Agregar mano de obra</button>
                         <br>
                         <table class="table">
