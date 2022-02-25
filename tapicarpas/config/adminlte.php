@@ -328,7 +328,7 @@ return [
                     'url'  => 'categoria',
                 ],
                 [
-                    'text' => 'Sub Categorías',
+                    'text' => 'Subcategorías',
                     'url'  => 'subcategoria',
                 ],
             ],
