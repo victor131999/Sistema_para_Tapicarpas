@@ -105,16 +105,15 @@
                                     <div class="form-group">
                                         <label for="color">Color</label>
                                         <input type="text" class="form-control" name="color" value="{{isset($categoria->color)?$categoria->color:old('color')}}" id="color">
-
-                    <div class="col-md-1 col-lg-12">
-                        <div class="form-group">
-                        <label for="medida"> Detalles de Medidas</label>
-                        <textarea type="text" class="form-control" name="medida" placeholder=" detalle de medida Ejm:3 x 5" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida"></textarea>
-
+                                    </div>
+                                </div>
+                                <div class="col-md-1 col-lg-12">
+                                    <div class="form-group">
+                                    <label for="medida"> Detalles de Medidas</label>
+                                    <textarea type="text" class="form-control" name="medida" placeholder=" detalle de medida Ejm:3 x 5" value="{{isset($categoria->medida)?$categoria->medida:old('medida')}}" id="medida"></textarea>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         <div class="card-header">
                             <h4 class="card-title">
                                 <a >
