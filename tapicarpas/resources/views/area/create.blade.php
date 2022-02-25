@@ -4,7 +4,7 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-<h1 align="center">Crear area</h1>
+<h1 align="center">Crear área</h1>
 @stop
 
 @section('content')

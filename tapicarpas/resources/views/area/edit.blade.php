@@ -3,7 +3,7 @@
 @section('title', 'TapiCarpas')
 
 @section('content_header')
-<h1 align="center">Editar area</h1>
+<h1 align="center">Editar área</h1>
 @stop
 
 @section('content')

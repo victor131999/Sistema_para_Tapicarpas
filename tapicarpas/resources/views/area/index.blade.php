@@ -4,7 +4,7 @@
 @section('title', 'Categorías')
 
 @section('content_header')
-    <h1>Areas</h1>
+    <h1>Áreas</h1>
 @stop
 
 @section('content')
@@ -21,7 +21,7 @@
 
 
 
-<a href="{{url('area/create')}}" class="btn btn-outline-success">Registrar nuevo area</a>
+<a href="{{url('area/create')}}" class="btn btn-outline-success">Registrar nuevo área</a>
 <br/>
 <br/>
 <table class="table table-light">

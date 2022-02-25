@@ -301,7 +301,7 @@ return [
             'icon'    => 'fa fa-wrench',
             'submenu' => [
                 [
-                    'text' => 'Areas',
+                    'text' => 'Áreas',
                     'url'  => 'area',
                 ],
                 [
