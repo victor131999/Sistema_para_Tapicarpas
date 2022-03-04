@@ -17,8 +17,8 @@ class CreateHpFacturasVentasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('producto_finalizado_id')->nullable();
             $table->unsignedBigInteger('facturas_venta_id')->nullable();
-            $table->foreign('producto_finalizado_id')->references('id')->on('producto_finalizados')->onDelete('set null');
-            $table->foreign('facturas_venta_id')->references('id')->on('facturas_ventas')->onDelete('set null');
+            $table->foreign('producto_finalizado_id')->references('id')->on('producto_finalizados')->onDelete('cascade');
+            $table->foreign('facturas_venta_id')->references('id')->on('facturas_ventas')->onDelete('cascade');
             $table->timestamps();
         });
     }

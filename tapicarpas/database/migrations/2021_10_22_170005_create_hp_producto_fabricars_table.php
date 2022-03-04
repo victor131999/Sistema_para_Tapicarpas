@@ -22,8 +22,8 @@ class CreateHpProductoFabricarsTable extends Migration
             $table->unsignedBigInteger('materia_prima_id')->nullable();
             $table->unsignedBigInteger('producto_a_fabricar_id')->nullable();
 
-            $table->foreign('materia_prima_id')->references('id')->on('materia_primas')->onDelete('set null');
-            $table->foreign('producto_a_fabricar_id')->references('id')->on('producto_a_fabricars')->onDelete('set null');
+            $table->foreign('materia_prima_id')->references('id')->on('materia_primas')->onDelete('cascade');
+            $table->foreign('producto_a_fabricar_id')->references('id')->on('producto_a_fabricars')->onDelete('cascade');
         });
     }
 

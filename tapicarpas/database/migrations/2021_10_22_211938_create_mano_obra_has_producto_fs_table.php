@@ -24,8 +24,8 @@ class CreateManoObraHasProductoFsTable extends Migration
             $table->unsignedBigInteger('mano_de_obra_id')->nullable();
             $table->unsignedBigInteger('producto_finalizado_id')->nullable();
 
-            $table->foreign('mano_de_obra_id')->references('id')->on('mano_de_obras')->onDelete('set null');
-            $table->foreign('producto_finalizado_id')->references('id')->on('producto_finalizados')->onDelete('set null');
+            $table->foreign('mano_de_obra_id')->references('id')->on('mano_de_obras')->onDelete('cascade');
+            $table->foreign('producto_finalizado_id')->references('id')->on('producto_finalizados')->onDelete('cascade');
         });
     }
 

@@ -20,9 +20,9 @@ class CreateFacturaDetalleCompraMateriasTable extends Migration
             $table->float('subtotal_df');
             //relaciones
             $table->unsignedBigInteger('id_fac')->nullable();
-            $table->foreign('id_fac')->references('id')->on('factura_compras')->onDelete('set null');
+            $table->foreign('id_fac')->references('id')->on('factura_compras')->onDelete('cascade');
             $table->unsignedBigInteger('id_mp')->nullable();
-            $table->foreign('id_mp')->references('id')->on('materia_primas')->onDelete('set null');
+            $table->foreign('id_mp')->references('id')->on('materia_primas')->onDelete('cascade');
             $table->timestamps();
         });
     }
