@@ -25,8 +25,8 @@ class CreateFacturaComprasTable extends Migration
             $table->unsignedBigInteger('id_prov')->nullable();
             $table->unsignedBigInteger('id_resp')->nullable();
 
-            $table->foreign('id_prov')->references('id')->on('proveedors')->onDelete('set null');
-            $table->foreign('id_resp')->references('id')->on('responsables')->onDelete('set null');
+            $table->foreign('id_prov')->references('id')->on('proveedors')->onDelete('cascade');
+            $table->foreign('id_resp')->references('id')->on('responsables')->onDelete('cascade');
             $table->timestamps();
         });
     }

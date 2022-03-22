@@ -54,12 +54,12 @@
                 </a>
 
                 |
-
+                <!--
                 <form action="{{url('/materia_prima/'.$materia_prima->id)}}" class="d-inline" method="post">
                 @csrf
                 {{method_field('DELETE')}}
                     <input class="btn btn-outline-dark" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
-                </form>
+                </form>-->
 
             </th>
         </tr>
