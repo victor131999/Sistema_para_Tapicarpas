@@ -156,7 +156,7 @@ body {
                                             <p class="font-weight-bold mb-1">Utilidad:</p> ${{$datos->c_utilidad}}
                                         </div>
                                         <div class="col">
-                                            <p class="font-weight-bold mb-1">Costo final con iva:</p> ${{$datos->c_iva}}
+                                            <p class="font-weight-bold mb-1">Precio final con iva:</p> ${{$datos->c_iva}}
                                         </div>
 
                                     </div>
@@ -172,8 +172,8 @@ body {
                                         </div>
 
                                         <div class="py-3 px-12 text-right">
-                                            <div class="mb-2">Total</div>
-                                            <div class="h2 font-weight-light" id ='total'>${{$datos->c_iva}}</div>
+                                            <div class="mb-2">Costo Total</div>
+                                            <div class="h2 font-weight-light" id ='total'>${{$datos->c_total}}</div>
                                         </div>
                                     </div>
                             </div>
