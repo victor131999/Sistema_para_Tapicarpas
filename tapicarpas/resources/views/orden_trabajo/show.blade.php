@@ -172,7 +172,7 @@ body {
                                         </div>
 
                                         <div class="py-3 px-12 text-right">
-                                            <div class="mb-2">Costo Tota</div>
+                                            <div class="mb-2">Costo Total</div>
                                             <div class="h2 font-weight-light" id ='total'>${{$datos->c_total}}</div>
                                         </div>
                                     </div>
